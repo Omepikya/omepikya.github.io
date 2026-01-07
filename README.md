@@ -1,2 +1,2 @@
 # omepikya.github.io
-Nothing to tell yet. 
+Nothing to describe yet. 
