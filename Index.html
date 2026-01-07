@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Omepikya</title>
+
+<!-- Inter Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234da3ff%22>O</text></svg>">
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --text: #eaeef3;
+  --muted: #8b94a1;
+  --accent: #4da3ff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.wrapper {
+  text-align: center;
+  padding: 24px;
+}
+
+.brand {
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+}
+
+.line {
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  margin: 20px auto;
+  border-radius: 2px;
+  animation: drawLine 1.5s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.tagline {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+  animation-delay: 0.8s;
+}
+
+/* Footer fixed at bottom */
+footer {
+  position: fixed;
+  bottom: 18px;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 0 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 44px;
+    opacity: 1;
+  }
+}
+
+/* Accessibility */
+a:focus, button:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .brand {
+    font-size: 32px;
+  }
+  
+  .wrapper {
+    padding: 20px;
+  }
+  
+  footer {
+    bottom: 20px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="brand">OMEPIKYA</div>
+    <div class="line"></div>
+    <div class="tagline">Currently being built.</div>
+  </div>
+
+  <footer>
+    <div>© <span id="year"></span> Omepikya. All rights reserved.</div>
+  </footer>
+
+<script>
+// Set current year in footer
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Add keyboard navigation support
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Tab') {
+    document.body.classList.add('keyboard-navigation');
+  }
+});
+
+document.addEventListener('click', function() {
+  document.body.classList.remove('keyboard-navigation');
+});
+</script>
+</body>
+</html>
