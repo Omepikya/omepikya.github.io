@@ -98,14 +98,15 @@ color-scheme: dark;
 color-scheme: light;
 }
 
-/* =========================
-GLOBAL
-========================= */
+
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 * {
-  box-sizing: border-box;
-  min-width: 0;
-  }
+box-sizing: border-box;
+min-width: 0;
+}
 
 html {
 scroll-behavior: smooth;
@@ -158,9 +159,10 @@ background: var(--accent);
 color: var(--accent-ink);
 }
 
-/* =========================
-AMBIENT BACKGROUND
-========================= */
+
+/* =========================================================
+   AMBIENT BACKGROUND
+========================================================= */
 
 .ambient {
 position: absolute;
@@ -193,9 +195,10 @@ top: 420px;
 right: -330px;
 }
 
-/* =========================
-CONTAINER
-========================= */
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .section-shell {
 width: 100%;
@@ -239,11 +242,11 @@ font-family: Manrope, sans-serif;
 font-weight: 800;
 }
 
-/* =========================
-HEADERS
-========================= */
 
-/* Mobile-first: desktop header is hidden. */
+/* =========================================================
+   HEADERS
+========================================================= */
+
 .desktop-header {
 display: none;
 
@@ -323,11 +326,14 @@ opacity: .92;
 margin-left: 7px;
 }
 
-/* =========================
-MOBILE MENU BUTTON
-========================= */
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
 
 .menu-button {
+position: relative;
+
 width: 58px;
 height: 58px;
 
@@ -339,45 +345,84 @@ border-radius: 50%;
 background: var(--text);
 
 display: flex;
-flex-direction: column;
+align-items: center;
 justify-content: center;
 
-gap: 7px;
-padding: 0 0 0 19px;
+padding: 0;
 
 cursor: pointer;
 
 box-shadow: 0 10px 35px rgba(0, 0, 0, .16);
 
-transition: transform .2s ease;
+transition:
+transform .25s ease,
+background-color .25s ease,
+box-shadow .25s ease;
 }
 
 .menu-button span {
+position: absolute;
+
+left: 50%;
+
 display: block;
 
 height: 2.5px;
 
-border-radius: 99px;
+margin: 0 !important;
+
+border-radius: 999px;
 
 background: var(--bg);
+
+transform-origin: center;
+
+transition:
+transform .3s cubic-bezier(.22,.8,.25,1),
+width .22s ease,
+background-color .22s ease;
 }
 
 .menu-button span:first-child {
 width: 24px;
+transform: translate(-50%, -4px);
 }
 
 .menu-button span:last-child {
 width: 16px;
-margin-left: 7px;
+transform: translate(-50%, 4px);
 }
 
 .menu-button:active {
 transform: scale(.96);
 }
 
-/* =========================
-SIDE MENU
-========================= */
+
+/* =========================================================
+   OPEN MENU BUTTON — HAMBURGER → X
+========================================================= */
+
+body.menu-open .menu-button {
+background: var(--accent);
+
+box-shadow:
+0 14px 40px rgba(0, 0, 0, .22);
+}
+
+body.menu-open .menu-button span:first-child {
+width: 24px;
+transform: translate(-50%, 0) rotate(45deg);
+}
+
+body.menu-open .menu-button span:last-child {
+width: 24px;
+transform: translate(-50%, 0) rotate(-45deg);
+}
+
+
+/* =========================================================
+   SIDE MENU BACKDROP
+========================================================= */
 
 .menu-backdrop {
 position: fixed;
@@ -385,20 +430,26 @@ inset: 0;
 
 z-index: 40;
 
-background: rgba(0, 0, 0, .45);
+background: rgba(4, 7, 10, .54);
 
 opacity: 0;
 pointer-events: none;
 
-transition: opacity .25s ease;
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
 
-backdrop-filter: blur(3px);
+transition: opacity .30s ease;
 }
 
 .menu-backdrop.open {
 opacity: 1;
 pointer-events: auto;
 }
+
+
+/* =========================================================
+   PREMIUM SLIDE-OVER MENU
+========================================================= */
 
 .side-menu {
 position: fixed;
@@ -411,25 +462,32 @@ bottom: 12px;
 
 width: min(390px, calc(100vw - 24px));
 
-padding: 24px;
+padding: 22px;
 
-border: 1px solid var(--line);
-border-radius: 26px;
-
-background: color-mix(
+border: 1px solid color-mix(
 in srgb,
-var(--surface) 94%,
+var(--line) 90%,
 transparent
 );
 
-box-shadow: 0 30px 90px rgba(0, 0, 0, .45);
+border-radius: 28px;
 
-backdrop-filter: blur(24px);
+background: color-mix(
+in srgb,
+var(--surface) 95%,
+transparent
+);
+
+box-shadow:
+0 30px 90px rgba(0,0,0,.44);
+
+backdrop-filter: blur(28px);
+-webkit-backdrop-filter: blur(28px);
 
 transform: translateX(calc(100% + 30px));
 
 transition:
-transform .32s cubic-bezier(.22, .8, .25, 1);
+transform .34s cubic-bezier(.22,.8,.25,1);
 
 overflow: auto;
 overscroll-behavior: contain;
@@ -440,12 +498,18 @@ overscroll-behavior: contain;
 transform: translateX(0);
 }
 
+
+/* =========================================================
+   MENU HEADER
+========================================================= */
+
 .menu-head {
 display: flex;
+
 justify-content: space-between;
 align-items: center;
 
-padding-bottom: 24px;
+padding-bottom: 18px;
 }
 
 .menu-kicker,
@@ -464,17 +528,20 @@ display: block;
 
 margin-top: 3px;
 
-font: 700 19px Manrope, sans-serif;
+font: 700 20px Manrope, sans-serif;
+letter-spacing: -.03em;
 }
 
 .menu-close {
 width: 42px;
 height: 42px;
 
+flex-shrink: 0;
+
 border: 1px solid var(--line);
 border-radius: 50%;
 
-background: transparent;
+background: var(--surface-2);
 color: var(--text);
 
 font-size: 27px;
@@ -484,46 +551,82 @@ cursor: pointer;
 
 transition:
 background .2s ease,
-border-color .2s ease;
+border-color .2s ease,
+transform .2s ease;
 }
 
 .menu-close:hover {
-background: var(--surface-2);
+background: var(--surface-3);
+
 border-color: var(--muted);
+
+transform: rotate(5deg);
 }
+
+
+/* =========================================================
+   MENU NAVIGATION
+========================================================= */
 
 .menu-links {
 display: grid;
-gap: 4px;
+
+gap: 5px;
 }
 
 .menu-links a {
-min-height: 52px;
+min-height: 54px;
 
 display: grid;
-grid-template-columns: 26px 1fr auto;
+
+grid-template-columns: 28px 1fr auto;
 
 align-items: center;
+
 gap: 10px;
 
-padding: 0 10px;
+padding: 0 12px;
 
-border-radius: 12px;
+border: 1px solid transparent;
+border-radius: 15px;
 
 text-decoration: none;
+
 color: var(--text);
 
 font-size: 14px;
 
-transition: background .2s ease;
+transition:
+background .2s ease,
+border-color .2s ease,
+transform .2s ease;
 }
 
 .menu-links a:hover {
 background: var(--surface-2);
+
+border-color: var(--line);
+
+transform: translateX(2px);
 }
 
 .menu-icon {
+width: 28px;
+height: 28px;
+
+display: grid;
+place-items: center;
+
+border-radius: 9px;
+
 color: var(--accent);
+
+background: color-mix(
+in srgb,
+var(--accent) 10%,
+transparent
+);
+
 font-size: 17px;
 }
 
@@ -532,6 +635,11 @@ color: var(--muted);
 font-size: 12px;
 }
 
+
+/* =========================================================
+   MENU DIVIDER
+========================================================= */
+
 .menu-divider {
 height: 1px;
 
@@ -539,6 +647,11 @@ background: var(--line);
 
 margin: 18px 0;
 }
+
+
+/* =========================================================
+   MENU SECTION TITLE
+========================================================= */
 
 .menu-section-title {
 display: flex;
@@ -562,8 +675,14 @@ color: var(--muted);
 font-size: 11px;
 }
 
+
+/* =========================================================
+   THEME SELECTOR
+========================================================= */
+
 .theme-options {
 display: grid;
+
 grid-template-columns: repeat(3, 1fr);
 
 gap: 6px;
@@ -571,6 +690,7 @@ gap: 6px;
 padding: 5px;
 
 border: 1px solid var(--line);
+
 border-radius: 14px;
 
 background: var(--surface-2);
@@ -578,6 +698,7 @@ background: var(--surface-2);
 
 .theme-options button {
 border: 0;
+
 border-radius: 10px;
 
 background: transparent;
@@ -600,19 +721,27 @@ color: var(--text);
 
 .theme-options button.active {
 background: var(--text);
+
 color: var(--bg);
 
 font-weight: 700;
 }
 
+
+/* =========================================================
+   MENU FOOTER
+========================================================= */
+
 .menu-footer {
 display: flex;
 
 justify-content: space-between;
+
 gap: 12px;
 
-margin-top: 24px;
-padding-top: 18px;
+margin-top: 20px;
+
+padding-top: 16px;
 
 border-top: 1px solid var(--line);
 
@@ -621,9 +750,10 @@ color: var(--muted);
 font-size: 9px;
 }
 
-/* =========================
-HERO
-========================= */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
 display: grid;
@@ -640,14 +770,19 @@ padding: 40px 0;
 .eyebrow,
 .kicker {
 font-size: 11px;
+
 letter-spacing: .18em;
+
 font-weight: 700;
+
 color: var(--muted);
 }
 
 .eyebrow {
 display: flex;
+
 align-items: center;
+
 gap: 9px;
 
 margin-bottom: 20px;
@@ -674,6 +809,7 @@ font-family: Manrope, sans-serif;
 margin: 0;
 
 letter-spacing: -.055em;
+
 line-height: 1.03;
 
 overflow-wrap: anywhere;
@@ -686,6 +822,7 @@ font-size: clamp(32px, 8vw, 94px);
 h1 em,
 h2 em {
 font-style: normal;
+
 color: var(--accent);
 }
 
@@ -713,6 +850,7 @@ gap: 16px;
 display: inline-flex;
 
 align-items: center;
+
 justify-content: space-between;
 
 gap: 24px;
@@ -728,6 +866,7 @@ padding: 14px 18px;
 font-size: 14px;
 
 width: 100%;
+
 max-width: 320px;
 
 transition:
@@ -741,11 +880,13 @@ transform: translateY(-2px);
 
 .button.primary {
 background: var(--accent);
+
 color: var(--button-text);
 }
 
 .button.light {
 background: var(--cta-bg);
+
 color: var(--cta-text);
 }
 
@@ -759,11 +900,13 @@ text-decoration: none;
 
 .text-link:hover {
 text-decoration: underline;
+
 text-underline-offset: 4px;
 }
 
 .text-link span {
 color: var(--muted);
+
 margin-left: 8px;
 }
 
@@ -794,14 +937,16 @@ border-radius: 50%;
 background: var(--trust-dot);
 }
 
-/* =========================
-DASHBOARD
-========================= */
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
 .hero-visual {
 position: relative;
 
 display: grid;
+
 place-items: center;
 
 width: 100%;
@@ -809,6 +954,7 @@ width: 100%;
 
 .dashboard-card {
 width: 100%;
+
 max-width: 480px;
 
 background: var(--card-bg);
@@ -828,6 +974,7 @@ overflow: hidden;
 display: flex;
 
 justify-content: space-between;
+
 align-items: flex-end;
 
 flex-wrap: wrap;
@@ -841,6 +988,7 @@ display: block;
 color: var(--muted);
 
 font-size: 9px;
+
 letter-spacing: .16em;
 
 margin-bottom: 7px;
@@ -968,6 +1116,7 @@ border-radius: 10px;
 background: var(--tx-icon-bg);
 
 display: grid;
+
 place-items: center;
 
 color: var(--accent);
@@ -975,11 +1124,13 @@ color: var(--accent);
 
 .transaction div {
 flex: 1;
+
 min-width: 0;
 }
 
 .transaction strong {
 font-size: 12px;
+
 white-space: nowrap;
 }
 
@@ -987,12 +1138,14 @@ white-space: nowrap;
 color: var(--accent);
 }
 
-/* =========================
-PROOF BAR
-========================= */
+
+/* =========================================================
+   PROOF BAR
+========================================================= */
 
 .proof {
 border-top: 1px solid var(--line);
+
 border-bottom: 1px solid var(--line);
 
 padding: 18px 0;
@@ -1016,12 +1169,14 @@ flex-wrap: wrap;
 
 .proof b {
 color: var(--text);
+
 font-size: 12px;
 }
 
-/* =========================
-GENERAL SECTIONS
-========================= */
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
 
 .section-block {
 padding: 60px 0;
@@ -1055,9 +1210,10 @@ margin: 0 0 4px;
 font-size: 15px;
 }
 
-/* =========================
-FEATURES
-========================= */
+
+/* =========================================================
+   FEATURES
+========================================================= */
 
 .feature-grid {
 display: grid;
@@ -1105,6 +1261,7 @@ background: var(--feature-large-bg);
 position: absolute;
 
 right: 20px;
+
 top: 22px;
 
 color: var(--muted);
@@ -1154,14 +1311,16 @@ padding: 5px 8px;
 font-size: 9px;
 }
 
-/* =========================
-SECURITY
-========================= */
+
+/* =========================================================
+   SECURITY
+========================================================= */
 
 .security {
 background: var(--security-bg);
 
 border-top: 1px solid var(--security-line);
+
 border-bottom: 1px solid var(--security-line);
 }
 
@@ -1191,6 +1350,7 @@ max-width: 560px;
 height: 180px;
 
 display: grid;
+
 place-items: center;
 
 position: relative;
@@ -1205,6 +1365,7 @@ border: 1px solid var(--lock-border);
 border-radius: 50%;
 
 display: grid;
+
 place-items: center;
 
 box-shadow:
@@ -1257,9 +1418,10 @@ color: var(--text);
 font-size: 13px;
 }
 
-/* =========================
-PRIVACY
-========================= */
+
+/* =========================================================
+   PRIVACY
+========================================================= */
 
 .privacy-section {
 position: relative;
@@ -1313,9 +1475,10 @@ font-size: 11px;
 max-width: 760px;
 }
 
-/* =========================
-STEPS
-========================= */
+
+/* =========================================================
+   STEPS
+========================================================= */
 
 .centered {
 display: block;
@@ -1369,9 +1532,10 @@ font-size: 13px;
 max-width: 280px;
 }
 
-/* =========================
-DOWNLOAD / CONTACT
-========================= */
+
+/* =========================================================
+   DOWNLOAD / CONTACT
+========================================================= */
 
 .download {
 padding-bottom: 60px;
@@ -1441,9 +1605,10 @@ font-size: 13px;
 color: var(--email-note);
 }
 
-/* =========================
-FOOTER
-========================= */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .footer {
 border-top: 1px solid var(--line);
@@ -1469,18 +1634,22 @@ gap: 20px;
 flex-wrap: wrap;
 }
 
-/* =========================
-TABLET
-========================= */
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (min-width: 640px) {
+
 .hero-actions {
 flex-direction: row;
+
 align-items: center;
 }
 
 .button {
 width: auto;
+
 max-width: none;
 }
 
@@ -1488,7 +1657,6 @@ max-width: none;
 grid-template-columns: 1.25fr .75fr;
 
 gap: 30px;
-
 }
 
 .feature-grid {
@@ -1513,7 +1681,6 @@ padding: 28px;
 border-right: 1px solid var(--line);
 
 border-bottom: 0;
-
 }
 
 .steps article:last-child {
@@ -1524,22 +1691,23 @@ border-right: 0;
 flex-direction: row;
 
 align-items: center;
-
 }
 
 .footer {
 grid-template-columns: 1fr auto;
 
 gap: 20px;
-
-}
 }
 
-/* =========================
-DESKTOP
-========================= */
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
 
 @media (min-width: 900px) {
+
 .mobile-header {
 display: none;
 }
@@ -1558,14 +1726,12 @@ grid-template-columns: 1fr 1fr;
 gap: 50px;
 
 padding: 60px 0;
-
 }
 
 .dashboard-card {
 transform: rotate(1.5deg);
 
 padding: 26px;
-
 }
 
 .section-block {
@@ -1584,7 +1750,6 @@ grid-column: span 2;
 grid-template-columns: .9fr 1.1fr;
 
 gap: 50px;
-
 }
 
 .steps {
@@ -1595,7 +1760,6 @@ grid-template-columns: repeat(3, 1fr);
 border-bottom: 0;
 
 border-right: 1px solid var(--line);
-
 }
 
 .steps article:last-child {
@@ -1612,7 +1776,6 @@ height: 420px;
 
 right: -130px;
 top: -170px;
-
 }
 
 .footer {
@@ -1622,18 +1785,56 @@ grid-template-columns: 1fr auto 1fr;
 .footer-links {
 justify-content: flex-end;
 }
+
 }
 
-/* =========================
-SMALL MOBILE
-========================= */
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+.mobile-header {
+min-height: 68px;
+
+padding-inline: 12px;
+}
+
+.menu-button {
+width: 54px;
+height: 54px;
+}
+
+.side-menu {
+top: 8px;
+right: 8px;
+bottom: 8px;
+
+width: calc(100vw - 16px);
+
+padding: 20px;
+
+border-radius: 24px;
+}
+
+.menu-links a {
+min-height: 52px;
+}
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+========================================================= */
 
 @media (max-width: 400px) {
+
 .mobile-brand {
 font-size: 14px;
 
 gap: 8px;
-
 }
 
 .brand-mark {
@@ -1644,9 +1845,22 @@ height: 29px;
 .menu-button {
 width: 50px;
 height: 50px;
+}
 
-padding-left: 15px;
+.menu-button span:first-child {
+width: 22px;
+}
 
+.menu-button span:last-child {
+width: 15px;
+}
+
+body.menu-open .menu-button span:first-child {
+width: 22px;
+}
+
+body.menu-open .menu-button span:last-child {
+width: 22px;
 }
 
 h1 {
@@ -1687,15 +1901,17 @@ width: calc(100vw - 16px);
 border-radius: 20px;
 
 padding: 18px;
-
-}
 }
 
-/* =========================
-REDUCED MOTION
-========================= */
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
 html {
 scroll-behavior: auto;
 }
@@ -1704,14 +1920,27 @@ scroll-behavior: auto;
 *::before,
 *::after {
 transition-duration: .01ms !important;
+
 animation-duration: .01ms !important;
+
 scroll-behavior: auto !important;
 }
+
+.menu-button,
+.menu-button span,
+.menu-backdrop,
+.side-menu,
+.menu-links a,
+.menu-close {
+transition-duration: .01ms !important;
 }
 
-/* =========================
-SCROLL REVEAL
-========================= */
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
 .feature,
 .steps article,
@@ -1724,6 +1953,7 @@ transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: no-preference) {
+
 .js .feature,
 .js .steps article,
 .js .download-inner,
@@ -1734,9 +1964,8 @@ opacity: 0;
 transform: translateY(18px);
 
 transition:
-  opacity .6s ease,
-  transform .6s ease;
-
+opacity .6s ease,
+transform .6s ease;
 }
 
 .js .feature.visible,
@@ -1747,6 +1976,6 @@ transition:
 opacity: 1;
 
 transform: translateY(0);
-
 }
+
 }
