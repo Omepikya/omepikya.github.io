@@ -1,182 +1,384 @@
 (() => {
-  "use strict";
+"use strict";
 
-  const root = document.documentElement;
-  const menuButton = document.getElementById("menuButton");
-  const menuClose = document.getElementById("menuClose");
-  const sideMenu = document.getElementById("sideMenu");
-  const backdrop = document.getElementById("menuBackdrop");
-  const THEME_KEY = "omepikya-theme";
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const root = document.documentElement;
 
-  /* =========================
-     MOBILE MENU
-     ========================= */
-  let lastFocused = null;
+const menuButton = document.getElementById("menuButton");
+const menuClose = document.getElementById("menuClose");
+const sideMenu = document.getElementById("sideMenu");
+const backdrop = document.getElementById("menuBackdrop");
 
-  function setMenu(open, returnFocus = true) {
-    if (!sideMenu || !backdrop || !menuButton) return;
+const THEME_KEY = "omepikya-theme";
+const VALID_THEMES = new Set(["light", "dark", "system"]);
 
-    sideMenu.classList.toggle("open", open);
-    backdrop.classList.toggle("open", open);
-    document.body.classList.toggle("menu-open", open);
+const reduceMotion = window.matchMedia(
+"(prefers-reduced-motion: reduce)"
+).matches;
 
-    menuButton.setAttribute("aria-expanded", String(open));
-    menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    sideMenu.setAttribute("aria-hidden", String(!open));
-    backdrop.setAttribute("aria-hidden", String(!open));
+/* =========================
+MOBILE MENU
+========================= */
 
-    if (open) {
-      lastFocused = document.activeElement;
-      sideMenu.removeAttribute("inert");
-      if (menuClose) menuClose.focus();
-    } else {
-      sideMenu.setAttribute("inert", "");
-      if (returnFocus && lastFocused && typeof lastFocused.focus === "function") {
-        lastFocused.focus();
+let lastFocused = null;
+
+function getMenuFocusables() {
+if (!sideMenu) return [];
+
+return Array.from(
+  sideMenu.querySelectorAll(
+    'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  )
+).filter((element) => {
+  return !element.hasAttribute("hidden") &&
+    element.getAttribute("aria-hidden") !== "true";
+});
+
+}
+
+function setMenu(open, returnFocus = true) {
+if (!sideMenu || !backdrop || !menuButton) return;
+
+sideMenu.classList.toggle("open", open);
+backdrop.classList.toggle("open", open);
+document.body.classList.toggle("menu-open", open);
+
+menuButton.setAttribute("aria-expanded", String(open));
+menuButton.setAttribute(
+  "aria-label",
+  open ? "Close menu" : "Open menu"
+);
+
+sideMenu.setAttribute("aria-hidden", String(!open));
+backdrop.setAttribute("aria-hidden", String(!open));
+
+if (open) {
+  lastFocused = document.activeElement;
+
+  sideMenu.removeAttribute("inert");
+
+  requestAnimationFrame(() => {
+    if (menuClose) {
+      menuClose.focus();
+    }
+  });
+} else {
+  sideMenu.setAttribute("inert", "");
+
+  if (
+    returnFocus &&
+    lastFocused &&
+    typeof lastFocused.focus === "function"
+  ) {
+    requestAnimationFrame(() => lastFocused.focus());
+  }
+
+  lastFocused = null;
+}
+
+}
+
+if (menuButton) {
+menuButton.addEventListener("click", () => {
+const isOpen = sideMenu?.classList.contains("open");
+setMenu(!isOpen);
+});
+}
+
+if (menuClose) {
+menuClose.addEventListener("click", () => {
+setMenu(false);
+});
+}
+
+if (backdrop) {
+backdrop.addEventListener("click", () => {
+setMenu(false);
+});
+}
+
+/*
+
+* Close menu after selecting an internal navigation link.
+  */
+  document
+  .querySelectorAll('.side-menu a[href^="#"]')
+  .forEach((link) => {
+  link.addEventListener("click", () => {
+  setMenu(false, false);
+  });
+  });
+
+/*
+
+* Escape closes the menu.
+  */
+  document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && sideMenu?.classList.contains("open")) {
+  setMenu(false);
+  }
+  });
+
+/*
+
+* Focus trap.
+  */
+  document.addEventListener("keydown", (event) => {
+  if (event.key !== "Tab") return;
+  if (!sideMenu?.classList.contains("open")) return;
+
+const focusables = getMenuFocusables();
+
+if (!focusables.length) return;
+
+const first = focusables[0];
+const last = focusables[focusables.length - 1];
+
+if (event.shiftKey && document.activeElement === first) {
+  event.preventDefault();
+  last.focus();
+  return;
+}
+
+if (!event.shiftKey && document.activeElement === last) {
+  event.preventDefault();
+  first.focus();
+}
+
+});
+
+/*
+
+* Prevent accidental focus escaping the menu.
+  */
+  document.addEventListener("focusin", (event) => {
+  if (!sideMenu?.classList.contains("open")) return;
+  if (sideMenu.contains(event.target)) return;
+
+const focusables = getMenuFocusables();
+
+if (focusables.length) {
+  event.preventDefault();
+  focusables[0].focus();
+}
+
+});
+
+/* =========================
+SMOOTH SCROLL
+========================= */
+
+document
+.querySelectorAll('a[href^="#"]')
+.forEach((link) => {
+link.addEventListener("click", (event) => {
+const selector = link.getAttribute("href");
+
+    if (!selector || selector === "#") return;
+
+    let target = null;
+
+    try {
+      target = document.querySelector(selector);
+    } catch (error) {
+      return;
+    }
+
+    if (!target) return;
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start"
+    });
+
+    /*
+     * Update URL without causing an additional browser jump.
+     */
+    if (history.replaceState) {
+      try {
+        history.replaceState(null, "", selector);
+      } catch (error) {
+        // Ignore unsupported history operations.
       }
     }
-  }
-
-  if (menuButton) {
-    menuButton.addEventListener("click", () => {
-      const isOpen = sideMenu?.classList.contains("open");
-      setMenu(!isOpen);
-    });
-  }
-  if (menuClose) menuClose.addEventListener("click", () => setMenu(false));
-  if (backdrop) backdrop.addEventListener("click", () => setMenu(false));
-
-  document.querySelectorAll('.side-menu a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", () => setMenu(false, false));
   });
+});
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenu(false);
-  });
+/* =========================
+THEME
+========================= */
 
-  // Trap focus inside menu while open
-  document.addEventListener("keydown", (event) => {
-    if (event.key !== "Tab") return;
-    if (!sideMenu || !sideMenu.classList.contains("open")) return;
+const themeButtons = document.querySelectorAll(
+"button[data-theme]"
+);
 
-    const focusables = sideMenu.querySelectorAll(
-      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    if (!focusables.length) return;
+const themeLabel = document.getElementById("themeLabel");
 
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
+function getSystemTheme() {
+return window.matchMedia(
+"(prefers-color-scheme: light)"
+).matches
+? "light"
+: "dark";
+}
 
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault(); last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault(); first.focus();
-    }
-  });
+function normaliseTheme(theme) {
+return VALID_THEMES.has(theme) ? theme : "system";
+}
 
-  /* =========================
-     SMOOTH SCROLL
-     ========================= */
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const selector = link.getAttribute("href");
-      if (!selector || selector === "#") return;
-      const target = document.querySelector(selector);
-      if (!target) return;
+function applyTheme(theme) {
+const preference = normaliseTheme(theme);
 
-      event.preventDefault();
-      target.scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start"
-      });
-    });
-  });
+const actualTheme =
+  preference === "system"
+    ? getSystemTheme()
+    : preference;
 
-  /* =========================
-     THEME
-     ========================= */
-  const themeButtons = document.querySelectorAll("button[data-theme]");
-  const themeLabel = document.getElementById("themeLabel");
+root.dataset.theme = actualTheme;
+root.dataset.themePreference = preference;
 
-  function getSystemTheme() {
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-  }
+themeButtons.forEach((button) => {
+  const active = button.dataset.theme === preference;
 
-  function applyTheme(theme) {
-    const actualTheme = theme === "system" ? getSystemTheme() : theme;
-    root.dataset.theme = actualTheme;
-    root.dataset.themePreference = theme;
+  button.classList.toggle("active", active);
+  button.setAttribute("aria-pressed", String(active));
+});
 
-    themeButtons.forEach((button) => {
-      const active = button.dataset.theme === theme;
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", String(active));
-    });
+if (themeLabel) {
+  themeLabel.textContent =
+    preference.charAt(0).toUpperCase() +
+    preference.slice(1);
+}
 
-    if (themeLabel) {
-      themeLabel.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
-    }
-  }
+}
 
-  let savedTheme = "system";
+let savedTheme = "system";
+
+try {
+const storedTheme = localStorage.getItem(THEME_KEY);
+
+if (storedTheme && VALID_THEMES.has(storedTheme)) {
+  savedTheme = storedTheme;
+}
+
+} catch (error) {
+savedTheme = "system";
+}
+
+applyTheme(savedTheme);
+
+themeButtons.forEach((button) => {
+button.addEventListener("click", () => {
+const theme = normaliseTheme(button.dataset.theme);
+
   try {
-    savedTheme = localStorage.getItem(THEME_KEY) || "system";
-  } catch (e) {}
+    localStorage.setItem(THEME_KEY, theme);
+  } catch (error) {
+    // Theme still works for the current session.
+  }
 
-  applyTheme(savedTheme);
+  applyTheme(theme);
+});
 
-  themeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const theme = button.dataset.theme;
-      if (!theme) return;
-      try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
-      applyTheme(theme);
+});
+
+const mediaQuery = window.matchMedia(
+"(prefers-color-scheme: light)"
+);
+
+function handleSystemThemeChange() {
+const preference =
+root.dataset.themePreference || "system";
+
+if (preference === "system") {
+  applyTheme("system");
+}
+
+}
+
+if (mediaQuery.addEventListener) {
+mediaQuery.addEventListener(
+"change",
+handleSystemThemeChange
+);
+} else if (mediaQuery.addListener) {
+mediaQuery.addListener(
+handleSystemThemeChange
+);
+}
+
+/* =========================
+SCROLL REVEAL
+========================= */
+
+const revealElements = document.querySelectorAll(
+".feature, .steps article, .download-inner, .security-art, .privacy-grid article"
+);
+
+if (
+!reduceMotion &&
+"IntersectionObserver" in window
+) {
+const observer = new IntersectionObserver(
+(entries) => {
+entries.forEach((entry) => {
+if (!entry.isIntersecting) return;
+
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
     });
-  });
-
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
-  function handleSystemThemeChange() {
-    const preference = root.dataset.themePreference || "system";
-    if (preference === "system") applyTheme("system");
+  },
+  {
+    threshold: 0.08,
+    rootMargin: "0px 0px -30px 0px"
   }
+);
 
-  if (mediaQuery.addEventListener) {
-    mediaQuery.addEventListener("change", handleSystemThemeChange);
-  } else if (mediaQuery.addListener) {
-    mediaQuery.addListener(handleSystemThemeChange);
+revealElements.forEach((element) => {
+  observer.observe(element);
+});
+
+} else {
+revealElements.forEach((element) => {
+element.classList.add("visible");
+});
+}
+
+/* =========================
+RESPONSIVE MENU SAFETY
+========================= */
+
+const desktopBreakpoint = window.matchMedia(
+"(min-width: 900px)"
+);
+
+function handleDesktopBreakpoint(event) {
+if (
+event.matches &&
+sideMenu?.classList.contains("open")
+) {
+setMenu(false, false);
+}
+}
+
+if (desktopBreakpoint.addEventListener) {
+desktopBreakpoint.addEventListener(
+"change",
+handleDesktopBreakpoint
+);
+} else if (desktopBreakpoint.addListener) {
+desktopBreakpoint.addListener(
+handleDesktopBreakpoint
+);
+}
+
+/*
+
+* If the page loads at desktop width, make sure
+* the mobile menu starts in a closed/inert state.
+  */
+  if (sideMenu && !sideMenu.classList.contains("open")) {
+  sideMenu.setAttribute("inert", "");
   }
-
-  /* =========================
-     SCROLL REVEAL
-     ========================= */
-  const revealElements = document.querySelectorAll(
-    ".feature, .steps article, .download-inner, .security-art"
-  );
-
-  if (!reduceMotion && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
-    );
-    revealElements.forEach((el) => observer.observe(el));
-  } else {
-    revealElements.forEach((el) => el.classList.add("visible"));
-  }
-
-  /* =========================
-     RESPONSIVE MENU SAFETY
-     ========================= */
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 900 && sideMenu?.classList.contains("open")) {
-      setMenu(false);
-    }
-  });
-})();
+  })();
