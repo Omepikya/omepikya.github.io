@@ -103,6 +103,31 @@ button { font: inherit; }
   font-weight: 800;
 }
 
+/* Base interaction and accessibility polish */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--button-text);
+}
+
+.menu-profile {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-profile:hover {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+}
+
+.side-menu {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 .desktop-header {
   height: 78px;
   width: min(calc(100% - 48px), var(--max));
@@ -114,7 +139,16 @@ button { font: inherit; }
   z-index: 5;
 }
 
-.mobile-header { display: none; }
+.mobile-header {
+  display: none;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  width: min(calc(100% - 32px), var(--max));
+  margin-inline: auto;
+  position: relative;
+  z-index: 10;
+}
 
 .nav {
   display: flex;
@@ -879,7 +913,18 @@ h1 em, h2 em {
 }
 
 /* Responsive */
+@media (max-width: 980px) and (min-width: 851px) {
+  .section-shell,
+  .desktop-header { width: min(calc(100% - 40px), var(--max)); }
+  .hero { gap: 30px; }
+  h1 { font-size: clamp(54px, 7vw, 78px); }
+  .nav { gap: 20px; }
+}
+
 @media (max-width: 850px) {
+  .desktop-header { display: none; }
+  .mobile-header { display: flex; }
+  .hero { min-height: auto; padding-top: 34px; }
   .desktop-header { display: none; }
 
   .mobile-header {
@@ -958,6 +1003,15 @@ h1 em, h2 em {
 }
 
 @media (max-width: 560px) {
+  .mobile-header { min-height: 66px; width: calc(100% - 24px); }
+  .mobile-brand { font-size: 14px; gap: 8px; }
+  .brand-mark { width: 29px; height: 29px; }
+  .menu-button { width: 52px; height: 52px; padding-left: 17px; }
+  .menu-button span:first-child { width: 22px; }
+  .menu-button span:last-child { width: 15px; margin-left: 6px; }
+  h1 { font-size: clamp(48px, 14vw, 66px); }
+  .hero-text { font-size: 16px; }
+  .trust-row { font-size: 10px; }
   .section-shell,
   .mobile-header {
     width: min(calc(100% - 32px), var(--max));
