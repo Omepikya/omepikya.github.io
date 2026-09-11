@@ -1,255 +1,297 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-  /* =====================================================
+
+  /* =========================================================
      MOBILE MENU
-  ====================================================== */
+  ========================================================= */
 
-  const menuToggle = document.getElementById('menu-toggle');
-  const menuClose = document.getElementById('menu-close');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const overlay = document.getElementById('menu-overlay');
+  const menuToggle =
+    document.querySelector(".menu-toggle");
+
+  const menuClose =
+    document.querySelector(".menu-close");
+
+  const mobileMenu =
+    document.querySelector(".mobile-menu");
+
+  const mobileOverlay =
+    document.querySelector(".mobile-overlay");
+
 
   function openMenu() {
-    if (!mobileMenu || !overlay || !menuToggle) return;
 
-    mobileMenu.classList.add('active');
-    overlay.classList.add('active');
+    if (!mobileMenu) return;
 
-    menuToggle.setAttribute('aria-expanded', 'true');
-    mobileMenu.setAttribute('aria-hidden', 'false');
+    mobileMenu.classList.add("active");
 
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    if (!mobileMenu || !overlay || !menuToggle) return;
-
-    mobileMenu.classList.remove('active');
-    overlay.classList.remove('active');
-
-    menuToggle.setAttribute('aria-expanded', 'false');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-
-    document.body.style.overflow = '';
-  }
-
-  if (menuToggle) {
-    menuToggle.addEventListener('click', openMenu);
-  }
-
-  if (menuClose) {
-    menuClose.addEventListener('click', closeMenu);
-  }
-
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
-
-
-  /* =====================================================
-     CLOSE MENU WHEN LINK IS CLICKED
-  ====================================================== */
-
-  const menuLinks = document.querySelectorAll('.mobile-menu a');
-
-  menuLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-
-  /* =====================================================
-     ESCAPE KEY
-  ====================================================== */
-
-  document.addEventListener('keydown', event => {
-
-    if (
-      event.key === 'Escape' &&
-      mobileMenu &&
-      mobileMenu.classList.contains('active')
-    ) {
-      closeMenu();
+    if (mobileOverlay) {
+      mobileOverlay.classList.add("active");
     }
 
-  });
-
-
-  /* =====================================================
-     CLOSE MENU WHEN RESIZED TO DESKTOP
-  ====================================================== */
-
-  window.addEventListener('resize', () => {
-
-    if (
-      window.innerWidth >= 768 &&
-      mobileMenu &&
-      mobileMenu.classList.contains('active')
-    ) {
-      closeMenu();
-    }
-
-  });
-
-
-  /* =====================================================
-     DARK MODE
-  ====================================================== */
-
-  const darkModeCheckbox =
-    document.getElementById('dark-mode-checkbox');
-
-  const themeKey = 'omepikya-theme';
-
-  const savedTheme =
-    localStorage.getItem(themeKey);
-
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  const initialTheme =
-    savedTheme || (prefersDark ? 'dark' : 'light');
-
-
-  function applyTheme(theme) {
-
-    if (theme === 'dark') {
-
-      document.documentElement.setAttribute(
-        'data-theme',
-        'dark'
+    if (menuToggle) {
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
       );
-
-      if (darkModeCheckbox) {
-        darkModeCheckbox.checked = true;
-      }
-
-    } else {
-
-      document.documentElement.removeAttribute(
-        'data-theme'
-      );
-
-      if (darkModeCheckbox) {
-        darkModeCheckbox.checked = false;
-      }
-
     }
 
-  }
-
-
-  applyTheme(initialTheme);
-
-
-  if (darkModeCheckbox) {
-
-    darkModeCheckbox.addEventListener(
-      'change',
-      event => {
-
-        const theme =
-          event.target.checked
-            ? 'dark'
-            : 'light';
-
-        applyTheme(theme);
-
-        localStorage.setItem(
-          themeKey,
-          theme
-        );
-
-      }
+    document.body.classList.add(
+      "menu-open"
     );
 
   }
 
 
-  /* =====================================================
-     SYSTEM THEME CHANGES
-  ====================================================== */
+  function closeMenu() {
 
-  if (
-    window.matchMedia &&
-    !savedTheme
-  ) {
+    if (!mobileMenu) return;
 
-    const mediaQuery =
-      window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      );
+    mobileMenu.classList.remove(
+      "active"
+    );
 
-    const handleSystemThemeChange =
-      event => {
-
-        applyTheme(
-          event.matches
-            ? 'dark'
-            : 'light'
-        );
-
-      };
-
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener(
-        'change',
-        handleSystemThemeChange
+    if (mobileOverlay) {
+      mobileOverlay.classList.remove(
+        "active"
       );
     }
+
+    if (menuToggle) {
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    }
+
+    document.body.classList.remove(
+      "menu-open"
+    );
 
   }
 
 
-  /* =====================================================
-     SMOOTH ANCHOR SCROLLING
-  ====================================================== */
+  if (menuToggle) {
+
+    menuToggle.addEventListener(
+      "click",
+      openMenu
+    );
+
+  }
+
+
+  if (menuClose) {
+
+    menuClose.addEventListener(
+      "click",
+      closeMenu
+    );
+
+  }
+
+
+  if (mobileOverlay) {
+
+    mobileOverlay.addEventListener(
+      "click",
+      closeMenu
+    );
+
+  }
+
 
   document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(anchor => {
+    .querySelectorAll(
+      ".mobile-menu a"
+    )
+    .forEach(link => {
 
-      anchor.addEventListener(
-        'click',
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+
+    });
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+
+    }
+  );
+
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      if (window.innerWidth > 900) {
+        closeMenu();
+      }
+
+    }
+  );
+
+
+
+  /* =========================================================
+     DARK MODE
+  ========================================================= */
+
+  const themeButtons =
+    document.querySelectorAll(
+      ".theme-toggle"
+    );
+
+
+  const savedTheme =
+    localStorage.getItem(
+      "omepikya-theme"
+    );
+
+
+  const systemDark =
+    window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+
+  function applyTheme(theme) {
+
+    if (theme === "dark") {
+
+      document.documentElement
+        .setAttribute(
+          "data-theme",
+          "dark"
+        );
+
+    } else {
+
+      document.documentElement
+        .removeAttribute(
+          "data-theme"
+        );
+
+    }
+
+    localStorage.setItem(
+      "omepikya-theme",
+      theme
+    );
+
+  }
+
+
+  if (savedTheme) {
+
+    applyTheme(savedTheme);
+
+  } else if (systemDark) {
+
+    applyTheme("dark");
+
+  }
+
+
+
+  themeButtons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const isDark =
+          document.documentElement
+            .getAttribute(
+              "data-theme"
+            ) === "dark";
+
+
+        applyTheme(
+          isDark
+            ? "light"
+            : "dark"
+        );
+
+      }
+    );
+
+  });
+
+
+
+  /* =========================================================
+     SMOOTH ANCHOR SCROLL
+  ========================================================= */
+
+  document
+    .querySelectorAll(
+      'a[href^="#"]'
+    )
+    .forEach(link => {
+
+      link.addEventListener(
+        "click",
         event => {
 
           const targetId =
-            anchor.getAttribute('href');
+            link.getAttribute(
+              "href"
+            );
+
 
           if (
             !targetId ||
-            targetId === '#'
+            targetId === "#"
           ) {
             return;
           }
 
+
           const target =
-            document.querySelector(targetId);
+            document.querySelector(
+              targetId
+            );
+
 
           if (!target) {
             return;
           }
 
+
           event.preventDefault();
 
-          const header =
-            document.querySelector('.mobile-header');
 
-          const headerOffset =
-            header &&
-            window.innerWidth < 768
+          const header =
+            document.querySelector(
+              ".site-header"
+            );
+
+
+          const headerHeight =
+            header
               ? header.offsetHeight
               : 0;
 
-          const targetPosition =
-            target.getBoundingClientRect().top +
+
+          const position =
+            target
+              .getBoundingClientRect()
+              .top +
             window.scrollY -
-            headerOffset -
-            12;
+            headerHeight -
+            16;
+
 
           window.scrollTo({
-            top: Math.max(0, targetPosition),
-            behavior: 'smooth'
+            top: position,
+            behavior: "smooth"
           });
 
         }
@@ -258,85 +300,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-  /* =====================================================
-     BACK TO TOP BUTTON
-  ====================================================== */
 
-  const backToTopBtn =
-    document.getElementById('back-to-top');
+  /* =========================================================
+     BACK TO TOP
+  ========================================================= */
 
-
-  if (backToTopBtn) {
-
-    const updateBackToTop =
-      () => {
-
-        if (window.scrollY > 500) {
-
-          backToTopBtn.classList.add(
-            'visible'
-          );
-
-        } else {
-
-          backToTopBtn.classList.remove(
-            'visible'
-          );
-
-        }
-
-      };
-
-
-    window.addEventListener(
-      'scroll',
-      updateBackToTop,
-      { passive: true }
+  const backToTop =
+    document.querySelector(
+      ".back-to-top"
     );
 
 
-    backToTopBtn.addEventListener(
-      'click',
+  function updateBackToTop() {
+
+    if (!backToTop) {
+      return;
+    }
+
+
+    if (window.scrollY > 500) {
+
+      backToTop.classList.add(
+        "visible"
+      );
+
+    } else {
+
+      backToTop.classList.remove(
+        "visible"
+      );
+
+    }
+
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateBackToTop,
+    {
+      passive: true
+    }
+  );
+
+
+  updateBackToTop();
+
+
+  if (backToTop) {
+
+    backToTop.addEventListener(
+      "click",
       () => {
 
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
 
       }
     );
 
-
-    updateBackToTop();
-
   }
 
 
-  /* =====================================================
-     SERVICE WORKER REGISTRATION
-  ====================================================== */
 
-  if ('serviceWorker' in navigator) {
+  /* =========================================================
+     SERVICE WORKER
+  ========================================================= */
+
+  if ("serviceWorker" in navigator) {
 
     window.addEventListener(
-      'load',
+      "load",
       () => {
 
         navigator.serviceWorker
-          .register('/sw.js')
-          .then(registration => {
-
-            console.log(
-              'Omepikya ServiceWorker registered:',
-              registration.scope
-            );
-
-          })
+          .register("/sw.js")
           .catch(error => {
 
-            console.log(
-              'Omepikya ServiceWorker registration failed:',
+            console.error(
+              "Service worker registration failed:",
               error
             );
 
