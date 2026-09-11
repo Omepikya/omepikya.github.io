@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <meta name="description" content="Omepikya Expense — personal finance made clear.">
-  <meta name="theme-color" content="#080a0f">
+  <meta name="theme-color" content="#f7f8fa">
 
   <meta property="og:title" content="Omepikya Expense — Your money. Under control.">
   <meta property="og:description" content="Track expenses, understand spending and make better financial decisions.">
@@ -28,7 +28,14 @@
       <span>Omepikya <b>Expense</b></span>
     </a>
 
-    <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="sideMenu"
+    >
       <span></span>
       <span></span>
     </button>
@@ -47,7 +54,7 @@
       <a href="#how">How it works</a>
     </nav>
 
-    <a class="header-cta" href="mailto:Omepikyainfo@gmail.com">
+    <a class="header-cta" href="mailto:Omepikyainfo@gmail.com?subject=Omepikya%20Expense%20Enquiry">
       Contact
       <span>↗</span>
     </a>
@@ -63,10 +70,19 @@
         <span class="menu-kicker">OMEPIKYA</span>
         <strong>Expense</strong>
       </div>
-      <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">×</button>
+
+      <button
+        class="menu-close"
+        id="menuClose"
+        type="button"
+        aria-label="Close menu"
+      >
+        ×
+      </button>
     </div>
 
     <nav class="menu-links" aria-label="Menu">
+
       <a href="#top" class="active" aria-current="page">
         <span class="menu-icon">⌂</span>
         <span>Home</span>
@@ -79,7 +95,7 @@
         <span>→</span>
       </a>
 
-      <a href="#security">
+      <a href="#privacy">
         <span class="menu-icon">◇</span>
         <span>Privacy</span>
         <span>→</span>
@@ -96,11 +112,13 @@
         <span>Contact</span>
         <span>→</span>
       </a>
+
     </nav>
 
     <div class="menu-divider"></div>
 
     <nav class="menu-links secondary" aria-label="More options">
+
       <a href="#download">
         <span class="menu-icon">⬇</span>
         <span>Get the app</span>
@@ -112,6 +130,7 @@
         <span>Help &amp; support</span>
         <span>→</span>
       </a>
+
     </nav>
 
     <div class="menu-divider"></div>
@@ -119,30 +138,54 @@
     <div class="menu-toggle">
       <span class="menu-icon">☾</span>
       <span>Dark mode</span>
+
       <label class="theme-switch">
         <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
-        <span class="switch-track"><span class="switch-thumb"></span></span>
+        <span class="switch-track">
+          <span class="switch-thumb"></span>
+        </span>
       </label>
     </div>
 
-    <a class="button primary menu-cta" href="mailto:Omepikyainfo@gmail.com?subject=Omepikya%20Expense%20Enquiry">
+    <a
+      class="button primary menu-cta"
+      href="mailto:Omepikyainfo@gmail.com?subject=Omepikya%20Expense%20Enquiry"
+    >
       Email Omepikya
       <span>→</span>
     </a>
 
+    <!-- SOCIAL LINKS -->
     <div class="social-row" aria-label="Social links">
-      <a href="#" class="social-btn" aria-label="GitHub">GH</a>
-      <a href="#" class="social-btn" aria-label="X">X</a>
-      <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
-      <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+
+      <a
+        href="https://github.com/Omepikya/OmepikyaExpense"
+        class="social-btn"
+        aria-label="Omepikya Expense on GitHub"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GH
+      </a>
+
+      <a
+        href="https://www.instagram.com/omepikya/"
+        class="social-btn"
+        aria-label="Omepikya on Instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        IG
+      </a>
+
     </div>
 
     <div class="menu-divider"></div>
 
     <div class="menu-footer">
-      <a href="#security">Privacy</a>
+      <a href="#privacy">Privacy</a>
       <span>·</span>
-      <a href="#">Terms</a>
+      <a href="#terms">Terms</a>
       <span>·</span>
       <span>© 2026 Omepikya</span>
     </div>
@@ -175,6 +218,7 @@
         </p>
 
         <div class="hero-actions">
+
           <a class="button primary" href="#download">
             Start managing your money
             <span>→</span>
@@ -184,6 +228,7 @@
             Explore features
             <span>↓</span>
           </a>
+
         </div>
 
         <div class="trust-row">
@@ -196,8 +241,9 @@
 
       </div>
 
-      <!-- Dashboard -->
+      <!-- DASHBOARD PREVIEW -->
       <div class="hero-visual">
+
         <div class="dashboard-card">
 
           <div class="dash-top">
@@ -205,6 +251,7 @@
               <span class="mini-label">THIS MONTH</span>
               <strong>₹24,860</strong>
             </div>
+
             <span class="trend">↓ 12.4%</span>
           </div>
 
@@ -212,52 +259,78 @@
             <div class="grid g1"></div>
             <div class="grid g2"></div>
 
-            <svg viewBox="0 0 500 180" preserveAspectRatio="none" aria-label="Spending trend">
-              <path class="area" d="M0,145 C45,130 65,142 100,118 S155,95 190,112 S250,65 285,82 S330,42 370,64 S425,28 500,18 L500,180 L0,180Z" />
-              <path class="line" d="M0,145 C45,130 65,142 100,118 S155,95 190,112 S250,65 285,82 S330,42 370,64 S425,28 500,18" />
+            <svg
+              viewBox="0 0 500 180"
+              preserveAspectRatio="none"
+              aria-label="Spending trend"
+              role="img"
+            >
+              <path
+                class="area"
+                d="M0,145 C45,130 65,142 100,118 S155,95 190,112 S250,65 285,82 S330,42 370,64 S425,28 500,18 L500,180 L0,180Z"
+              />
+
+              <path
+                class="line"
+                d="M0,145 C45,130 65,142 100,118 S155,95 190,112 S250,65 285,82 S330,42 370,64 S425,28 500,18"
+              />
             </svg>
           </div>
 
           <div class="dash-stats">
+
             <div>
               <span>Income</span>
               <b>₹48,200</b>
             </div>
+
             <div>
               <span>Expenses</span>
               <b>₹24,860</b>
             </div>
+
             <div>
               <span>Saved</span>
               <b>₹23,340</b>
             </div>
+
           </div>
 
           <div class="transaction">
+
             <span class="tx-icon tx-icon-expense">◈</span>
+
             <div>
               <b>Groceries</b>
               <small>12 transactions</small>
             </div>
+
             <strong class="expense">−₹3,450</strong>
+
           </div>
 
           <div class="transaction">
+
             <span class="tx-icon tx-icon-income">↗</span>
+
             <div>
               <b>Salary</b>
               <small>1 transaction</small>
             </div>
+
             <strong class="income">+₹48,200</strong>
+
           </div>
 
         </div>
+
       </div>
 
     </section>
 
     <!-- PROOF -->
     <section class="proof section-shell">
+
       <div>
         <b>One place for your financial life</b>
         <span>Expenses</span>
@@ -265,14 +338,17 @@
         <span>Insights</span>
         <span>Cloud</span>
       </div>
+
     </section>
 
     <!-- FEATURES -->
     <section id="features" class="section-shell section-block">
 
       <div class="section-heading">
+
         <div>
           <span class="kicker">BUILT AROUND REAL LIFE</span>
+
           <h2>
             Everything you need.
             <br>
@@ -284,6 +360,7 @@
           Omepikya Expense brings everyday personal
           finance tools into one focused experience.
         </p>
+
       </div>
 
       <div class="feature-grid">
@@ -291,81 +368,163 @@
         <article class="feature large">
           <div class="feature-number">01</div>
           <div class="feature-icon">↗</div>
+
           <div class="feature-body">
             <h3>Know where your money goes</h3>
-            <p>Record expenses quickly and organize them with categories, subcategories and payment methods.</p>
+            <p>
+              Record expenses quickly and organize them
+              with categories, subcategories and payment methods.
+            </p>
             <span class="feature-tag">Smart tracking</span>
           </div>
+
           <span class="feature-arrow" aria-hidden="true">→</span>
         </article>
 
         <article class="feature">
           <div class="feature-number">02</div>
           <div class="feature-icon">◌</div>
+
           <div class="feature-body">
             <h3>See the bigger picture</h3>
-            <p>Turn transactions into useful spending patterns and financial insights.</p>
+            <p>
+              Turn transactions into useful spending
+              patterns and financial insights.
+            </p>
           </div>
+
           <span class="feature-arrow" aria-hidden="true">→</span>
         </article>
 
         <article class="feature">
           <div class="feature-number">03</div>
           <div class="feature-icon">↻</div>
+
           <div class="feature-body">
             <h3>Never miss recurring costs</h3>
-            <p>Keep subscriptions, bills and recurring income organized automatically.</p>
+            <p>
+              Keep subscriptions, bills and recurring
+              income organized automatically.
+            </p>
           </div>
+
           <span class="feature-arrow" aria-hidden="true">→</span>
         </article>
 
         <article class="feature">
           <div class="feature-number">04</div>
           <div class="feature-icon">⌁</div>
+
           <div class="feature-body">
             <h3>Split expenses easily</h3>
-            <p>Track shared expenses and keep everyone's share clear.</p>
+            <p>
+              Track shared expenses and keep everyone's
+              share clear.
+            </p>
           </div>
+
           <span class="feature-arrow" aria-hidden="true">→</span>
         </article>
 
         <article class="feature">
           <div class="feature-number">05</div>
           <div class="feature-icon">▣</div>
+
           <div class="feature-body">
             <h3>Capture receipts</h3>
-            <p>Use receipt and text recognition to reduce manual entry when recording purchases.</p>
+            <p>
+              Use receipt and text recognition to reduce
+              manual entry when recording purchases.
+            </p>
           </div>
+
           <span class="feature-arrow" aria-hidden="true">→</span>
         </article>
 
         <article class="feature">
           <div class="feature-number">06</div>
           <div class="feature-icon">⌁</div>
+
           <div class="feature-body">
             <h3>Stay in sync</h3>
-            <p>Use local storage when offline and cloud sync when you reconnect.</p>
+            <p>
+              Use local storage when offline and cloud
+              sync when you reconnect.
+            </p>
           </div>
+
           <span class="feature-arrow" aria-hidden="true">→</span>
         </article>
 
       </div>
+
+    </section>
+
+    <!-- PRIVACY -->
+    <section id="privacy" class="privacy section-block">
+
+      <div class="section-shell privacy-inner">
+
+        <div>
+          <span class="kicker">PRIVACY BY DESIGN</span>
+
+          <h2>
+            Your financial data.
+            <br>
+            <em>Your control.</em>
+          </h2>
+
+          <p>
+            Omepikya Expense is designed to keep personal
+            financial information under your control, with
+            clear privacy choices and an experience built
+            for everyday use.
+          </p>
+        </div>
+
+        <div class="privacy-points">
+
+          <div>
+            <strong>01</strong>
+            <span>Clear data controls</span>
+          </div>
+
+          <div>
+            <strong>02</strong>
+            <span>No unnecessary clutter</span>
+          </div>
+
+          <div>
+            <strong>03</strong>
+            <span>Privacy-focused experience</span>
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
 
     <!-- SECURITY -->
     <section id="security" class="security section-block">
+
       <div class="section-shell security-inner">
 
         <div class="security-art">
+
           <div class="lock-ring">
             <span>✓</span>
           </div>
+
           <div class="orbit o1"></div>
           <div class="orbit o2"></div>
+
         </div>
 
         <div>
+
           <span class="kicker">YOUR DATA MATTERS</span>
+
           <h2>
             Private. Secure.
             <br>
@@ -385,47 +544,65 @@
             <span>✓ Cloud data with local usability</span>
             <span>✓ App lock and privacy controls</span>
           </div>
+
         </div>
 
       </div>
+
     </section>
 
     <!-- HOW IT WORKS -->
     <section id="how" class="section-shell section-block">
 
       <div class="section-heading centered">
+
         <div>
           <span class="kicker">A SIMPLE ROUTINE</span>
+
           <h2>
             Three steps to
             <em>clarity.</em>
           </h2>
         </div>
+
       </div>
 
       <div class="steps">
+
         <article>
           <span>01</span>
           <h3>Capture</h3>
-          <p>Add a transaction in seconds. Use categories, receipts or supported payment flows.</p>
+          <p>
+            Add a transaction in seconds. Use categories,
+            receipts or supported payment flows.
+          </p>
         </article>
 
         <article>
           <span>02</span>
           <h3>Understand</h3>
-          <p>Review your spending, income and patterns instead of guessing where your money went.</p>
+          <p>
+            Review your spending, income and patterns
+            instead of guessing where your money went.
+          </p>
         </article>
 
         <article>
           <span>03</span>
           <h3>Improve</h3>
-          <p>Use the picture you have to make the next financial decision with confidence.</p>
+          <p>
+            Use the picture you have to make the next
+            financial decision with confidence.
+          </p>
         </article>
+
       </div>
+
     </section>
 
-    <!-- CONTACT / DOWNLOAD -->
+    <!-- DOWNLOAD / CONTACT -->
     <section id="download" class="download section-shell">
+
       <div class="download-inner">
 
         <span class="kicker">OMEPIKYA EXPENSE</span>
@@ -443,43 +620,122 @@
         </p>
 
         <div class="contact-actions">
-          <a class="button light" href="mailto:Omepikyainfo@gmail.com?subject=Omepikya%20Expense%20Enquiry">
+
+          <a
+            class="button light"
+            href="mailto:Omepikyainfo@gmail.com?subject=Omepikya%20Expense%20Enquiry"
+          >
             Email Omepikya
             <span>→</span>
           </a>
+
           <span class="email-note">Omepikyainfo@gmail.com</span>
+
         </div>
 
         <div class="cta-trust-row">
+
           <div class="cta-trust-item">
             <span class="cta-trust-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v11H9l-4 4V5Z"/></svg>
+              <svg
+                viewBox="0 0 24 24"
+                width="17"
+                height="17"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              >
+                <path d="M4 5h16v11H9l-4 4V5Z"/>
+              </svg>
             </span>
+
             <span>Open for feedback</span>
           </div>
 
           <div class="cta-trust-item">
             <span class="cta-trust-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
+              <svg
+                viewBox="0 0 24 24"
+                width="17"
+                height="17"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              >
+                <circle cx="9" cy="12" r="5"/>
+                <circle cx="15" cy="12" r="5"/>
+              </svg>
             </span>
+
             <span>Partnerships welcome</span>
           </div>
 
           <div class="cta-trust-item">
             <span class="cta-trust-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2" y="13" width="5" height="7" rx="2"/><rect x="17" y="13" width="5" height="7" rx="2"/></svg>
+              <svg
+                viewBox="0 0 24 24"
+                width="17"
+                height="17"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              >
+                <path d="M4 13v-1a8 8 0 0 1 16 0v1"/>
+                <rect x="2" y="13" width="5" height="7" rx="2"/>
+                <rect x="17" y="13" width="5" height="7" rx="2"/>
+              </svg>
             </span>
+
             <span>Support when you need it</span>
           </div>
+
         </div>
 
       </div>
+
+    </section>
+
+    <!-- TERMS -->
+    <section id="terms" class="terms section-block">
+
+      <div class="section-shell terms-inner">
+
+        <span class="kicker">LEGAL</span>
+
+        <h2>
+          Simple, clear
+          <br>
+          <em>terms.</em>
+        </h2>
+
+        <p>
+          Omepikya Expense is provided as a personal finance
+          management product. Product features, availability
+          and service terms may change as the platform evolves.
+        </p>
+
+        <p>
+          For questions about use of the product, privacy,
+          data handling or support, contact Omepikya directly.
+        </p>
+
+        <a
+          class="button primary"
+          href="mailto:Omepikyainfo@gmail.com?subject=Omepikya%20Expense%20Legal%20Enquiry"
+        >
+          Contact about terms
+          <span>→</span>
+        </a>
+
+      </div>
+
     </section>
 
   </main>
 
   <!-- FOOTER -->
   <footer class="footer section-shell">
+
     <div class="brand">
       <span class="brand-mark">O</span>
       <span>Omepikya <b>Expense</b></span>
@@ -488,10 +744,33 @@
     <div>© 2026 Omepikya. All rights reserved.</div>
 
     <div class="footer-links">
-      <a href="#security">Privacy</a>
+
+      <a href="#privacy">Privacy</a>
       <a href="#security">Security</a>
-      <a href="mailto:Omepikyainfo@gmail.com">Omepikyainfo@gmail.com</a>
+      <a href="#terms">Terms</a>
+
+      <a
+        href="https://github.com/Omepikya/OmepikyaExpense"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+
+      <a
+        href="https://www.instagram.com/omepikya/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Instagram
+      </a>
+
+      <a href="mailto:Omepikyainfo@gmail.com">
+        Omepikyainfo@gmail.com
+      </a>
+
     </div>
+
   </footer>
 
   <script src="script.js?v=20260912"></script>
