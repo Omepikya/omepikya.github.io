@@ -1,155 +1,230 @@
-(() => {
-  "use strict";
+document.addEventListener('DOMContentLoaded', () => {
 
-  const root = document.documentElement;
+  /* =====================================================
+     MOBILE MENU
+  ====================================================== */
 
-  // ==========================================
-  // MOBILE MENU
-  // ==========================================
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuClose = document.getElementById('menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('menu-overlay');
 
-  const menuButton =
-    document.getElementById("menuButton");
+  function openMenu() {
+    if (!mobileMenu || !overlay || !menuToggle) return;
 
-  const menuClose =
-    document.getElementById("menuClose");
+    mobileMenu.classList.add('active');
+    overlay.classList.add('active');
 
-  const sideMenu =
-    document.getElementById("sideMenu");
+    menuToggle.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
 
-  const backdrop =
-    document.getElementById("menuBackdrop");
-
-  function setMenu(open) {
-    if (
-      !menuButton ||
-      !sideMenu ||
-      !backdrop
-    ) {
-      return;
-    }
-
-    sideMenu.classList.toggle(
-      "open",
-      open
-    );
-
-    backdrop.classList.toggle(
-      "open",
-      open
-    );
-
-    document.body.classList.toggle(
-      "menu-open",
-      open
-    );
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      String(open)
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      open
-        ? "Close menu"
-        : "Open menu"
-    );
-
-    sideMenu.setAttribute(
-      "aria-hidden",
-      String(!open)
-    );
-
-    backdrop.setAttribute(
-      "aria-hidden",
-      String(!open)
-    );
-
-    if (open && menuClose) {
-      requestAnimationFrame(() => {
-        menuClose.focus();
-      });
-    }
+    document.body.style.overflow = 'hidden';
   }
 
-  if (menuButton) {
-    menuButton.addEventListener(
-      "click",
-      () => {
-        const isOpen =
-          sideMenu &&
-          sideMenu.classList.contains(
-            "open"
-          );
+  function closeMenu() {
+    if (!mobileMenu || !overlay || !menuToggle) return;
 
-        setMenu(!isOpen);
-      }
-    );
+    mobileMenu.classList.remove('active');
+    overlay.classList.remove('active');
+
+    menuToggle.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+
+    document.body.style.overflow = '';
+  }
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', openMenu);
   }
 
   if (menuClose) {
-    menuClose.addEventListener(
-      "click",
-      () => setMenu(false)
-    );
+    menuClose.addEventListener('click', closeMenu);
   }
 
-  if (backdrop) {
-    backdrop.addEventListener(
-      "click",
-      () => setMenu(false)
-    );
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
   }
 
-  document
-    .querySelectorAll(
-      '.side-menu a[href^="#"]'
-    )
-    .forEach((link) => {
-      link.addEventListener(
-        "click",
-        () => setMenu(false)
-      );
-    });
 
-  document.addEventListener(
-    "keydown",
-    (event) => {
-      if (event.key === "Escape") {
-        setMenu(false);
-      }
+  /* =====================================================
+     CLOSE MENU WHEN LINK IS CLICKED
+  ====================================================== */
+
+  const menuLinks = document.querySelectorAll('.mobile-menu a');
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+
+  /* =====================================================
+     ESCAPE KEY
+  ====================================================== */
+
+  document.addEventListener('keydown', event => {
+
+    if (
+      event.key === 'Escape' &&
+      mobileMenu &&
+      mobileMenu.classList.contains('active')
+    ) {
+      closeMenu();
     }
-  );
+
+  });
 
 
-  // ==========================================
-  // SMOOTH NAVIGATION
-  // ==========================================
+  /* =====================================================
+     CLOSE MENU WHEN RESIZED TO DESKTOP
+  ====================================================== */
+
+  window.addEventListener('resize', () => {
+
+    if (
+      window.innerWidth >= 768 &&
+      mobileMenu &&
+      mobileMenu.classList.contains('active')
+    ) {
+      closeMenu();
+    }
+
+  });
+
+
+  /* =====================================================
+     DARK MODE
+  ====================================================== */
+
+  const darkModeCheckbox =
+    document.getElementById('dark-mode-checkbox');
+
+  const themeKey = 'omepikya-theme';
+
+  const savedTheme =
+    localStorage.getItem(themeKey);
+
+  const prefersDark =
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  const initialTheme =
+    savedTheme || (prefersDark ? 'dark' : 'light');
+
+
+  function applyTheme(theme) {
+
+    if (theme === 'dark') {
+
+      document.documentElement.setAttribute(
+        'data-theme',
+        'dark'
+      );
+
+      if (darkModeCheckbox) {
+        darkModeCheckbox.checked = true;
+      }
+
+    } else {
+
+      document.documentElement.removeAttribute(
+        'data-theme'
+      );
+
+      if (darkModeCheckbox) {
+        darkModeCheckbox.checked = false;
+      }
+
+    }
+
+  }
+
+
+  applyTheme(initialTheme);
+
+
+  if (darkModeCheckbox) {
+
+    darkModeCheckbox.addEventListener(
+      'change',
+      event => {
+
+        const theme =
+          event.target.checked
+            ? 'dark'
+            : 'light';
+
+        applyTheme(theme);
+
+        localStorage.setItem(
+          themeKey,
+          theme
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     SYSTEM THEME CHANGES
+  ====================================================== */
+
+  if (
+    window.matchMedia &&
+    !savedTheme
+  ) {
+
+    const mediaQuery =
+      window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      );
+
+    const handleSystemThemeChange =
+      event => {
+
+        applyTheme(
+          event.matches
+            ? 'dark'
+            : 'light'
+        );
+
+      };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener(
+        'change',
+        handleSystemThemeChange
+      );
+    }
+
+  }
+
+
+  /* =====================================================
+     SMOOTH ANCHOR SCROLLING
+  ====================================================== */
 
   document
-    .querySelectorAll(
-      'a[href^="#"]'
-    )
-    .forEach((link) => {
+    .querySelectorAll('a[href^="#"]')
+    .forEach(anchor => {
 
-      link.addEventListener(
-        "click",
-        (event) => {
+      anchor.addEventListener(
+        'click',
+        event => {
 
-          const selector =
-            link.getAttribute("href");
+          const targetId =
+            anchor.getAttribute('href');
 
           if (
-            !selector ||
-            selector === "#"
+            !targetId ||
+            targetId === '#'
           ) {
             return;
           }
 
           const target =
-            document.querySelector(
-              selector
-            );
+            document.querySelector(targetId);
 
           if (!target) {
             return;
@@ -157,287 +232,119 @@
 
           event.preventDefault();
 
-          const offset =
-            window.innerWidth <= 850
-              ? 18
+          const header =
+            document.querySelector('.mobile-header');
+
+          const headerOffset =
+            header &&
+            window.innerWidth < 768
+              ? header.offsetHeight
               : 0;
 
-          const targetTop =
-            target.getBoundingClientRect()
-              .top +
+          const targetPosition =
+            target.getBoundingClientRect().top +
             window.scrollY -
-            offset;
+            headerOffset -
+            12;
 
           window.scrollTo({
-            top: Math.max(
-              0,
-              targetTop
-            ),
-            left: 0,
-            behavior: "smooth"
+            top: Math.max(0, targetPosition),
+            behavior: 'smooth'
           });
 
-          try {
-            history.replaceState(
-              null,
-              "",
-              selector
-            );
-          } catch (_) {}
         }
       );
 
     });
 
 
-  // ==========================================
-  // DARK MODE
-  // ==========================================
+  /* =====================================================
+     BACK TO TOP BUTTON
+  ====================================================== */
 
-  const THEME_KEY =
-    "omepikya-theme";
-
-  const darkToggle =
-    document.getElementById(
-      "darkModeToggle"
-    );
-
-  function getSystemTheme() {
-    return window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches
-      ? "dark"
-      : "light";
-  }
-
-  function getStoredTheme() {
-    try {
-      return localStorage.getItem(
-        THEME_KEY
-      );
-    } catch (_) {
-      return null;
-    }
-  }
-
-  function applyTheme(theme) {
-
-    const actual =
-      theme === "dark" ||
-      theme === "light"
-        ? theme
-        : getSystemTheme();
-
-    root.dataset.theme =
-      actual;
-
-    if (darkToggle) {
-      darkToggle.checked =
-        actual === "dark";
-    }
-  }
-
-  applyTheme(
-    getStoredTheme() ||
-    getSystemTheme()
-  );
+  const backToTopBtn =
+    document.getElementById('back-to-top');
 
 
-  if (darkToggle) {
+  if (backToTopBtn) {
 
-    darkToggle.addEventListener(
-      "change",
+    const updateBackToTop =
       () => {
 
-        const theme =
-          darkToggle.checked
-            ? "dark"
-            : "light";
+        if (window.scrollY > 500) {
 
-        try {
-          localStorage.setItem(
-            THEME_KEY,
-            theme
-          );
-        } catch (_) {}
-
-        applyTheme(theme);
-      }
-    );
-
-  }
-
-
-  const mediaQuery =
-    window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    );
-
-  function handleSystemThemeChange() {
-
-    if (!getStoredTheme()) {
-      applyTheme(
-        getSystemTheme()
-      );
-    }
-
-  }
-
-  if (
-    mediaQuery.addEventListener
-  ) {
-
-    mediaQuery.addEventListener(
-      "change",
-      handleSystemThemeChange
-    );
-
-  } else if (
-    mediaQuery.addListener
-  ) {
-
-    mediaQuery.addListener(
-      handleSystemThemeChange
-    );
-
-  }
-
-
-  // ==========================================
-  // SCROLL REVEAL
-  // ==========================================
-
-  const revealElements =
-    document.querySelectorAll(
-      [
-        ".feature",
-        ".steps article",
-        ".download-inner",
-        ".security-art",
-        ".privacy-inner",
-        ".terms-inner"
-      ].join(", ")
-    );
-
-  const reduceMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-  if (
-    !reduceMotion &&
-    "IntersectionObserver" in window
-  ) {
-
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-
-          entries.forEach(
-            (entry) => {
-
-              if (
-                !entry.isIntersecting
-              ) {
-                return;
-              }
-
-              entry.target.classList.add(
-                "visible"
-              );
-
-              observer.unobserve(
-                entry.target
-              );
-
-            }
+          backToTopBtn.classList.add(
+            'visible'
           );
 
-        },
-        {
-          threshold: 0.08
+        } else {
+
+          backToTopBtn.classList.remove(
+            'visible'
+          );
+
         }
-      );
 
-    revealElements.forEach(
-      (element) => {
-        observer.observe(element);
+      };
+
+
+    window.addEventListener(
+      'scroll',
+      updateBackToTop,
+      { passive: true }
+    );
+
+
+    backToTopBtn.addEventListener(
+      'click',
+      () => {
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
       }
     );
 
-  } else {
 
-    revealElements.forEach(
-      (element) => {
-        element.classList.add(
-          "visible"
-        );
+    updateBackToTop();
+
+  }
+
+
+  /* =====================================================
+     SERVICE WORKER REGISTRATION
+  ====================================================== */
+
+  if ('serviceWorker' in navigator) {
+
+    window.addEventListener(
+      'load',
+      () => {
+
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then(registration => {
+
+            console.log(
+              'Omepikya ServiceWorker registered:',
+              registration.scope
+            );
+
+          })
+          .catch(error => {
+
+            console.log(
+              'Omepikya ServiceWorker registration failed:',
+              error
+            );
+
+          });
+
       }
     );
 
   }
 
-
-  // ==========================================
-  // VIEWPORT SAFETY
-  // ==========================================
-
-  function resetHorizontalScroll() {
-
-    if (
-      window.scrollX !== 0
-    ) {
-      window.scrollTo({
-        left: 0,
-        top: window.scrollY,
-        behavior: "auto"
-      });
-    }
-
-    document.documentElement.scrollLeft = 0;
-
-    if (document.body) {
-      document.body.scrollLeft = 0;
-    }
-  }
-
-
-  window.addEventListener(
-    "load",
-    () => {
-      resetHorizontalScroll();
-    }
-  );
-
-
-  let resizeTimer;
-
-  window.addEventListener(
-    "resize",
-    () => {
-
-      clearTimeout(
-        resizeTimer
-      );
-
-      resizeTimer =
-        setTimeout(() => {
-
-          resetHorizontalScroll();
-
-          if (
-            window.innerWidth > 850 &&
-            sideMenu &&
-            sideMenu.classList.contains(
-              "open"
-            )
-          ) {
-            setMenu(false);
-          }
-
-        }, 100);
-
-    }
-  );
-
-})();
+});
