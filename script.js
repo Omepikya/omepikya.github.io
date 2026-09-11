@@ -22,31 +22,53 @@
     document.body.classList.toggle("menu-open", open);
 
     menuButton.setAttribute("aria-expanded", String(open));
-    menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menuButton.setAttribute(
+      "aria-label",
+      open ? "Close menu" : "Open menu"
+    );
 
     sideMenu.setAttribute("aria-hidden", String(!open));
     backdrop.setAttribute("aria-hidden", String(!open));
+
+    if (open && menuClose) {
+      requestAnimationFrame(() => {
+        menuClose.focus();
+      });
+    } else if (!open && menuButton) {
+      menuButton.focus();
+    }
   }
 
   if (menuButton) {
     menuButton.addEventListener("click", () => {
-      const isOpen = sideMenu && sideMenu.classList.contains("open");
+      const isOpen =
+        sideMenu &&
+        sideMenu.classList.contains("open");
+
       setMenu(!isOpen);
     });
   }
 
   if (menuClose) {
-    menuClose.addEventListener("click", () => setMenu(false));
+    menuClose.addEventListener("click", () => {
+      setMenu(false);
+    });
   }
 
   if (backdrop) {
-    backdrop.addEventListener("click", () => setMenu(false));
+    backdrop.addEventListener("click", () => {
+      setMenu(false);
+    });
   }
 
-  // Close menu after clicking a section link
-  document.querySelectorAll('.side-menu a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", () => setMenu(false));
-  });
+  // Close menu after clicking an internal section link
+  document
+    .querySelectorAll('.side-menu a[href^="#"]')
+    .forEach((link) => {
+      link.addEventListener("click", () => {
+        setMenu(false);
+      });
+    });
 
   // Escape closes menu
   document.addEventListener("keydown", (event) => {
@@ -75,10 +97,24 @@
 
       event.preventDefault();
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+      const headerOffset =
+        window.innerWidth <= 850 ? 20 : 0;
+
+      const targetTop =
+        target.getBoundingClientRect().top +
+        window.scrollY -
+        headerOffset;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: "smooth"
       });
+
+      history.replaceState(
+        null,
+        "",
+        selector
+      );
     });
   });
 
@@ -87,10 +123,15 @@
   // ==========================================
 
   const THEME_KEY = "omepikya-theme";
-  const darkToggle = document.getElementById("darkModeToggle");
+  const darkToggle =
+    document.getElementById("darkModeToggle");
 
   function getSystemTheme() {
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    return window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches
+      ? "dark"
+      : "light";
   }
 
   function getStoredTheme() {
@@ -102,33 +143,54 @@
   }
 
   function applyTheme(theme) {
-    const actual = theme === "light" || theme === "dark" ? theme : getSystemTheme();
+    const actual =
+      theme === "light" || theme === "dark"
+        ? theme
+        : getSystemTheme();
 
     root.dataset.theme = actual;
 
     if (darkToggle) {
-      darkToggle.checked = actual === "dark";
+      darkToggle.checked =
+        actual === "dark";
     }
   }
 
-  applyTheme(getStoredTheme() || getSystemTheme());
+  // Apply saved/system theme on page load
+  applyTheme(
+    getStoredTheme() || getSystemTheme()
+  );
 
+  // Handle manual theme toggle
   if (darkToggle) {
-    darkToggle.addEventListener("change", () => {
-      const theme = darkToggle.checked ? "dark" : "light";
+    darkToggle.addEventListener(
+      "change",
+      () => {
+        const theme =
+          darkToggle.checked
+            ? "dark"
+            : "light";
 
-      try {
-        localStorage.setItem(THEME_KEY, theme);
-      } catch (error) {
-        // Ignore storage errors.
+        try {
+          localStorage.setItem(
+            THEME_KEY,
+            theme
+          );
+        } catch (error) {
+          // Ignore storage errors
+        }
+
+        applyTheme(theme);
       }
-
-      applyTheme(theme);
-    });
+    );
   }
 
-  // Follow the system theme live, unless the person has picked one explicitly.
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
+  // Follow system theme unless user
+  // has explicitly selected a theme
+  const mediaQuery =
+    window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
 
   function handleSystemThemeChange() {
     if (!getStoredTheme()) {
@@ -137,49 +199,91 @@
   }
 
   if (mediaQuery.addEventListener) {
-    mediaQuery.addEventListener("change", handleSystemThemeChange);
+    mediaQuery.addEventListener(
+      "change",
+      handleSystemThemeChange
+    );
   } else if (mediaQuery.addListener) {
-    mediaQuery.addListener(handleSystemThemeChange);
+    mediaQuery.addListener(
+      handleSystemThemeChange
+    );
   }
 
   // ==========================================
   // SCROLL REVEAL
   // ==========================================
 
-  const revealElements = document.querySelectorAll(
-    ".feature, .steps article, .download-inner, .security-art"
-  );
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (!reduceMotion && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.08 }
+  const revealElements =
+    document.querySelectorAll(
+      ".feature, " +
+      ".steps article, " +
+      ".download-inner, " +
+      ".security-art, " +
+      ".privacy-inner, " +
+      ".terms-inner"
     );
 
-    revealElements.forEach((element) => observer.observe(element));
+  const reduceMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+  if (
+    !reduceMotion &&
+    "IntersectionObserver" in window
+  ) {
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+          });
+        },
+        {
+          threshold: 0.08
+        }
+      );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
   } else {
-    revealElements.forEach((element) => element.classList.add("visible"));
+    revealElements.forEach((element) => {
+      element.classList.add("visible");
+    });
   }
 
   // ==========================================
   // RESPONSIVE SAFETY
   // ==========================================
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 850 && sideMenu && sideMenu.classList.contains("open")) {
-      setMenu(false);
+  let resizeTimer;
+
+  window.addEventListener(
+    "resize",
+    () => {
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(() => {
+        if (
+          window.innerWidth > 850 &&
+          sideMenu &&
+          sideMenu.classList.contains("open")
+        ) {
+          setMenu(false);
+        }
+      }, 100);
     }
-  });
+  );
 
 })();
