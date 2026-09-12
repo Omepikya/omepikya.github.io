@@ -4,12 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
      MOBILE MENU
   ========================================================= */
 
-  const menuToggle = document.querySelector(".menu-toggle");
-  const menuClose = document.querySelector(".menu-close");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  const mobileOverlay = document.querySelector(".mobile-overlay");
+  const menuToggle =
+    document.querySelector(".menu-toggle");
+
+  const menuClose =
+    document.querySelector(".menu-close");
+
+  const mobileMenu =
+    document.querySelector(".mobile-menu");
+
+  const mobileOverlay =
+    document.querySelector(".mobile-overlay");
+
 
   function openMenu() {
+
     if (!mobileMenu) return;
 
     mobileMenu.classList.add("active");
@@ -19,49 +28,101 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (menuToggle) {
-      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+      );
     }
 
-    document.body.classList.add("menu-open");
+    document.body.classList.add(
+      "menu-open"
+    );
+
   }
 
+
   function closeMenu() {
+
     if (!mobileMenu) return;
 
-    mobileMenu.classList.remove("active");
+    mobileMenu.classList.remove(
+      "active"
+    );
 
     if (mobileOverlay) {
-      mobileOverlay.classList.remove("active");
+      mobileOverlay.classList.remove(
+        "active"
+      );
     }
 
     if (menuToggle) {
-      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
     }
 
-    document.body.classList.remove("menu-open");
+    document.body.classList.remove(
+      "menu-open"
+    );
+
   }
+
 
   if (menuToggle) {
-    menuToggle.addEventListener("click", openMenu);
+
+    menuToggle.addEventListener(
+      "click",
+      openMenu
+    );
+
   }
+
 
   if (menuClose) {
-    menuClose.addEventListener("click", closeMenu);
+
+    menuClose.addEventListener(
+      "click",
+      closeMenu
+    );
+
   }
+
 
   if (mobileOverlay) {
-    mobileOverlay.addEventListener("click", closeMenu);
+
+    mobileOverlay.addEventListener(
+      "click",
+      closeMenu
+    );
+
   }
 
-  document.querySelectorAll(".mobile-menu a").forEach(link => {
-    link.addEventListener("click", closeMenu);
-  });
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 900) {
-      closeMenu();
+  document
+    .querySelectorAll(
+      ".mobile-menu a"
+    )
+    .forEach(link => {
+
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+
+    });
+
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      if (window.innerWidth > 900) {
+        closeMenu();
+      }
+
     }
-  });
+  );
 
 
 
@@ -69,53 +130,83 @@ document.addEventListener("DOMContentLoaded", () => {
      DARK MODE
   ========================================================= */
 
-  const themeButtons = document.querySelectorAll(".theme-toggle");
+  const themeButtons =
+    document.querySelectorAll(
+      ".theme-toggle"
+    );
 
-  const savedTheme = localStorage.getItem("omepikya-theme");
 
-  const systemDark = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
+  const savedTheme =
+    localStorage.getItem(
+      "omepikya-theme"
+    );
+
+
+  const systemDark =
+    window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
 
   function applyTheme(theme) {
 
     if (theme === "dark") {
-      document.documentElement.setAttribute(
-        "data-theme",
-        "dark"
-      );
+
+      document.documentElement
+        .setAttribute(
+          "data-theme",
+          "dark"
+        );
+
     } else {
-      document.documentElement.removeAttribute(
-        "data-theme"
-      );
+
+      document.documentElement
+        .removeAttribute(
+          "data-theme"
+        );
+
     }
 
     localStorage.setItem(
       "omepikya-theme",
       theme
     );
+
   }
 
+
   if (savedTheme) {
+
     applyTheme(savedTheme);
+
   } else if (systemDark) {
+
     applyTheme("dark");
+
   }
+
 
   themeButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      const isDark =
-        document.documentElement.getAttribute(
-          "data-theme"
-        ) === "dark";
+        const isDark =
+          document.documentElement
+            .getAttribute(
+              "data-theme"
+            ) === "dark";
 
-      applyTheme(
-        isDark ? "light" : "dark"
-      );
 
-    });
+        applyTheme(
+          isDark
+            ? "light"
+            : "dark"
+        );
+
+      }
+    );
 
   });
 
@@ -123,41 +214,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      APP GALLERY
-     Real Omepikya Expense screenshots
+     Real Omepikya Expense app screenshots
   ========================================================= */
 
   const privacySection =
-    document.querySelector("#privacy");
+    document.querySelector(
+      "#privacy"
+    );
+
 
   if (
     privacySection &&
-    !document.querySelector("#app-gallery")
+    !document.querySelector(
+      "#app-gallery"
+    )
   ) {
 
-    /* -------------------------------------------------------
+
+    /* =======================================================
        GALLERY STYLES
-    ------------------------------------------------------- */
+    ======================================================= */
 
     const galleryStyle =
-      document.createElement("style");
+      document.createElement(
+        "style"
+      );
+
 
     galleryStyle.textContent = `
+
+      /* -------------------------------------------------------
+         GALLERY SECTION
+      ------------------------------------------------------- */
 
       #app-gallery {
         overflow: hidden;
       }
 
+
       .app-gallery-heading {
         max-width: 760px;
       }
+
 
       .app-gallery-heading h2 {
         margin-bottom: 16px;
       }
 
+
       .app-gallery-heading p {
         max-width: 680px;
       }
+
 
       .app-gallery-track {
         display: flex;
@@ -167,318 +275,527 @@ document.addEventListener("DOMContentLoaded", () => {
         padding: 8px 4px 24px;
       }
 
+
       .app-gallery-card {
         flex: 0 0 220px;
+
         position: relative;
+
         padding: 9px;
-        border: 1px solid var(--border);
+
+        border:
+          1px solid
+          var(--border);
+
         border-radius: 28px;
-        background: var(--bg-card);
-        box-shadow: var(--shadow);
+
+        background:
+          var(--bg-card);
+
+        box-shadow:
+          var(--shadow);
+
         cursor: pointer;
+
         transition:
           transform .25s ease,
           box-shadow .25s ease;
       }
 
+
       .app-gallery-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-lg);
+
+        transform:
+          translateY(-8px);
+
+        box-shadow:
+          var(--shadow-lg);
+
       }
+
 
       .app-gallery-card:nth-child(3) {
+
         flex-basis: 250px;
-        transform: translateY(-12px);
-        box-shadow: var(--shadow-lg);
+
+        transform:
+          translateY(-12px);
+
+        box-shadow:
+          var(--shadow-lg);
+
       }
+
 
       .app-gallery-card:nth-child(3):hover {
-        transform: translateY(-18px);
+
+        transform:
+          translateY(-18px);
+
       }
+
 
       .app-gallery-card img {
+
         display: block;
+
         width: 100%;
+
         height: auto;
+
         border-radius: 21px;
-        background: var(--bg-soft);
+
+        background:
+          var(--bg-soft);
+
+        user-select: none;
+
+        -webkit-user-drag: none;
+
       }
+
 
       .app-gallery-label {
-        padding: 12px 5px 4px;
+
+        padding:
+          12px 5px 4px;
+
         text-align: center;
-        color: var(--text-dark);
+
+        color:
+          var(--text-dark);
+
         font-size: 13px;
+
         font-weight: 700;
+
       }
+
 
       .app-gallery-hint {
-        margin: 12px 0 0;
+
+        margin:
+          12px 0 0;
+
         text-align: center;
-        color: var(--text-muted);
+
+        color:
+          var(--text-muted);
+
         font-size: 12px;
+
       }
 
 
-      /* -------------------------------------------------------
-         FULL SCREEN GALLERY
-      ------------------------------------------------------- */
+
+      /* =======================================================
+         FULL SCREEN VIEWER
+      ======================================================= */
 
       .app-gallery-lightbox {
+
         position: fixed;
+
         inset: 0;
+
         z-index: 3000;
 
         display: flex;
+
         align-items: center;
+
         justify-content: center;
 
         padding: 24px;
 
-        background: rgba(0, 0, 0, .88);
+        background:
+          rgba(0, 0, 0, .90);
 
         opacity: 0;
+
         visibility: hidden;
 
         transition:
           opacity .25s ease,
           visibility .25s ease;
 
-        touch-action: pan-y;
+        touch-action: none;
+
       }
+
 
       .app-gallery-lightbox.active {
+
         opacity: 1;
+
         visibility: visible;
+
       }
 
 
-      /* -------------------------------------------------------
-         SLIDE AREA
-      ------------------------------------------------------- */
+
+      /* =======================================================
+         VIEWER
+      ======================================================= */
 
       .app-gallery-viewer {
+
         position: relative;
 
-        width: min(92vw, 560px);
-        height: 92vh;
+        width:
+          min(92vw, 560px);
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height:
+          92vh;
 
         overflow: hidden;
 
-        touch-action: pan-y;
-      }
-
-      .app-gallery-slide {
-        position: absolute;
-
         display: flex;
+
         align-items: center;
+
         justify-content: center;
 
-        width: 100%;
-        height: 100%;
+        touch-action: pan-y;
 
-        transition:
-          transform .28s ease,
-          opacity .28s ease;
+        user-select: none;
+
       }
 
+
+
+      /* =======================================================
+         SLIDE TRACK
+      ======================================================= */
+
+      .app-gallery-slide-track {
+
+        position: relative;
+
+        width: 100%;
+
+        height: 100%;
+
+        overflow: hidden;
+
+      }
+
+
+      .app-gallery-slide {
+
+        position: absolute;
+
+        inset: 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        transform:
+          translateX(0);
+
+        opacity: 1;
+
+        will-change:
+          transform,
+          opacity;
+
+      }
+
+
       .app-gallery-slide img {
+
         display: block;
 
         max-width: 100%;
+
         max-height: 88vh;
 
         width: auto;
+
         height: auto;
 
         border-radius: 24px;
 
         box-shadow:
           0 25px 80px
-          rgba(0, 0, 0, .5);
+          rgba(0, 0, 0, .55);
 
         user-select: none;
+
         -webkit-user-drag: none;
+
+        pointer-events: none;
+
       }
 
 
-      /* -------------------------------------------------------
+
+      /* =======================================================
          TOP INFORMATION
-      ------------------------------------------------------- */
+      ======================================================= */
 
       .app-gallery-info {
+
         position: absolute;
 
         top: 18px;
+
         left: 50%;
 
-        transform: translateX(-50%);
+        z-index: 30;
 
-        z-index: 10;
+        transform:
+          translateX(-50%);
 
         display: flex;
+
         align-items: center;
+
         gap: 12px;
 
-        padding: 9px 16px;
+        padding:
+          9px 16px;
 
-        border: 1px solid
+        border:
+          1px solid
           rgba(255,255,255,.18);
 
-        border-radius: 999px;
+        border-radius:
+          999px;
 
         background:
           rgba(0,0,0,.42);
 
-        backdrop-filter: blur(10px);
+        backdrop-filter:
+          blur(10px);
 
         color: #fff;
 
-        white-space: nowrap;
+        white-space:
+          nowrap;
+
       }
 
-      .app-gallery-counter {
-        font-size: 12px;
-        opacity: .75;
-      }
 
       .app-gallery-title {
-        font-size: 14px;
-        font-weight: 700;
+
+        font-size:
+          14px;
+
+        font-weight:
+          700;
+
       }
 
 
-      /* -------------------------------------------------------
+      .app-gallery-counter {
+
+        font-size:
+          12px;
+
+        opacity:
+          .70;
+
+      }
+
+
+
+      /* =======================================================
          CLOSE BUTTON
-      ------------------------------------------------------- */
+      ======================================================= */
 
       .app-gallery-close {
-        position: absolute;
 
-        top: 18px;
-        right: 18px;
+        position:
+          absolute;
 
-        z-index: 20;
+        top:
+          18px;
 
-        width: 46px;
-        height: 46px;
+        right:
+          18px;
+
+        z-index:
+          40;
+
+        width:
+          46px;
+
+        height:
+          46px;
 
         border:
           1px solid
           rgba(255,255,255,.25);
 
-        border-radius: 50%;
+        border-radius:
+          50%;
 
         background:
           rgba(0,0,0,.45);
 
-        color: #fff;
+        color:
+          #fff;
 
-        font-size: 30px;
-        line-height: 1;
+        font-size:
+          30px;
 
-        cursor: pointer;
+        line-height:
+          1;
+
+        cursor:
+          pointer;
+
       }
 
 
-      /* -------------------------------------------------------
-         PREVIOUS / NEXT
-      ------------------------------------------------------- */
+
+      /* =======================================================
+         PREVIOUS / NEXT BUTTONS
+      ======================================================= */
 
       .app-gallery-prev,
       .app-gallery-next {
-        position: absolute;
 
-        top: 50%;
+        position:
+          absolute;
 
-        z-index: 20;
+        top:
+          50%;
 
-        width: 48px;
-        height: 48px;
+        z-index:
+          40;
 
-        transform: translateY(-50%);
+        width:
+          50px;
+
+        height:
+          50px;
+
+        transform:
+          translateY(-50%);
 
         border:
           1px solid
           rgba(255,255,255,.25);
 
-        border-radius: 50%;
+        border-radius:
+          50%;
 
         background:
           rgba(0,0,0,.45);
 
-        color: #fff;
+        color:
+          #fff;
 
-        font-size: 30px;
-        line-height: 1;
+        font-size:
+          32px;
 
-        cursor: pointer;
+        line-height:
+          1;
+
+        cursor:
+          pointer;
 
         transition:
           background .2s ease,
           transform .2s ease;
+
       }
+
 
       .app-gallery-prev {
-        left: 18px;
+
+        left:
+          18px;
+
       }
 
+
       .app-gallery-next {
-        right: 18px;
+
+        right:
+          18px;
+
       }
+
 
       .app-gallery-prev:hover,
       .app-gallery-next:hover {
+
         background:
           rgba(255,255,255,.18);
+
       }
+
 
       .app-gallery-prev:active {
+
         transform:
-          translateY(-50%) scale(.94);
+          translateY(-50%)
+          scale(.94);
+
       }
+
 
       .app-gallery-next:active {
+
         transform:
-          translateY(-50%) scale(.94);
+          translateY(-50%)
+          scale(.94);
+
       }
 
 
-      /* -------------------------------------------------------
-         MOBILE
-      ------------------------------------------------------- */
+
+      /* =======================================================
+         MOBILE GALLERY
+      ======================================================= */
 
       @media (max-width: 900px) {
 
         .app-gallery-track {
-          justify-content: flex-start;
 
-          overflow-x: auto;
+          justify-content:
+            flex-start;
 
-          scroll-snap-type: x mandatory;
+          overflow-x:
+            auto;
 
-          scroll-padding-inline: 24px;
+          scroll-snap-type:
+            x mandatory;
 
-          gap: 18px;
+          scroll-padding-inline:
+            24px;
+
+          gap:
+            18px;
 
           padding:
             8px 24px 22px;
 
-          margin-inline: -24px;
+          margin-inline:
+            -24px;
 
-          -webkit-overflow-scrolling: touch;
+          -webkit-overflow-scrolling:
+            touch;
 
-          scrollbar-width: none;
+          scrollbar-width:
+            none;
+
         }
+
 
         .app-gallery-track::-webkit-scrollbar {
-          display: none;
+
+          display:
+            none;
+
         }
+
 
         .app-gallery-card,
         .app-gallery-card:nth-child(3) {
@@ -486,76 +803,133 @@ document.addEventListener("DOMContentLoaded", () => {
           flex-basis:
             min(76vw, 270px);
 
-          transform: none;
+          transform:
+            none;
 
-          scroll-snap-align: center;
+          scroll-snap-align:
+            center;
+
         }
+
 
         .app-gallery-card:hover,
         .app-gallery-card:nth-child(3):hover {
 
-          transform: none;
+          transform:
+            none;
+
         }
+
 
         .app-gallery-viewer {
-          width: 100vw;
-          height: 100vh;
+
+          width:
+            100vw;
+
+          height:
+            100vh;
+
         }
+
 
         .app-gallery-slide img {
-          max-width: 92vw;
-          max-height: 86vh;
-          border-radius: 22px;
+
+          max-width:
+            92vw;
+
+          max-height:
+            86vh;
+
+          border-radius:
+            22px;
+
         }
 
-        .app-gallery-info {
-          top: 16px;
-        }
 
         .app-gallery-prev,
         .app-gallery-next {
-          display: none;
+
+          display:
+            none;
+
         }
 
+
         .app-gallery-close {
-          top: 14px;
-          right: 14px;
+
+          top:
+            14px;
+
+          right:
+            14px;
+
+        }
+
+
+        .app-gallery-info {
+
+          top:
+            16px;
+
         }
 
       }
 
 
+
+      /* =======================================================
+         SMALL MOBILE
+      ======================================================= */
+
       @media (max-width: 520px) {
 
         .app-gallery-track {
-          margin-inline: -16px;
-          padding-inline: 16px;
+
+          margin-inline:
+            -16px;
+
+          padding-inline:
+            16px;
+
         }
+
 
         .app-gallery-card,
         .app-gallery-card:nth-child(3) {
-          flex-basis: 78vw;
+
+          flex-basis:
+            78vw;
+
         }
 
       }
 
     `;
 
-    document.head.appendChild(galleryStyle);
+
+    document.head.appendChild(
+      galleryStyle
+    );
 
 
 
-    /* -------------------------------------------------------
-       CREATE GALLERY
-    ------------------------------------------------------- */
+    /* =======================================================
+       CREATE GALLERY SECTION
+    ======================================================= */
 
     const gallery =
-      document.createElement("section");
+      document.createElement(
+        "section"
+      );
 
-    gallery.id = "app-gallery";
+
+    gallery.id =
+      "app-gallery";
+
 
     gallery.className =
       "section section-soft";
+
 
     gallery.innerHTML = `
 
@@ -588,23 +962,30 @@ document.addEventListener("DOMContentLoaded", () => {
           aria-label="Omepikya app screenshots"
         >
 
+          <!-- HOME -->
+
           <button
             class="app-gallery-card"
             type="button"
             data-gallery-title="Home / Dashboard"
             data-gallery-src="assets/app-gallery/app-home.jpg"
           >
+
             <img
               src="assets/app-gallery/app-home.jpg"
               alt="Omepikya Expense Home dashboard"
               loading="lazy"
+              draggable="false"
             >
 
             <div class="app-gallery-label">
               Home / Dashboard
             </div>
+
           </button>
 
+
+          <!-- ADD EXPENSE -->
 
           <button
             class="app-gallery-card"
@@ -612,17 +993,22 @@ document.addEventListener("DOMContentLoaded", () => {
             data-gallery-title="Add Expense"
             data-gallery-src="assets/app-gallery/app-add-expense.jpg"
           >
+
             <img
               src="assets/app-gallery/app-add-expense.jpg"
               alt="Omepikya Expense Add Expense screen"
               loading="lazy"
+              draggable="false"
             >
 
             <div class="app-gallery-label">
               Add Expense
             </div>
+
           </button>
 
+
+          <!-- ANALYTICS -->
 
           <button
             class="app-gallery-card"
@@ -630,17 +1016,22 @@ document.addEventListener("DOMContentLoaded", () => {
             data-gallery-title="Spending Analytics"
             data-gallery-src="assets/app-gallery/app-analytics.jpg"
           >
+
             <img
               src="assets/app-gallery/app-analytics.jpg"
               alt="Omepikya Expense Spending Analytics screen"
               loading="lazy"
+              draggable="false"
             >
 
             <div class="app-gallery-label">
               Spending Analytics
             </div>
+
           </button>
 
+
+          <!-- CASH FLOW -->
 
           <button
             class="app-gallery-card"
@@ -648,17 +1039,22 @@ document.addEventListener("DOMContentLoaded", () => {
             data-gallery-title="Cash-Flow Calendar"
             data-gallery-src="assets/app-gallery/app-cash-flow.jpg"
           >
+
             <img
               src="assets/app-gallery/app-cash-flow.jpg"
               alt="Omepikya Expense Cash-Flow Calendar screen"
               loading="lazy"
+              draggable="false"
             >
 
             <div class="app-gallery-label">
               Cash-Flow Calendar
             </div>
+
           </button>
 
+
+          <!-- PROFILE -->
 
           <button
             class="app-gallery-card"
@@ -666,15 +1062,18 @@ document.addEventListener("DOMContentLoaded", () => {
             data-gallery-title="My Profile"
             data-gallery-src="assets/app-gallery/app-profile.jpg"
           >
+
             <img
               src="assets/app-gallery/app-profile.jpg"
               alt="Omepikya Expense My Profile screen"
               loading="lazy"
+              draggable="false"
             >
 
             <div class="app-gallery-label">
               My Profile
             </div>
+
           </button>
 
         </div>
@@ -688,6 +1087,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     `;
 
+
     privacySection.parentNode.insertBefore(
       gallery,
       privacySection
@@ -700,20 +1100,32 @@ document.addEventListener("DOMContentLoaded", () => {
     ======================================================= */
 
     const lightbox =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     lightbox.className =
       "app-gallery-lightbox";
+
 
     lightbox.setAttribute(
       "role",
       "dialog"
     );
 
+
     lightbox.setAttribute(
       "aria-modal",
       "true"
     );
+
+
+    lightbox.setAttribute(
+      "aria-label",
+      "Omepikya app screenshot gallery"
+    );
+
 
     lightbox.innerHTML = `
 
@@ -728,9 +1140,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="app-gallery-info">
 
-        <span class="app-gallery-title"></span>
+        <span
+          class="app-gallery-title"
+        ></span>
 
-        <span class="app-gallery-counter"></span>
+        <span
+          class="app-gallery-counter"
+        ></span>
 
       </div>
 
@@ -746,12 +1162,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="app-gallery-viewer">
 
-        <div class="app-gallery-slide">
+        <div
+          class="app-gallery-slide-track"
+        >
 
-          <img
-            src=""
-            alt=""
+          <div
+            class="app-gallery-slide"
+            data-slide="0"
           >
+
+            <img
+              src=""
+              alt=""
+              draggable="false"
+            >
+
+          </div>
+
+
+          <div
+            class="app-gallery-slide"
+            data-slide="1"
+          >
+
+            <img
+              src=""
+              alt=""
+              draggable="false"
+            >
+
+          </div>
 
         </div>
 
@@ -768,7 +1208,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     `;
 
-    document.body.appendChild(lightbox);
+
+    document.body.appendChild(
+      lightbox
+    );
 
 
 
@@ -776,25 +1219,36 @@ document.addEventListener("DOMContentLoaded", () => {
        GALLERY DATA
     ======================================================= */
 
-    const cards = Array.from(
-      gallery.querySelectorAll(
-        ".app-gallery-card"
-      )
-    );
-
-    const galleryItems = cards.map(card => ({
-      title:
-        card.getAttribute(
-          "data-gallery-title"
-        ),
-
-      src:
-        card.getAttribute(
-          "data-gallery-src"
+    const cards =
+      Array.from(
+        gallery.querySelectorAll(
+          ".app-gallery-card"
         )
-    }));
+      );
 
-    let currentIndex = 0;
+
+    const galleryItems =
+      cards.map(card => ({
+
+        title:
+          card.getAttribute(
+            "data-gallery-title"
+          ),
+
+        src:
+          card.getAttribute(
+            "data-gallery-src"
+          )
+
+      }));
+
+
+    let currentIndex =
+      0;
+
+
+    let isAnimating =
+      false;
 
 
 
@@ -807,33 +1261,50 @@ document.addEventListener("DOMContentLoaded", () => {
         ".app-gallery-viewer"
       );
 
-    const slide =
+
+    const slideTrack =
       lightbox.querySelector(
-        ".app-gallery-slide"
+        ".app-gallery-slide-track"
       );
 
-    const image =
-      slide.querySelector("img");
+
+    const slides =
+      Array.from(
+        lightbox.querySelectorAll(
+          ".app-gallery-slide"
+        )
+      );
+
+
+    const images =
+      slides.map(slide =>
+        slide.querySelector("img")
+      );
+
 
     const title =
       lightbox.querySelector(
         ".app-gallery-title"
       );
 
+
     const counter =
       lightbox.querySelector(
         ".app-gallery-counter"
       );
+
 
     const closeButton =
       lightbox.querySelector(
         ".app-gallery-close"
       );
 
+
     const previousButton =
       lightbox.querySelector(
         ".app-gallery-prev"
       );
+
 
     const nextButton =
       lightbox.querySelector(
@@ -843,85 +1314,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =======================================================
-       SHOW SLIDE
+       UPDATE INFORMATION
     ======================================================= */
 
-    function showSlide(index, direction = 0) {
-
-      if (!galleryItems.length) return;
-
-      if (index < 0) {
-        index =
-          galleryItems.length - 1;
-      }
-
-      if (index >= galleryItems.length) {
-        index = 0;
-      }
-
-      currentIndex = index;
+    function updateGalleryInfo() {
 
       const item =
-        galleryItems[currentIndex];
+        galleryItems[
+          currentIndex
+        ];
+
+      if (!item) return;
+
+      title.textContent =
+        item.title;
+
+      counter.textContent =
+        `${currentIndex + 1} / ${galleryItems.length}`;
+
+    }
 
 
-      /*
-       * Small slide transition.
-       */
 
-      if (direction !== 0) {
+    /* =======================================================
+       SET IMAGE
+    ======================================================= */
+
+    function setSlideImage(
+      slideIndex,
+      item
+    ) {
+
+      if (!item) return;
+
+      images[slideIndex].src =
+        item.src;
+
+      images[slideIndex].alt =
+        item.title;
+
+    }
+
+
+
+    /* =======================================================
+       RESET SLIDES
+    ======================================================= */
+
+    function resetSlides() {
+
+      slides.forEach(slide => {
 
         slide.style.transition =
           "none";
-
-        slide.style.transform =
-          `translateX(${direction * 35}px)`;
-
-        slide.style.opacity =
-          "0";
-
-        requestAnimationFrame(() => {
-
-          image.src =
-            item.src;
-
-          image.alt =
-            item.title;
-
-          title.textContent =
-            item.title;
-
-          counter.textContent =
-            `${currentIndex + 1} / ${galleryItems.length}`;
-
-          requestAnimationFrame(() => {
-
-            slide.style.transition =
-              "transform .28s ease, opacity .28s ease";
-
-            slide.style.transform =
-              "translateX(0)";
-
-            slide.style.opacity =
-              "1";
-
-          });
-
-        });
-
-      } else {
-
-        image.src =
-          item.src;
-
-        image.alt =
-          item.title;
-
-        title.textContent =
-          item.title;
-
-        counter.textContent =
-          `${currentIndex + 1} / ${galleryItems.length}`;
 
         slide.style.transform =
           "translateX(0)";
@@ -929,7 +1374,52 @@ document.addEventListener("DOMContentLoaded", () => {
         slide.style.opacity =
           "1";
 
-      }
+      });
+
+    }
+
+
+
+    /* =======================================================
+       INITIALIZE VIEWER
+    ======================================================= */
+
+    function initializeViewer(
+      index
+    ) {
+
+      currentIndex =
+        index;
+
+      const item =
+        galleryItems[
+          currentIndex
+        ];
+
+      if (!item) return;
+
+      setSlideImage(
+        0,
+        item
+      );
+
+      images[1].removeAttribute(
+        "src"
+      );
+
+      images[1].removeAttribute(
+        "alt"
+      );
+
+      resetSlides();
+
+      slides[0].style.zIndex =
+        "2";
+
+      slides[1].style.zIndex =
+        "1";
+
+      updateGalleryInfo();
 
     }
 
@@ -939,30 +1429,290 @@ document.addEventListener("DOMContentLoaded", () => {
        OPEN GALLERY
     ======================================================= */
 
-    cards.forEach((card, index) => {
+    cards.forEach(
+      (card, index) => {
 
-      card.addEventListener(
-        "click",
-        () => {
+        card.addEventListener(
+          "click",
+          () => {
 
-          currentIndex = index;
+            initializeViewer(
+              index
+            );
 
-          showSlide(
-            currentIndex
-          );
+            lightbox.classList.add(
+              "active"
+            );
 
-          lightbox.classList.add(
-            "active"
-          );
+            document.body.classList.add(
+              "menu-open"
+            );
 
-          document.body.classList.add(
-            "menu-open"
-          );
+          }
+        );
 
-        }
+      }
+    );
+
+
+
+    /* =======================================================
+       NAVIGATE TO SLIDE
+    ======================================================= */
+
+    function navigateTo(
+      newIndex,
+      direction
+    ) {
+
+      if (
+        isAnimating ||
+        !galleryItems.length
+      ) {
+        return;
+      }
+
+
+      /*
+       * Wrap around.
+       */
+
+      if (
+        newIndex < 0
+      ) {
+
+        newIndex =
+          galleryItems.length - 1;
+
+      }
+
+
+      if (
+        newIndex >=
+        galleryItems.length
+      ) {
+
+        newIndex = 0;
+
+      }
+
+
+      if (
+        newIndex ===
+        currentIndex
+      ) {
+        return;
+      }
+
+
+      isAnimating =
+        true;
+
+
+      /*
+       * Current and incoming slides.
+       */
+
+      const currentSlide =
+        slides[0].style.zIndex === "2"
+          ? slides[0]
+          : slides[1];
+
+
+      const incomingSlide =
+        currentSlide === slides[0]
+          ? slides[1]
+          : slides[0];
+
+
+      const currentImage =
+        currentSlide.querySelector(
+          "img"
+        );
+
+
+      const incomingImage =
+        incomingSlide.querySelector(
+          "img"
+        );
+
+
+      /*
+       * Prepare incoming image.
+       */
+
+      setSlideImage(
+        slides.indexOf(
+          incomingSlide
+        ),
+        galleryItems[newIndex]
       );
 
-    });
+
+      /*
+       * Put incoming slide
+       * outside the viewer.
+       */
+
+      incomingSlide.style.transition =
+        "none";
+
+      incomingSlide.style.zIndex =
+        "3";
+
+      currentSlide.style.zIndex =
+        "2";
+
+
+      incomingSlide.style.transform =
+        `translateX(${direction * 100}%)`;
+
+      incomingSlide.style.opacity =
+        "1";
+
+
+      /*
+       * Force browser layout before
+       * starting animation.
+       */
+
+      void incomingSlide.offsetWidth;
+
+
+      /*
+       * Animate both slides.
+       */
+
+      const transition =
+        "transform .32s cubic-bezier(.22,.61,.36,1), opacity .32s ease";
+
+
+      currentSlide.style.transition =
+        transition;
+
+      incomingSlide.style.transition =
+        transition;
+
+
+      currentSlide.style.transform =
+        `translateX(${direction * -100}%)`;
+
+      currentSlide.style.opacity =
+        "0";
+
+
+      incomingSlide.style.transform =
+        "translateX(0)";
+
+
+      /*
+       * Update state immediately.
+       */
+
+      currentIndex =
+        newIndex;
+
+      updateGalleryInfo();
+
+
+      /*
+       * Finish after animation.
+       */
+
+      window.setTimeout(
+        () => {
+
+          currentSlide.style.transition =
+            "none";
+
+          currentSlide.style.transform =
+            "translateX(0)";
+
+          currentSlide.style.opacity =
+            "1";
+
+          currentSlide.style.zIndex =
+            "1";
+
+          incomingSlide.style.transition =
+            "none";
+
+          incomingSlide.style.transform =
+            "translateX(0)";
+
+          incomingSlide.style.opacity =
+            "1";
+
+          incomingSlide.style.zIndex =
+            "2";
+
+          /*
+           * Clean up unused image.
+           */
+
+          if (
+            currentImage &&
+            currentImage !== incomingImage
+          ) {
+
+            /*
+             * Keep the previous image
+             * available for quick reverse
+             * navigation.
+             */
+
+          }
+
+          isAnimating =
+            false;
+
+        },
+        340
+      );
+
+    }
+
+
+
+    /* =======================================================
+       NEXT
+    ======================================================= */
+
+    function showNext() {
+
+      navigateTo(
+        currentIndex + 1,
+        1
+      );
+
+    }
+
+
+    nextButton.addEventListener(
+      "click",
+      showNext
+    );
+
+
+
+    /* =======================================================
+       PREVIOUS
+    ======================================================= */
+
+    function showPrevious() {
+
+      navigateTo(
+        currentIndex - 1,
+        -1
+      );
+
+    }
+
+
+    previousButton.addEventListener(
+      "click",
+      showPrevious
+    );
 
 
 
@@ -980,67 +1730,15 @@ document.addEventListener("DOMContentLoaded", () => {
         "menu-open"
       );
 
-      setTimeout(() => {
-
-        if (
-          !lightbox.classList.contains(
-            "active"
-          )
-        ) {
-
-          image.removeAttribute(
-            "src"
-          );
-
-        }
-
-      }, 250);
+      isAnimating =
+        false;
 
     }
+
 
     closeButton.addEventListener(
       "click",
       closeGallery
-    );
-
-
-
-    /* =======================================================
-       PREVIOUS
-    ======================================================= */
-
-    function showPrevious() {
-
-      showSlide(
-        currentIndex - 1,
-        -1
-      );
-
-    }
-
-    previousButton.addEventListener(
-      "click",
-      showPrevious
-    );
-
-
-
-    /* =======================================================
-       NEXT
-    ======================================================= */
-
-    function showNext() {
-
-      showSlide(
-        currentIndex + 1,
-        1
-      );
-
-    }
-
-    nextButton.addEventListener(
-      "click",
-      showNext
     );
 
 
@@ -1083,20 +1781,38 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        if (event.key === "Escape") {
+
+        if (
+          event.key ===
+          "Escape"
+        ) {
+
           closeGallery();
+
+          return;
+
         }
 
+
         if (
-          event.key === "ArrowLeft"
+          event.key ===
+          "ArrowLeft"
         ) {
+
           showPrevious();
+
+          return;
+
         }
 
+
         if (
-          event.key === "ArrowRight"
+          event.key ===
+          "ArrowRight"
         ) {
+
           showNext();
+
         }
 
       }
@@ -1105,18 +1821,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =======================================================
-       TOUCH / SWIPE CONTROLS
+       POINTER SWIPE
+       Works with Android touch,
+       mouse and stylus.
     ======================================================= */
 
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
+    let pointerActive =
+      false;
 
-    const SWIPE_THRESHOLD = 55;
+    let pointerStartX =
+      0;
+
+    let pointerStartY =
+      0;
+
+    let pointerCurrentX =
+      0;
+
+    let pointerCurrentY =
+      0;
+
+    let pointerMoved =
+      false;
+
+
+    const SWIPE_THRESHOLD =
+      55;
+
 
     viewer.addEventListener(
-      "touchstart",
+      "pointerdown",
       event => {
 
         if (
@@ -1127,100 +1861,208 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const touch =
-          event.changedTouches[0];
 
-        touchStartX =
-          touch.clientX;
+        if (
+          isAnimating
+        ) {
+          return;
+        }
 
-        touchStartY =
-          touch.clientY;
 
-        touchEndX =
-          touch.clientX;
+        pointerActive =
+          true;
 
-        touchEndY =
-          touch.clientY;
+        pointerMoved =
+          false;
 
-      },
-      {
-        passive: true
+        pointerStartX =
+          event.clientX;
+
+        pointerStartY =
+          event.clientY;
+
+        pointerCurrentX =
+          event.clientX;
+
+        pointerCurrentY =
+          event.clientY;
+
+
+        try {
+
+          viewer.setPointerCapture(
+            event.pointerId
+          );
+
+        } catch (error) {
+          /*
+           * Pointer capture may not be
+           * available in every browser.
+           */
+        }
+
       }
     );
 
 
+
     viewer.addEventListener(
-      "touchmove",
+      "pointermove",
       event => {
 
         if (
-          !lightbox.classList.contains(
-            "active"
-          )
+          !pointerActive ||
+          isAnimating
         ) {
           return;
         }
 
-        const touch =
-          event.changedTouches[0];
 
-        touchEndX =
-          touch.clientX;
+        pointerCurrentX =
+          event.clientX;
 
-        touchEndY =
-          touch.clientY;
+        pointerCurrentY =
+          event.clientY;
 
-      },
-      {
-        passive: true
-      }
-    );
-
-
-    viewer.addEventListener(
-      "touchend",
-      () => {
-
-        if (
-          !lightbox.classList.contains(
-            "active"
-          )
-        ) {
-          return;
-        }
 
         const deltaX =
-          touchEndX -
-          touchStartX;
+          pointerCurrentX -
+          pointerStartX;
+
 
         const deltaY =
-          touchEndY -
-          touchStartY;
+          pointerCurrentY -
+          pointerStartY;
 
 
         /*
-         * Only treat it as a swipe when
-         * horizontal movement is dominant.
+         * Only treat horizontal movement
+         * as gallery movement.
          */
 
         if (
+          Math.abs(deltaX) >
+          Math.abs(deltaY)
+        ) {
+
+          pointerMoved =
+            true;
+
+        }
+
+      }
+    );
+
+
+
+    viewer.addEventListener(
+      "pointerup",
+      event => {
+
+        if (
+          !pointerActive
+        ) {
+          return;
+        }
+
+
+        pointerActive =
+          false;
+
+
+        pointerCurrentX =
+          event.clientX;
+
+        pointerCurrentY =
+          event.clientY;
+
+
+        const deltaX =
+          pointerCurrentX -
+          pointerStartX;
+
+
+        const deltaY =
+          pointerCurrentY -
+          pointerStartY;
+
+
+        if (
+          pointerMoved &&
           Math.abs(deltaX) >
             SWIPE_THRESHOLD &&
           Math.abs(deltaX) >
             Math.abs(deltaY)
         ) {
 
-          if (deltaX < 0) {
+          if (
+            deltaX < 0
+          ) {
+
             showNext();
+
           } else {
+
             showPrevious();
+
           }
 
         }
 
-      },
-      {
-        passive: true
+      }
+    );
+
+
+
+    viewer.addEventListener(
+      "pointercancel",
+      () => {
+
+        pointerActive =
+          false;
+
+      }
+    );
+
+
+
+    viewer.addEventListener(
+      "pointerleave",
+      event => {
+
+        /*
+         * Do not cancel while the pointer
+         * is captured.
+         */
+
+        if (
+          pointerActive &&
+          event.pointerType ===
+          "mouse"
+        ) {
+
+          return;
+
+        }
+
+      }
+    );
+
+
+
+    /* =======================================================
+       PRELOAD GALLERY IMAGES
+    ======================================================= */
+
+    galleryItems.forEach(
+      item => {
+
+        const preload =
+          new Image();
+
+        preload.src =
+          item.src;
+
       }
     );
 
@@ -1247,43 +2089,62 @@ document.addEventListener("DOMContentLoaded", () => {
               "href"
             );
 
+
           if (
             !targetId ||
             targetId === "#"
           ) {
+
             return;
+
           }
+
 
           const target =
             document.querySelector(
               targetId
             );
 
+
           if (!target) {
+
             return;
+
           }
 
+
           event.preventDefault();
+
 
           const header =
             document.querySelector(
               ".site-header"
             );
 
+
           const headerHeight =
             header
               ? header.offsetHeight
               : 0;
 
+
           const position =
-            target.getBoundingClientRect().top +
+            target
+              .getBoundingClientRect()
+              .top +
             window.scrollY -
             headerHeight -
             16;
 
+
           window.scrollTo({
-            top: position,
-            behavior: "smooth"
+
+            top:
+              position,
+
+            behavior:
+              "smooth"
+
           });
 
         }
@@ -1302,14 +2163,19 @@ document.addEventListener("DOMContentLoaded", () => {
       ".back-to-top"
     );
 
+
   function updateBackToTop() {
 
     if (!backToTop) {
+
       return;
+
     }
 
+
     if (
-      window.scrollY > 500
+      window.scrollY >
+      500
     ) {
 
       backToTop.classList.add(
@@ -1326,6 +2192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+
   window.addEventListener(
     "scroll",
     updateBackToTop,
@@ -1334,7 +2201,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
+
   updateBackToTop();
+
 
   if (backToTop) {
 
@@ -1343,8 +2212,13 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         window.scrollTo({
-          top: 0,
-          behavior: "smooth"
+
+          top:
+            0,
+
+          behavior:
+            "smooth"
+
         });
 
       }
@@ -1359,7 +2233,8 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================================================= */
 
   if (
-    "serviceWorker" in navigator
+    "serviceWorker" in
+    navigator
   ) {
 
     window.addEventListener(
@@ -1367,15 +2242,19 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         navigator.serviceWorker
-          .register("/sw.js")
-          .catch(error => {
+          .register(
+            "/sw.js"
+          )
+          .catch(
+            error => {
 
-            console.error(
-              "Service worker registration failed:",
-              error
-            );
+              console.error(
+                "Service worker registration failed:",
+                error
+              );
 
-          });
+            }
+          );
 
       }
     );
