@@ -1,0 +1,341 @@
+/* =========================================================
+   OMEPIKYA EXPENSE
+   PHASE 2 — PREMIUM HERO POLISH
+========================================================= */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 82% 28%,
+      color-mix(in srgb, var(--primary) 10%, transparent),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 10% 82%,
+      color-mix(in srgb, var(--primary) 6%, transparent),
+      transparent 28%
+    );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  right: -230px;
+  top: -180px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-grid {
+  gap: clamp(45px, 6vw, 95px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--primary) 18%,
+      var(--border)
+    );
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary-light) 55%,
+      var(--bg-card)
+    );
+
+  box-shadow:
+    0 8px 24px
+    rgba(15, 122, 70, 0.06);
+}
+
+.hero h1 {
+  max-width: 720px;
+  text-wrap: balance;
+}
+
+.hero-description {
+  max-width: 560px;
+  font-size: 18px;
+}
+
+.hero-actions .btn-primary {
+  min-width: 178px;
+}
+
+.hero-actions .btn-secondary {
+  min-width: 148px;
+}
+
+.hero-meta {
+  gap: 7px 12px;
+}
+
+.hero-visual {
+  padding: 14px;
+}
+
+.hero-visual::before,
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-visual::before {
+  width: 170px;
+  height: 170px;
+  right: -20px;
+  top: -25px;
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 7%,
+      transparent
+    );
+}
+
+.hero-visual::after {
+  width: 110px;
+  height: 110px;
+  left: -25px;
+  bottom: 20px;
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 5%,
+      transparent
+    );
+}
+
+.dashboard-window {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--primary) 12%,
+      var(--border)
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--bg-card),
+      color-mix(
+        in srgb,
+        var(--bg-soft) 55%,
+        var(--bg-card)
+      )
+    );
+
+  box-shadow:
+    0 30px 80px
+    rgba(17, 24, 39, 0.13),
+    0 0 0 1px
+    rgba(255, 255, 255, 0.35) inset;
+
+  transform:
+    perspective(1400px)
+    rotateY(-5deg)
+    rotateX(2deg)
+    translateY(0);
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.dashboard-window:hover {
+  transform:
+    perspective(1400px)
+    rotateY(-2deg)
+    rotateX(1deg)
+    translateY(-6px);
+
+  box-shadow:
+    0 38px 90px
+    rgba(17, 24, 39, 0.16),
+    0 0 0 1px
+    rgba(255, 255, 255, 0.4) inset;
+}
+
+.dashboard-window::after {
+  content: "LIVE FINANCE VIEW";
+
+  position: absolute;
+  top: 16px;
+  right: 24px;
+
+  padding: 5px 8px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--primary) 16%,
+      var(--border)
+    );
+
+  border-radius: 999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary-light) 72%,
+      var(--bg-card)
+    );
+
+  color: var(--primary);
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.dashboard-top {
+  padding-top: 10px;
+}
+
+.dashboard-change {
+  box-shadow:
+    0 6px 16px
+    rgba(15, 122, 70, 0.08);
+}
+
+.expense-row {
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.expense-row:hover {
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .hero {
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        color-mix(
+          in srgb,
+          var(--primary) 8%,
+          transparent
+        ),
+        transparent 34%
+      );
+  }
+
+  .hero-visual {
+    padding: 0;
+  }
+
+  .dashboard-window {
+    transform: none;
+  }
+
+  .dashboard-window:hover {
+    transform: translateY(-4px);
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 52px;
+  }
+
+  .hero h1 {
+    font-size:
+      clamp(
+        42px,
+        12.5vw,
+        58px
+      );
+
+    line-height: 1;
+  }
+
+  .hero-description {
+    margin-top: 22px;
+    margin-bottom: 26px;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    min-width: 0;
+  }
+
+  .hero-meta {
+    margin-top: 19px;
+  }
+
+  .dashboard-window::after {
+    top: 12px;
+    right: 18px;
+    font-size: 7px;
+  }
+
+}
+
+
+@media (max-width: 420px) {
+
+  .hero {
+    padding-top: 42px;
+  }
+
+  .eyebrow {
+    margin-bottom: 16px;
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .hero-meta {
+    font-size: 10px;
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .dashboard-window,
+  .dashboard-window:hover,
+  .expense-row:hover {
+    transform: none;
+  }
+
+}
