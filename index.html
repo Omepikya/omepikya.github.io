@@ -58,10 +58,20 @@
     Omepikya Expense — Your money. Under control.
   </title>
 
+
+  <!-- =======================================================
+       MANIFEST
+  ======================================================== -->
+
   <link
     rel="manifest"
     href="manifest.json"
   >
+
+
+  <!-- =======================================================
+       GOOGLE FONTS
+  ======================================================== -->
 
   <link
     rel="preconnect"
@@ -78,6 +88,11 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
+
+
+  <!-- =======================================================
+       MAIN STYLES
+  ======================================================== -->
 
   <link
     rel="stylesheet"
@@ -103,12 +118,17 @@
 
   <div class="header-inner">
 
+
+    <!-- BRAND -->
+
     <a
       href="#home"
       class="brand"
     >
 
-      <span class="brand-mark">O</span>
+      <span class="brand-mark">
+        O
+      </span>
 
       <span class="brand-name">
         Omepikya
@@ -116,6 +136,8 @@
 
     </a>
 
+
+    <!-- DESKTOP NAV -->
 
     <nav class="desktop-nav">
 
@@ -157,6 +179,8 @@
     </nav>
 
 
+    <!-- MOBILE MENU BUTTON -->
+
     <button
       type="button"
       class="menu-toggle"
@@ -177,16 +201,21 @@
 
 
 <!-- =========================================================
-     MOBILE MENU
+     MOBILE OVERLAY
 ========================================================= -->
 
 <div class="mobile-overlay"></div>
 
 
-<aside
-  class="mobile-menu"
-  aria-label="Mobile navigation"
->
+
+<!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+<aside class="mobile-menu">
+
+
+  <!-- MENU HEADER -->
 
   <div class="mobile-menu-header">
 
@@ -205,6 +234,11 @@
   </div>
 
 
+
+  <!-- =======================================================
+       MAIN MOBILE NAVIGATION
+  ======================================================== -->
+
   <nav class="mobile-main-nav">
 
 
@@ -220,30 +254,33 @@
         >
 
           <path
-            d="M3 10.8 12 3l9 7.8"
+            d="M3 10.5L12 3l9 7.5"
           />
 
           <path
-            d="M5.5 9.5V21h13V9.5"
+            d="M5 9.5V21h14V9.5"
           />
 
           <path
-            d="M9.5 21v-6h5v6"
+            d="M9 21v-6h6v6"
           />
 
         </svg>
 
       </span>
 
+
       <span class="mobile-nav-label">
         Home
       </span>
+
 
       <span class="mobile-nav-arrow">
         ›
       </span>
 
     </a>
+
 
 
     <!-- FEATURES -->
@@ -257,31 +294,46 @@
           aria-hidden="true"
         >
 
-          <path
-            d="M4 20V10h4v10H4Z"
+          <rect
+            x="4"
+            y="12"
+            width="4"
+            height="8"
+            rx="1"
           />
 
-          <path
-            d="M10 20V4h4v16h-4Z"
+          <rect
+            x="10"
+            y="7"
+            width="4"
+            height="13"
+            rx="1"
           />
 
-          <path
-            d="M16 20v-7h4v7h-4Z"
+          <rect
+            x="16"
+            y="3"
+            width="4"
+            height="17"
+            rx="1"
           />
 
         </svg>
 
       </span>
 
+
       <span class="mobile-nav-label">
         Features
       </span>
+
 
       <span class="mobile-nav-arrow">
         ›
       </span>
 
     </a>
+
 
 
     <!-- PRIVACY -->
@@ -296,22 +348,25 @@
         >
 
           <path
-            d="M12 3 20 6v5.5c0 5.2-3.2 8.5-8 10.5-4.8-2-8-5.3-8-10.5V6l8-3Z"
+            d="M12 3l8 3v5c0 5.2-3.4 8.8-8 10-4.6-1.2-8-4.8-8-10V6l8-3z"
           />
 
         </svg>
 
       </span>
 
+
       <span class="mobile-nav-label">
         Privacy
       </span>
+
 
       <span class="mobile-nav-arrow">
         ›
       </span>
 
     </a>
+
 
 
     <!-- SECURITY -->
@@ -326,24 +381,26 @@
         >
 
           <rect
-            x="5"
+            x="4"
             y="10"
-            width="14"
-            height="10"
+            width="16"
+            height="11"
             rx="2"
           />
 
           <path
-            d="M8 10V7a4 4 0 0 1 8 0v3"
+            d="M8 10V7a4 4 0 018 0v3"
           />
 
         </svg>
 
       </span>
 
+
       <span class="mobile-nav-label">
         Security
       </span>
+
 
       <span class="mobile-nav-arrow">
         ›
@@ -352,7 +409,8 @@
     </a>
 
 
-    <!-- SUPPORT -->
+
+    <!-- HELP & SUPPORT -->
 
     <a href="#support">
 
@@ -370,13 +428,13 @@
           />
 
           <path
-            d="M9.8 9a2.4 2.4 0 1 1 3.9 1.8c-1.2.9-1.7 1.4-1.7 2.7"
+            d="M9.8 9a2.5 2.5 0 014.8 1c0 1.7-2.6 2-2.6 3.6"
           />
 
           <circle
             cx="12"
             cy="17"
-            r=".7"
+            r="0.7"
             fill="currentColor"
             stroke="none"
           />
@@ -385,9 +443,11 @@
 
       </span>
 
+
       <span class="mobile-nav-label">
         Help &amp; Support
       </span>
+
 
       <span class="mobile-nav-arrow">
         ›
@@ -396,7 +456,10 @@
     </a>
 
 
-    <!-- ANDROID DOWNLOAD -->
+
+    <!-- =====================================================
+         ANDROID DOWNLOAD BUTTON
+    ====================================================== -->
 
     <a
       href="https://github.com/Omepikya/omepikya.github.io/releases/download/v1.0.0/app-release.apk"
@@ -415,40 +478,42 @@
           />
 
           <path
-            d="M9 9 7.5 6.5M15 9l1.5-2.5"
+            d="M9 9V6.5a3 3 0 016 0V9"
           />
 
           <path
-            d="M9 6.5a4 4 0 0 1 6 0"
+            d="M5 11v5"
           />
 
           <path
-            d="M9 18v2M15 18v2"
+            d="M19 11v5"
           />
 
-          <circle
-            cx="9.5"
-            cy="12"
-            r=".6"
-            fill="currentColor"
-            stroke="none"
+          <path
+            d="M9 18v2"
           />
 
-          <circle
-            cx="14.5"
-            cy="12"
-            r=".6"
-            fill="currentColor"
-            stroke="none"
+          <path
+            d="M15 18v2"
+          />
+
+          <path
+            d="M9 6l-1.2-1.5"
+          />
+
+          <path
+            d="M15 6l1.2-1.5"
           />
 
         </svg>
 
       </span>
 
+
       <span>
         Get the Android App
       </span>
+
 
       <span class="mobile-download-arrow">
         →
@@ -456,11 +521,13 @@
 
     </a>
 
+
   </nav>
 
 
+
   <!-- =======================================================
-       SECONDARY MENU
+       MOBILE MENU FOOTER
   ======================================================== -->
 
   <div class="mobile-menu-footer">
@@ -470,7 +537,7 @@
 
     <button
       type="button"
-      class="theme-toggle mobile-theme-toggle"
+      class="mobile-theme-toggle"
       aria-label="Toggle dark mode"
     >
 
@@ -482,29 +549,32 @@
         >
 
           <path
-            d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"
+            d="M20 15.5A8.5 8.5 0 018.5 4a8.5 8.5 0 1011.5 11.5z"
           />
 
         </svg>
 
       </span>
 
+
       <span class="mobile-footer-label">
         Dark mode
       </span>
 
+
       <span class="mobile-theme-switch">
+
         <span></span>
+
       </span>
 
     </button>
 
 
+
     <!-- EMAIL -->
 
-    <a
-      href="mailto:Omepikyainfo@gmail.com"
-    >
+    <a href="mailto:Omepikyainfo@gmail.com">
 
       <span class="mobile-footer-icon">
 
@@ -522,22 +592,25 @@
           />
 
           <path
-            d="m4 7 8 6 8-6"
+            d="M4 7l8 6 8-6"
           />
 
         </svg>
 
       </span>
 
+
       <span class="mobile-footer-label">
         Email Omepikya
       </span>
+
 
       <span class="mobile-external">
         ↗
       </span>
 
     </a>
+
 
 
     <!-- GITHUB -->
@@ -558,22 +631,25 @@
           <path
             fill="currentColor"
             stroke="none"
-            d="M12 2.5a9.5 9.5 0 0 0-3 18.51c.47.09.65-.2.65-.46v-1.8c-2.65.58-3.21-1.12-3.21-1.12-.43-1.1-1.05-1.39-1.05-1.39-.86-.59.07-.58.07-.58.95.07 1.45.98 1.45.98.84 1.44 2.2 1.02 2.74.78.09-.61.33-1.02.6-1.25-2.12-.24-4.35-1.06-4.35-4.72 0-1.04.37-1.89.98-2.55-.1-.24-.43-1.21.09-2.52 0 0 .8-.26 2.62.97a9.1 9.1 0 0 1 4.77 0c1.82-1.23 2.62-.97 2.62-.97.52 1.31.19 2.28.09 2.52.61.66.98 1.51.98 2.55 0 3.67-2.24 4.48-4.37 4.72.34.29.64.85.64 1.72v2.56c0 .26.17.56.65.46A9.5 9.5 0 0 0 12 2.5Z"
+            d="M12 2.5a9.5 9.5 0 00-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.5 1 1 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.7-1.3-2.2-.2-4.5-1.1-4.5-4.8 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 015.1 0c2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.7-2.3 4.6-4.5 4.8.4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0012 2.5z"
           />
 
         </svg>
 
       </span>
 
+
       <span class="mobile-footer-label">
         GitHub
       </span>
+
 
       <span class="mobile-external">
         ↗
       </span>
 
     </a>
+
 
 
     <!-- INSTAGRAM -->
@@ -592,22 +668,22 @@
         >
 
           <rect
-            x="4"
-            y="4"
-            width="16"
-            height="16"
-            rx="4"
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="5"
           />
 
           <circle
             cx="12"
             cy="12"
-            r="3.5"
+            r="4"
           />
 
           <circle
-            cx="17"
-            cy="7"
+            cx="17.3"
+            cy="6.7"
             r="1"
             fill="currentColor"
             stroke="none"
@@ -617,9 +693,11 @@
 
       </span>
 
+
       <span class="mobile-footer-label">
         Instagram
       </span>
+
 
       <span class="mobile-external">
         ↗
@@ -627,11 +705,13 @@
 
     </a>
 
+
   </div>
 
 
+
   <!-- =======================================================
-       MENU TAGLINE
+       MOBILE MENU TAGLINE
   ======================================================== -->
 
   <div class="mobile-menu-tagline">
@@ -640,6 +720,7 @@
     manage, and improve your financial life.
 
   </div>
+
 
 </aside>
 
@@ -1918,6 +1999,7 @@
         Transparency matters.
       </h2>
 
+
       <p>
         Information about privacy, security,
         support, and the responsible use of
@@ -1930,25 +2012,31 @@
 
     <div class="terms-links">
 
+
       <a href="#privacy">
         Privacy
       </a>
+
 
       <a href="privacy.html">
         Privacy Policy
       </a>
 
+
       <a href="#security">
         Security
       </a>
+
 
       <a href="terms.html">
         Terms of Service
       </a>
 
+
       <a href="#support">
         Support
       </a>
+
 
     </div>
 
@@ -1971,6 +2059,8 @@
 
   <div class="container footer-grid">
 
+
+    <!-- FOOTER BRAND -->
 
     <div>
 
@@ -1999,23 +2089,30 @@
 
 
 
+    <!-- FOOTER LINKS -->
+
     <div class="footer-links">
+
 
       <a href="#privacy">
         Privacy
       </a>
 
+
       <a href="privacy.html">
         Privacy Policy
       </a>
+
 
       <a href="#security">
         Security
       </a>
 
+
       <a href="terms.html">
         Terms of Service
       </a>
+
 
       <a href="#support">
         Support
@@ -2039,9 +2136,12 @@
         Instagram
       </a>
 
+
     </div>
 
 
+
+    <!-- FOOTER CONTACT -->
 
     <div class="footer-contact">
 
@@ -2076,6 +2176,8 @@
   </div>
 
 
+
+  <!-- FOOTER BOTTOM -->
 
   <div class="container footer-bottom">
 
