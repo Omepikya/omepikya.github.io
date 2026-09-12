@@ -1,1071 +1,1350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    content="width=device-width, initial-scale=1.0"
   >
 
   <meta
     name="description"
-    content="Omepikya Expense — personal finance made clear. Track expenses, understand spending, and make better financial decisions."
+    content="Omepikya Expense — personal finance made clear. Track expenses, understand your spending, and make better financial decisions."
   >
 
-  <meta name="theme-color" content="#0F7A46">
-
-  <title>Omepikya Expense - Personal finance, made clear</title>
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
+    name="theme-color"
+    content="#0F7A46"
   >
 
-  <link rel="apple-touch-icon" href="icon-192x192.png">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://omepikya.in/">
   <meta
     property="og:title"
-    content="Omepikya Expense - Personal finance, made clear"
+    content="Omepikya Expense — Your money. Under control."
   >
+
   <meta
     property="og:description"
-    content="Track expenses, understand spending, and make better financial decisions."
-  >
-  <meta
-    property="og:image"
-    content="https://omepikya.in/og-image.jpg"
+    content="Track expenses, understand your spending, and make better financial decisions."
   >
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://omepikya.in/">
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://omepikya.in/"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary"
+  >
+
   <meta
     name="twitter:title"
-    content="Omepikya Expense - Personal finance, made clear"
+    content="Omepikya Expense"
   >
+
   <meta
     name="twitter:description"
-    content="Track expenses, understand spending, and make better financial decisions."
-  >
-  <meta
-    name="twitter:image"
-    content="https://omepikya.in/og-image.jpg"
+    content="Your money. Under control."
   >
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>
+    Omepikya Expense — Your money. Under control.
+  </title>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="manifest"
+    href="manifest.json"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="styles.css?v=20260911">
+  <link
+    rel="stylesheet"
+    href="styles.css?v=20260912"
+  >
+
 </head>
+
 
 <body>
 
-  <!-- =====================================================
-       MOBILE HEADER
-  ====================================================== -->
 
-  <header class="mobile-header">
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header">
+
+  <div class="header-inner">
 
     <a
       href="#home"
-      class="logo"
-      aria-label="Omepikya Expense home"
+      class="brand"
     >
-      <span class="logo-icon">O</span>
-      <span>Omepikya Expense</span>
+
+      <span class="brand-mark">O</span>
+
+      <span class="brand-name">
+        Omepikya
+      </span>
+
     </a>
 
-    <button
-      id="menu-toggle"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        aria-hidden="true"
-      >
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
 
-  </header>
+    <nav class="desktop-nav">
 
+      <a href="#home">
+        Home
+      </a>
 
-  <!-- =====================================================
-       MENU OVERLAY
-  ====================================================== -->
+      <a href="#features">
+        Features
+      </a>
 
-  <div
-    id="menu-overlay"
-    class="overlay"
-    aria-hidden="true"
-  ></div>
+      <a href="#privacy">
+        Privacy
+      </a>
 
+      <a href="#security">
+        Security
+      </a>
 
-  <!-- =====================================================
-       MOBILE MENU
-  ====================================================== -->
-
-  <nav
-    id="mobile-menu"
-    class="mobile-menu"
-    aria-hidden="true"
-    aria-label="Mobile navigation"
-  >
-
-    <div class="menu-header">
+      <a href="#support">
+        Support
+      </a>
 
       <a
-        href="#home"
-        class="logo"
-        aria-label="Omepikya Expense home"
+        href="https://github.com/Omepikya/omepikya.github.io/releases/download/v1.0.0/app-release.apk"
+        class="nav-download"
       >
-        <span class="logo-icon">O</span>
-        <span>Omepikya Expense</span>
+        Get the App
       </a>
 
       <button
-        id="menu-close"
         type="button"
-        aria-label="Close menu"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
       >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          aria-hidden="true"
-        >
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
+        ◐
       </button>
 
-    </div>
+    </nav>
 
 
-    <ul class="menu-links">
+    <button
+      type="button"
+      class="menu-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
 
-      <li>
-        <a href="#home">
-          <span class="icon">🏠</span>
-          <span>Home</span>
-        </a>
-      </li>
+      <span></span>
+      <span></span>
+      <span></span>
 
-      <li>
-        <a href="#features">
-          <span class="icon">🧩</span>
-          <span>Features</span>
-        </a>
-      </li>
+    </button>
 
-      <li>
-        <a href="#privacy">
-          <span class="icon">🛡️</span>
-          <span>Privacy</span>
-        </a>
-      </li>
+  </div>
 
-      <li>
-        <a href="#security">
-          <span class="icon">🔒</span>
-          <span>Security</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#contact">
-          <span class="icon">✉️</span>
-          <span>Contact</span>
-        </a>
-      </li>
-
-    </ul>
+</header>
 
 
-    <div class="menu-divider"></div>
+
+<!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+<div class="mobile-overlay"></div>
 
 
-    <ul class="menu-secondary">
+<aside class="mobile-menu">
 
-      <li>
-        <a href="#download">
-          <span class="icon">⬇️</span>
-          <span>Get the App</span>
-        </a>
-      </li>
+  <div class="mobile-menu-header">
 
-      <li>
-        <a href="#support">
-          <span class="icon">❓</span>
-          <span>Help &amp; Support</span>
-        </a>
-      </li>
+    <span class="mobile-menu-title">
+      Menu
+    </span>
 
-    </ul>
+    <button
+      type="button"
+      class="menu-close"
+      aria-label="Close menu"
+    >
+      ×
+    </button>
 
-
-    <div class="menu-divider"></div>
+  </div>
 
 
-    <div class="menu-footer">
+  <nav>
 
-      <div class="dark-mode-toggle">
+    <a href="#home">
+      Home
+    </a>
 
-        <span>🌙 Dark Mode</span>
+    <a href="#features">
+      Features
+    </a>
 
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="dark-mode-checkbox"
-            aria-label="Toggle dark mode"
-          >
-          <span class="slider"></span>
-        </label>
+    <a href="#privacy">
+      Privacy
+    </a>
 
-      </div>
+    <a href="#security">
+      Security
+    </a>
 
-
-      <a
-        href="mailto:Omepikyainfo@gmail.com"
-        class="btn-primary menu-email"
-      >
-        <span>Email Omepikya</span>
-        <span aria-hidden="true">→</span>
-      </a>
+    <a href="#support">
+      Help &amp; Support
+    </a>
 
 
-      <div class="social-icons">
+    <a
+      href="https://github.com/Omepikya/omepikya.github.io/releases/download/v1.0.0/app-release.apk"
+      class="mobile-download"
+    >
 
-        <a
-          href="https://github.com/Omepikya/omepikya.github.io"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          GH
-        </a>
+      Get the Android App
 
-        <a
-          href="https://www.instagram.com/omepikya/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-        >
-          IG
-        </a>
+      <span>→</span>
 
-      </div>
-
-
-      <div class="menu-copyright">
-
-        <a href="#privacy">Privacy</a>
-
-        <span aria-hidden="true">|</span>
-
-        <a href="#terms">Terms</a>
-
-        <span aria-hidden="true">|</span>
-
-        <span>© 2026 Omepikya</span>
-
-      </div>
-
-    </div>
+    </a>
 
   </nav>
 
 
-  <!-- =====================================================
-       MAIN
-  ====================================================== -->
+  <div class="mobile-menu-footer">
 
-  <main id="top">
-
-    <!-- ===================================================
-         HERO
-    ==================================================== -->
-
-    <section
-      id="home"
-      class="hero-section"
+    <button
+      type="button"
+      class="theme-toggle mobile-theme-toggle"
     >
+      ◐ Dark mode
+    </button>
 
-      <div class="hero">
 
-        <div class="hero-content">
+    <a href="mailto:Omepikyainfo@gmail.com">
+      Email Omepikya
+    </a>
 
-          <span class="badge">
-            Personal finance, made clear
-          </span>
 
-          <h1>
-            Your money.
-            <span class="highlight">Under control.</span>
-          </h1>
+    <a
+      href="https://github.com/Omepikya/omepikya.github.io"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub
+    </a>
 
-          <p class="hero-subtitle">
-            Track every expense, understand your spending,
-            and make better financial decisions — without
-            the clutter.
-          </p>
 
+    <a
+      href="https://www.instagram.com/omepikya/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Instagram
+    </a>
 
-          <div class="hero-actions">
+  </div>
 
-            <a
-              href="#download"
-              class="btn-primary"
-            >
-              <span>Get Omepikya Expense</span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
+</aside>
 
-            <a
-              href="#features"
-              class="btn-secondary"
-            >
-              <span>Explore features</span>
-              <span class="arrow-down" aria-hidden="true">↓</span>
-            </a>
 
-          </div>
 
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
-          <div class="hero-meta">
+<main>
 
-            <span>Private by design</span>
 
-            <span class="dot" aria-hidden="true">•</span>
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-            <span>Cloud sync</span>
+<section
+  id="home"
+  class="hero section"
+>
 
-            <span class="dot" aria-hidden="true">•</span>
+  <div class="container hero-grid">
 
-            <span>Built for everyday spending</span>
 
-          </div>
+    <div class="hero-content">
 
-        </div>
+      <div class="eyebrow">
 
+        <span class="eyebrow-dot"></span>
 
-        <!-- DASHBOARD -->
-
-        <div class="hero-visual">
-
-          <div class="dashboard-card">
-
-            <div class="card-header">
-
-              <span class="card-label">
-                THIS MONTH
-              </span>
-
-              <span class="trend down">
-                ↓ 12.4%
-              </span>
-
-            </div>
-
-
-            <div class="balance">
-              ₹24,860
-            </div>
-
-
-            <div class="graph-container">
-
-              <svg
-                viewBox="0 0 300 80"
-                preserveAspectRatio="none"
-                role="img"
-                aria-label="Monthly spending trend"
-              >
-
-                <path
-                  d="M0,70 Q30,60 60,50 T120,40 T180,30 T240,20 T300,10"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="3"
-                />
-
-                <path
-                  d="M0,70 Q30,60 60,50 T120,40 T180,30 T240,20 T300,10 L300,80 L0,80 Z"
-                  fill="currentColor"
-                  opacity=".10"
-                  stroke="none"
-                />
-
-              </svg>
-
-            </div>
-
-
-            <div class="stats-grid">
-
-              <div>
-                <span class="stat-label">
-                  Income
-                </span>
-
-                <span class="stat-value">
-                  ₹48,200
-                </span>
-              </div>
-
-              <div>
-                <span class="stat-label">
-                  Expenses
-                </span>
-
-                <span class="stat-value">
-                  ₹24,860
-                </span>
-              </div>
-
-              <div>
-                <span class="stat-label">
-                  Saved
-                </span>
-
-                <span class="stat-value">
-                  ₹23,340
-                </span>
-              </div>
-
-            </div>
-
-
-            <ul class="transaction-list">
-
-              <li>
-
-                <span
-                  class="tx-icon"
-                  aria-hidden="true"
-                >
-                  🛒
-                </span>
-
-                <div class="tx-details">
-
-                  <strong>
-                    Groceries
-                  </strong>
-
-                  <small>
-                    12 transactions
-                  </small>
-
-                </div>
-
-                <span class="tx-amount negative">
-                  -₹3,450
-                </span>
-
-              </li>
-
-
-              <li>
-
-                <span
-                  class="tx-icon"
-                  aria-hidden="true"
-                >
-                  💼
-                </span>
-
-                <div class="tx-details">
-
-                  <strong>
-                    Salary
-                  </strong>
-
-                  <small>
-                    1 transaction
-                  </small>
-
-                </div>
-
-                <span class="tx-amount positive">
-                  +₹48,200
-                </span>
-
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
+        Personal finance, made clear
 
       </div>
 
-    </section>
 
+      <h1>
 
-    <!-- ===================================================
-         FEATURES
-    ==================================================== -->
+        Your money.
 
-    <section
-      id="features"
-      class="features-section"
-    >
-
-      <div class="section-header">
-
-        <span class="section-kicker">
-          OMEPIKYA EXPENSE
+        <span>
+          Under control.
         </span>
 
-        <h2>
-          Everything you need
-        </h2>
+      </h1>
 
-        <p>
-          Take control of your finances with
-          powerful, easy-to-use tools.
-        </p>
 
-      </div>
+      <p class="hero-description">
 
+        Omepikya Expense helps you track your
+        spending, understand where your money
+        goes, and make better financial decisions
+        every day.
 
-      <div class="features-grid">
+      </p>
 
-        <article class="feature-card">
 
-          <div class="icon-box">📊</div>
-
-          <div class="feature-text">
-
-            <h3>
-              Know where your money goes
-            </h3>
-
-            <p>
-              Track and categorize expenses automatically.
-              See clear insights at a glance.
-            </p>
-
-          </div>
-
-          <span class="chevron" aria-hidden="true">
-            →
-          </span>
-
-        </article>
-
-
-        <article class="feature-card">
-
-          <div class="icon-box">📅</div>
-
-          <div class="feature-text">
-
-            <h3>
-              Never miss recurring costs
-            </h3>
-
-            <p>
-              Get reminders for bills,
-              subscriptions and more.
-            </p>
-
-          </div>
-
-          <span class="chevron" aria-hidden="true">
-            →
-          </span>
-
-        </article>
-
-
-        <article class="feature-card">
-
-          <div class="icon-box">👥</div>
-
-          <div class="feature-text">
-
-            <h3>
-              Split expenses easily
-            </h3>
-
-            <p>
-              Share and settle expenses with
-              friends and family.
-            </p>
-
-          </div>
-
-          <span class="chevron" aria-hidden="true">
-            →
-          </span>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PRIVACY
-    ==================================================== -->
-
-    <section
-      id="privacy"
-      class="info-section"
-    >
-
-      <div class="info-inner">
-
-        <div class="info-copy">
-
-          <span class="section-kicker">
-            PRIVACY
-          </span>
-
-          <h2>
-            Your financial data
-            <span class="highlight">stays yours.</span>
-          </h2>
-
-          <p>
-            Omepikya is designed around the idea that
-            your financial information should remain
-            under your control.
-          </p>
-
-        </div>
-
-
-        <div class="info-points">
-
-          <div>
-            <strong>01</strong>
-            <span>Privacy-first design</span>
-          </div>
-
-          <div>
-            <strong>02</strong>
-            <span>Clear control over your data</span>
-          </div>
-
-          <div>
-            <strong>03</strong>
-            <span>No unnecessary clutter</span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         SECURITY
-    ==================================================== -->
-
-    <section
-      id="security"
-      class="security-section"
-    >
-
-      <div class="security-inner">
-
-        <div class="security-art">
-
-          <div class="orbit orbit-one"></div>
-          <div class="orbit orbit-two"></div>
-
-          <div class="lock-ring">
-            <span>🔒</span>
-          </div>
-
-        </div>
-
-
-        <div class="security-copy">
-
-          <span class="section-kicker">
-            SECURITY
-          </span>
-
-          <h2>
-            Built with
-            <span class="highlight">security in mind.</span>
-          </h2>
-
-          <p>
-            Financial information deserves thoughtful
-            protection. Omepikya's architecture is built
-            with security and responsible data handling
-            in mind.
-          </p>
-
-
-          <div class="security-list">
-
-            <span>✓ Secure data handling</span>
-
-            <span>✓ Protected account access</span>
-
-            <span>✓ Privacy-focused architecture</span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         HOW IT WORKS
-    ==================================================== -->
-
-    <section class="steps-section">
-
-      <div class="section-header">
-
-        <span class="section-kicker">
-          HOW IT WORKS
-        </span>
-
-        <h2>
-          Simple by design.
-        </h2>
-
-      </div>
-
-
-      <div class="steps">
-
-        <article>
-
-          <span>01</span>
-
-          <h3>Add</h3>
-
-          <p>
-            Record your income and expenses
-            as they happen.
-          </p>
-
-        </article>
-
-
-        <article>
-
-          <span>02</span>
-
-          <h3>Understand</h3>
-
-          <p>
-            See where your money is going
-            through clear insights.
-          </p>
-
-        </article>
-
-
-        <article>
-
-          <span>03</span>
-
-          <h3>Improve</h3>
-
-          <p>
-            Use better information to make
-            better financial decisions.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         DOWNLOAD / CONTACT
-    ==================================================== -->
-
-    <section
-      id="download"
-      class="cta-section"
-    >
-
-      <div
-        id="contact"
-        class="cta-content"
-      >
-
-        <span class="cta-badge">
-          OMEPIKYA EXPENSE
-        </span>
-
-        <h2>
-          Make every rupee
-          <br>
-          make sense.
-        </h2>
-
-        <p>
-          Have a question, feedback or partnership
-          idea? We'd love to hear from you.
-        </p>
-
-
-        <div class="contact-actions">
-
-          <span class="coming-soon-badge">
-            Coming soon to Android &amp; iOS
-          </span>
-
-          <a
-            href="mailto:Omepikyainfo@gmail.com"
-            class="btn-primary btn-dark"
-          >
-            <span>Join Waitlist / Email Us</span>
-            <span aria-hidden="true">→</span>
-          </a>
-
-        </div>
-
+      <div class="hero-actions">
 
         <a
-          href="mailto:Omepikyainfo@gmail.com"
-          class="cta-email"
+          href="https://github.com/Omepikya/omepikya.github.io/releases/download/v1.0.0/app-release.apk"
+          class="btn btn-primary"
         >
-          <span aria-hidden="true">✉️</span>
-          <span>Omepikyainfo@gmail.com</span>
+
+          Get the Android App
+
+          <span>→</span>
+
         </a>
 
 
-        <div
-          id="support"
-          class="cta-features"
+        <a
+          href="#features"
+          class="btn btn-secondary"
         >
 
-          <div class="cta-feature">
-            <span aria-hidden="true">💬</span>
-            <span>Open for feedback</span>
+          Explore features
+
+          <span>↓</span>
+
+        </a>
+
+      </div>
+
+
+      <div class="hero-meta">
+
+        <span>
+          Private by design
+        </span>
+
+        <span>•</span>
+
+        <span>
+          Cloud sync
+        </span>
+
+        <span>•</span>
+
+        <span>
+          Built for everyday spending
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- DASHBOARD -->
+
+    <div class="hero-visual">
+
+      <div class="dashboard-window">
+
+
+        <div class="dashboard-top">
+
+          <div>
+
+            <span class="dashboard-label">
+              This month
+            </span>
+
+            <strong>
+              ₹24,860
+            </strong>
+
           </div>
 
-          <div class="cta-feature">
-            <span aria-hidden="true">🤝</span>
-            <span>Partnerships welcome</span>
+
+          <span class="dashboard-change">
+            ↓ 12.4%
+          </span>
+
+        </div>
+
+
+
+        <div class="dashboard-stats">
+
+
+          <div class="dashboard-stat">
+
+            <span>
+              Income
+            </span>
+
+            <strong>
+              ₹48,200
+            </strong>
+
           </div>
 
-          <div class="cta-feature">
-            <span aria-hidden="true">🎧</span>
-            <span>Support when you need it</span>
+
+          <div class="dashboard-stat">
+
+            <span>
+              Expenses
+            </span>
+
+            <strong>
+              ₹24,860
+            </strong>
+
           </div>
+
+
+          <div class="dashboard-stat">
+
+            <span>
+              Saved
+            </span>
+
+            <strong>
+              ₹23,340
+            </strong>
+
+          </div>
+
+
+        </div>
+
+
+
+        <div class="dashboard-list">
+
+
+          <div class="expense-row">
+
+            <div class="expense-icon">
+              G
+            </div>
+
+            <div class="expense-info">
+
+              <strong>
+                Groceries
+              </strong>
+
+              <span>
+                Today
+              </span>
+
+            </div>
+
+            <strong>
+              −₹3,450
+            </strong>
+
+          </div>
+
+
+
+          <div class="expense-row">
+
+            <div class="expense-icon">
+              S
+            </div>
+
+            <div class="expense-info">
+
+              <strong>
+                Salary
+              </strong>
+
+              <span>
+                This month
+              </span>
+
+            </div>
+
+            <strong class="income-value">
+              +₹48,200
+            </strong>
+
+          </div>
+
 
         </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </div>
+
+</section>
 
 
-    <!-- ===================================================
-         TERMS
-    ==================================================== -->
 
-    <section
-      id="terms"
-      class="terms-section"
-    >
+<!-- =========================================================
+     FEATURES
+========================================================= -->
 
-      <div class="terms-inner">
+<section
+  id="features"
+  class="section"
+>
 
-        <span class="section-kicker">
-          LEGAL
-        </span>
+  <div class="container">
 
-        <h2>
-          Terms &amp; privacy.
-        </h2>
+
+    <div class="section-heading">
+
+      <span class="section-eyebrow">
+        Features
+      </span>
+
+
+      <h2>
+        Everything you need
+        to understand your money.
+      </h2>
+
+
+      <p>
+        Simple tools that help you stay aware
+        of your finances without making money
+        management complicated.
+      </p>
+
+    </div>
+
+
+
+    <div class="feature-grid">
+
+
+      <article class="feature-card">
+
+        <div class="feature-number">
+          01
+        </div>
+
+
+        <h3>
+          Know where your money goes
+        </h3>
+
 
         <p>
-          Omepikya Expense is built to provide a
-          straightforward personal finance experience.
-          Please review the applicable privacy and
-          service information before using the product.
+          Record your expenses and organize
+          your spending so you can clearly see
+          where your money is going.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <div class="feature-number">
+          02
+        </div>
+
+
+        <h3>
+          Understand your spending
+        </h3>
+
+
+        <p>
+          Review your financial information
+          and spending patterns to make more
+          informed decisions.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature-card">
+
+        <div class="feature-number">
+          03
+        </div>
+
+
+        <h3>
+          Keep your finances connected
+        </h3>
+
+
+        <p>
+          Omepikya Expense Cloud provides
+          the foundation for connected and
+          synchronized financial experiences.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PRIVACY
+========================================================= -->
+
+<section
+  id="privacy"
+  class="section section-soft"
+>
+
+  <div class="container split-section">
+
+
+    <div>
+
+      <span class="section-eyebrow">
+        Privacy
+      </span>
+
+
+      <h2>
+        Your financial data
+        stays yours.
+      </h2>
+
+
+      <p>
+        Omepikya is designed with privacy
+        in mind. Your financial information
+        should remain under your control.
+      </p>
+
+    </div>
+
+
+
+    <div class="principles">
+
+
+      <div class="principle">
+
+        <span>01</span>
+
+        <div>
+
+          <h3>
+            Privacy-first design
+          </h3>
+
+          <p>
+            Privacy is considered throughout
+            the design of the Omepikya experience.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="principle">
+
+        <span>02</span>
+
+        <div>
+
+          <h3>
+            Clear control
+          </h3>
+
+          <p>
+            Your account and financial information
+            should remain understandable and manageable.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="principle">
+
+        <span>03</span>
+
+        <div>
+
+          <h3>
+            No unnecessary clutter
+          </h3>
+
+          <p>
+            A focused experience keeps your attention
+            on your finances.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SECURITY
+========================================================= -->
+
+<section
+  id="security"
+  class="section"
+>
+
+  <div class="container split-section security-section">
+
+
+    <div>
+
+      <span class="section-eyebrow">
+        Security
+      </span>
+
+
+      <h2>
+        Built with security
+        in mind.
+      </h2>
+
+
+      <p>
+        Financial applications need to treat
+        user information responsibly. Omepikya
+        is built around that principle.
+      </p>
+
+    </div>
+
+
+
+    <div class="security-list">
+
+
+      <div>
+
+        <span class="check">
+          ✓
+        </span>
+
+        <div>
+
+          <strong>
+            Secure data handling
+          </strong>
+
+          <p>
+            Data is handled through the application's
+            defined secure data flows.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div>
+
+        <span class="check">
+          ✓
+        </span>
+
+        <div>
+
+          <strong>
+            Protected account access
+          </strong>
+
+          <p>
+            Account access is designed around
+            authenticated users and protected sessions.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div>
+
+        <span class="check">
+          ✓
+        </span>
+
+        <div>
+
+          <strong>
+            Privacy-focused architecture
+          </strong>
+
+          <p>
+            Privacy and security remain important
+            considerations as the platform evolves.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section
+  id="how-it-works"
+  class="section section-soft"
+>
+
+  <div class="container">
+
+
+    <div class="section-heading centered">
+
+      <span class="section-eyebrow">
+        How it works
+      </span>
+
+
+      <h2>
+        Simple enough for every day.
+      </h2>
+
+    </div>
+
+
+
+    <div class="steps-grid">
+
+
+      <div class="step">
+
+        <span class="step-number">
+          01
+        </span>
+
+        <h3>
+          Add
+        </h3>
+
+        <p>
+          Record your income and expenses
+          as they happen.
+        </p>
+
+      </div>
+
+
+
+      <div class="step">
+
+        <span class="step-number">
+          02
+        </span>
+
+        <h3>
+          Understand
+        </h3>
+
+        <p>
+          Review your spending and financial
+          information clearly.
+        </p>
+
+      </div>
+
+
+
+      <div class="step">
+
+        <span class="step-number">
+          03
+        </span>
+
+        <h3>
+          Improve
+        </h3>
+
+        <p>
+          Use what you learn to make smarter
+          financial decisions.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     EXPENSE CLOUD
+========================================================= -->
+
+<section
+  id="cloud"
+  class="section cloud-section"
+>
+
+  <div class="container">
+
+
+    <div class="cloud-card">
+
+
+      <div class="cloud-content">
+
+        <span class="section-eyebrow">
+          Omepikya Expense Cloud
+        </span>
+
+
+        <h2>
+          Your finances,
+          connected.
+        </h2>
+
+
+        <p>
+          Omepikya Expense Cloud is the foundation
+          for connecting your financial experience
+          across supported services.
         </p>
 
 
-        <div class="legal-links">
+        <a
+          href="https://github.com/Omepikya/omepikya.github.io/releases/download/v1.0.0/app-release.apk"
+          class="text-link"
+        >
 
-          <a href="#privacy">
-            Privacy
-          </a>
+          Get Omepikya Expense
 
-          <a href="#security">
-            Security
-          </a>
+          <span>→</span>
 
-        </div>
+        </a>
 
       </div>
 
-    </section>
 
-  </main>
+      <div class="cloud-mark">
+        O
+      </div>
 
 
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
+    </div>
 
-  <footer>
+  </div>
 
-    <div class="footer-content">
+</section>
+
+
+
+<!-- =========================================================
+     DOWNLOAD
+========================================================= -->
+
+<section
+  id="download"
+  class="section cta-section"
+>
+
+  <div class="container">
+
+
+    <div class="cta-card">
+
+
+      <span class="section-eyebrow">
+        Android app available now
+      </span>
+
+
+      <h2>
+        Make every rupee
+        make sense.
+      </h2>
+
+
+      <p>
+        Start tracking your expenses with
+        Omepikya Expense today.
+      </p>
+
+
+      <a
+        href="https://github.com/Omepikya/omepikya.github.io/releases/download/v1.0.0/app-release.apk"
+        class="btn btn-primary btn-large"
+      >
+
+        Download for Android
+
+        <span>→</span>
+
+      </a>
+
+
+      <div class="download-note">
+
+        <span>
+          Free to download
+        </span>
+
+        <span>•</span>
+
+        <span>
+          Android
+        </span>
+
+        <span>•</span>
+
+        <span>
+          v1.0.0
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SUPPORT
+========================================================= -->
+
+<section
+  id="support"
+  class="section support-section"
+>
+
+  <div class="container">
+
+
+    <div class="section-heading centered">
+
+      <span class="section-eyebrow">
+        Help &amp; Support
+      </span>
+
+
+      <h2>
+        Need help?
+      </h2>
+
+
+      <p>
+        We're building Omepikya to make
+        personal finance simpler. If you
+        need assistance, get in touch.
+      </p>
+
+
+      <a
+        href="mailto:Omepikyainfo@gmail.com"
+        class="btn btn-secondary"
+      >
+
+        Email Omepikya
+
+        <span>→</span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     LEGAL
+========================================================= -->
+
+<section
+  id="terms"
+  class="terms-section"
+>
+
+  <div class="container terms-inner">
+
+
+    <div>
+
+      <span class="section-eyebrow">
+        Legal
+      </span>
+
+
+      <h2>
+        Transparency matters.
+      </h2>
+
+    </div>
+
+
+    <div class="terms-links">
+
+      <a href="#privacy">
+        Privacy
+      </a>
+
+      <a href="#security">
+        Security
+      </a>
+
+      <a href="#support">
+        Terms &amp; Support
+      </a>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+
+  <div class="container footer-grid">
+
+
+    <div>
+
+      <a
+        href="#home"
+        class="brand footer-brand"
+      >
+
+        <span class="brand-mark">
+          O
+        </span>
+
+        <span class="brand-name">
+          Omepikya
+        </span>
+
+      </a>
+
 
       <p>
         A better website for a smarter,
         simpler financial life.
       </p>
 
-
-      <div class="footer-bottom">
-
-        <span>
-          Omepikya Expense | omepikya.in
-        </span>
+    </div>
 
 
-        <div class="footer-links">
 
-          <a href="#privacy">Privacy</a>
+    <div class="footer-links">
 
-          <a href="#security">Security</a>
+      <a href="#privacy">
+        Privacy
+      </a>
 
-          <a href="#terms">Terms</a>
+      <a href="#security">
+        Security
+      </a>
 
-          <a
-            href="https://github.com/Omepikya/omepikya.github.io"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-
-          <a
-            href="https://www.instagram.com/omepikya/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </a>
-
-        </div>
+      <a href="#terms">
+        Terms
+      </a>
 
 
-        <a
-          href="#download"
-          class="btn-footer"
-        >
-          Get in touch →
-        </a>
+      <a
+        href="https://github.com/Omepikya/omepikya.github.io"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
 
-      </div>
 
-
-      <div class="footer-email">
-
-        <a href="mailto:Omepikyainfo@gmail.com">
-          Omepikyainfo@gmail.com
-        </a>
-
-      </div>
+      <a
+        href="https://www.instagram.com/omepikya/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Instagram
+      </a>
 
     </div>
 
-  </footer>
 
 
-  <!-- BACK TO TOP -->
-
-  <button
-    id="back-to-top"
-    class="back-to-top"
-    type="button"
-    aria-label="Back to top"
-  >
-
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M12 19V5M5 12l7-7 7 7"></path>
-    </svg>
-
-  </button>
+    <div class="footer-contact">
 
 
-  <!-- STRUCTURED DATA -->
+      <a
+        href="https://github.com/Omepikya/omepikya.github.io/releases/download/v1.0.0/app-release.apk"
+        class="text-link"
+      >
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Omepikya Expense",
-    "operatingSystem": "Android, iOS",
-    "applicationCategory": "FinanceApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
-    },
-    "description": "Track expenses, understand spending, and make better financial decisions."
+        Get the Android App
+
+        <span>→</span>
+
+      </a>
+
+
+      <a
+        href="mailto:Omepikyainfo@gmail.com"
+        class="text-link"
+      >
+
+        Omepikyainfo@gmail.com
+
+        <span>→</span>
+
+      </a>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <div class="container footer-bottom">
+
+    <span>
+      © 2026 Omepikya. All rights reserved.
+    </span>
+
+    <span>
+      Made for better financial decisions.
+    </span>
+
+  </div>
+
+
+</footer>
+
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+  type="button"
+  class="back-to-top"
+  aria-label="Back to top"
+>
+  ↑
+</button>
+
+
+
+<script src="script.js?v=20260912"></script>
+
+
+
+<!-- =========================================================
+     STRUCTURED DATA
+========================================================= -->
+
+<script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Omepikya Expense",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Android",
+  "description": "Personal finance and expense tracking application.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
   }
-  </script>
+}
 
+</script>
 
-  <script src="script.js?v=20260911"></script>
 
 </body>
 </html>
