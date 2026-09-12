@@ -227,7 +227,7 @@
 
 
 /* =========================================================
-   MOBILE
+   MOBILE HERO
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -329,6 +329,10 @@
 
 }
 
+
+/* =========================================================
+   HERO REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -648,7 +652,7 @@
 
 
 /* =========================================================
-   DARK MODE
+   DARK MODE GALLERY
 ========================================================= */
 
 html[data-theme="dark"] #app-gallery {
@@ -673,7 +677,7 @@ html[data-theme="dark"] #app-gallery .app-gallery-card {
 
 
 /* =========================================================
-   REDUCED MOTION
+   GALLERY REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -684,6 +688,643 @@ html[data-theme="dark"] #app-gallery .app-gallery-card {
   #app-gallery .app-gallery-card:nth-child(3):hover,
   #app-gallery .app-gallery-card img {
     transform: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   PHASE 2 — PREMIUM MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+  width: min(82vw, 430px);
+
+  padding:
+    30px
+    28px
+    34px;
+
+  background:
+    var(--bg-card);
+
+  border-left:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--primary) 8%,
+      var(--border)
+    );
+
+  border-radius:
+    28px 0 0 28px;
+
+  box-shadow:
+    -20px 0 70px
+    rgba(17, 24, 39, 0.16);
+
+  overflow-y: auto;
+}
+
+
+/* =========================================================
+   MENU HEADER
+========================================================= */
+
+.mobile-menu-header {
+  margin-bottom: 34px;
+}
+
+.mobile-menu-title {
+  color:
+    var(--text-dark);
+
+  font-size: 30px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    -0.045em;
+}
+
+.menu-close {
+  width: 48px;
+  height: 48px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 14px;
+
+  background:
+    var(--bg-card);
+
+  color:
+    var(--text-dark);
+
+  font-size: 34px;
+
+  font-weight: 300;
+
+  line-height: 1;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.menu-close:hover {
+  background:
+    var(--bg-soft);
+
+  border-color:
+    var(--primary);
+
+  transform:
+    rotate(4deg);
+}
+
+
+/* =========================================================
+   MAIN MENU NAVIGATION
+========================================================= */
+
+.mobile-main-nav {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.mobile-main-nav > a {
+  display: grid;
+
+  grid-template-columns:
+    38px
+    minmax(0, 1fr)
+    24px;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 68px;
+
+  padding:
+    10px 4px;
+
+  border-radius: 14px;
+
+  color:
+    var(--text-muted);
+
+  font-size: 18px;
+
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobile-main-nav > a:hover {
+  background:
+    var(--primary-light);
+
+  color:
+    var(--primary);
+
+  transform:
+    translateX(3px);
+}
+
+
+/* =========================================================
+   NAVIGATION ICONS
+========================================================= */
+
+.mobile-nav-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    currentColor;
+}
+
+.mobile-nav-icon svg {
+  width: 27px;
+  height: 27px;
+
+  fill: none;
+
+  stroke:
+    currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   NAVIGATION ARROWS
+========================================================= */
+
+.mobile-nav-arrow {
+  color:
+    color-mix(
+      in srgb,
+      var(--text-muted) 65%,
+      transparent
+    );
+
+  font-size: 32px;
+
+  font-weight: 300;
+
+  line-height: 1;
+
+  text-align: right;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobile-main-nav > a:hover
+.mobile-nav-arrow {
+  color:
+    var(--primary);
+
+  transform:
+    translateX(3px);
+}
+
+
+/* =========================================================
+   ANDROID DOWNLOAD
+========================================================= */
+
+.mobile-main-nav .mobile-download {
+  display: grid;
+
+  grid-template-columns:
+    38px
+    minmax(0, 1fr)
+    24px;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 70px;
+
+  margin-top: 17px;
+
+  padding:
+    14px 18px;
+
+  border-radius: 17px;
+
+  background:
+    var(--primary);
+
+  color:
+    #FFFFFF;
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 12px 28px
+    rgba(15, 122, 70, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mobile-main-nav .mobile-download:hover {
+  background:
+    var(--primary-dark);
+
+  color:
+    #FFFFFF;
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 16px 34px
+    rgba(15, 122, 70, 0.24);
+}
+
+.mobile-download-icon {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-download-icon svg {
+  width: 27px;
+  height: 27px;
+
+  fill: none;
+
+  stroke:
+    currentColor;
+
+  stroke-width: 1.7;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+}
+
+.mobile-download-arrow {
+  font-size: 28px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   SECONDARY MENU
+========================================================= */
+
+.mobile-menu-footer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  margin-top: 30px;
+
+  padding-top: 24px;
+
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+/* =========================================================
+   FOOTER LINKS + THEME
+========================================================= */
+
+.mobile-menu-footer > a,
+.mobile-theme-toggle {
+  width: 100%;
+
+  min-height: 57px;
+
+  display: grid;
+
+  grid-template-columns:
+    38px
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding:
+    8px 4px;
+
+  border: 0;
+
+  border-radius: 13px;
+
+  background:
+    transparent;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    inherit;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  text-align: left;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.mobile-menu-footer > a:hover,
+.mobile-theme-toggle:hover {
+  background:
+    var(--primary-light);
+
+  color:
+    var(--primary);
+}
+
+
+/* =========================================================
+   FOOTER ICONS
+========================================================= */
+
+.mobile-footer-icon {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-footer-icon svg {
+  width: 25px;
+  height: 25px;
+
+  fill: none;
+
+  stroke:
+    currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   EXTERNAL LINK
+========================================================= */
+
+.mobile-external {
+  color:
+    color-mix(
+      in srgb,
+      var(--text-muted) 65%,
+      transparent
+    );
+
+  font-size: 23px;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   DARK MODE SWITCH
+========================================================= */
+
+.mobile-theme-switch {
+  width: 54px;
+  height: 30px;
+
+  position: relative;
+
+  display: block;
+
+  border-radius: 999px;
+
+  background:
+    #D9DDE2;
+
+  transition:
+    background 0.25s ease;
+}
+
+.mobile-theme-switch span {
+  position: absolute;
+
+  top: 4px;
+  left: 4px;
+
+  width: 22px;
+  height: 22px;
+
+  border-radius: 50%;
+
+  background:
+    #FFFFFF;
+
+  box-shadow:
+    0 2px 5px
+    rgba(0, 0, 0, 0.14);
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+/* Dark theme */
+
+html[data-theme="dark"]
+.mobile-theme-switch {
+  background:
+    var(--primary);
+}
+
+html[data-theme="dark"]
+.mobile-theme-switch span {
+  transform:
+    translateX(24px);
+}
+
+
+/* =========================================================
+   MENU TAGLINE
+========================================================= */
+
+.mobile-menu-tagline {
+  margin-top: 27px;
+
+  padding-top: 27px;
+
+  border-top:
+    1px solid
+    var(--border);
+
+  color:
+    var(--text-muted);
+
+  font-size: 13px;
+
+  line-height: 1.65;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE MENU — 520px
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .mobile-menu {
+    width: 86vw;
+
+    padding:
+      26px
+      22px
+      30px;
+
+    border-radius:
+      24px 0 0 24px;
+  }
+
+  .mobile-menu-title {
+    font-size: 28px;
+  }
+
+  .mobile-main-nav > a {
+    min-height: 64px;
+
+    font-size: 17px;
+  }
+
+  .mobile-main-nav .mobile-download {
+    min-height: 66px;
+
+    font-size: 16px;
+
+    padding:
+      13px 15px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .mobile-menu {
+    width: 88vw;
+
+    padding:
+      24px
+      18px
+      26px;
+  }
+
+  .mobile-main-nav > a {
+    min-height: 59px;
+
+    gap: 10px;
+
+    font-size: 16px;
+  }
+
+  .mobile-main-nav .mobile-download {
+    grid-template-columns:
+      32px
+      minmax(0, 1fr)
+      20px;
+
+    gap: 9px;
+
+    font-size: 15px;
+  }
+
+  .mobile-nav-icon {
+    width: 30px;
+  }
+
+  .mobile-nav-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE MENU — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mobile-main-nav > a,
+  .mobile-main-nav .mobile-download,
+  .menu-close,
+  .mobile-theme-switch span {
+    transition: none;
   }
 
 }
