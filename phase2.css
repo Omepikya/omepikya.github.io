@@ -1,35 +1,62 @@
 /* =========================================================
    OMEPIKYA EXPENSE
-   PHASE 2 — PREMIUM HERO POLISH
+   PHASE 2
+   HERO + APP GALLERY + PREMIUM MOBILE MENU
+========================================================= */
+
+
+/* =========================================================
+   HERO — PREMIUM POLISH
 ========================================================= */
 
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+
   background:
     radial-gradient(
       circle at 82% 28%,
-      color-mix(in srgb, var(--primary) 10%, transparent),
+      color-mix(
+        in srgb,
+        var(--primary) 10%,
+        transparent
+      ),
       transparent 30%
     ),
     radial-gradient(
       circle at 10% 82%,
-      color-mix(in srgb, var(--primary) 6%, transparent),
+      color-mix(
+        in srgb,
+        var(--primary) 6%,
+        transparent
+      ),
       transparent 28%
     );
 }
 
 .hero::before {
   content: "";
+
   position: absolute;
+
   width: 520px;
   height: 520px;
+
   right: -230px;
   top: -180px;
+
   border-radius: 50%;
-  background: color-mix(in srgb, var(--primary) 5%, transparent);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 5%,
+      transparent
+    );
+
   pointer-events: none;
+
   z-index: -1;
 }
 
@@ -91,16 +118,21 @@
 .hero-visual::before,
 .hero-visual::after {
   content: "";
+
   position: absolute;
+
   border-radius: 50%;
+
   pointer-events: none;
 }
 
 .hero-visual::before {
   width: 170px;
   height: 170px;
+
   right: -20px;
   top: -25px;
+
   background:
     color-mix(
       in srgb,
@@ -112,8 +144,10 @@
 .hero-visual::after {
   width: 110px;
   height: 110px;
+
   left: -25px;
   bottom: 20px;
+
   background:
     color-mix(
       in srgb,
@@ -176,6 +210,7 @@
   content: "LIVE FINANCE VIEW";
 
   position: absolute;
+
   top: 16px;
   right: 24px;
 
@@ -201,7 +236,9 @@
   color: var(--primary);
 
   font-size: 8px;
+
   font-weight: 800;
+
   letter-spacing: 0.08em;
 }
 
@@ -227,7 +264,7 @@
 
 
 /* =========================================================
-   MOBILE HERO
+   HERO — MOBILE
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -281,6 +318,7 @@
   .hero-description {
     margin-top: 22px;
     margin-bottom: 26px;
+
     font-size: 16px;
     line-height: 1.65;
   }
@@ -301,6 +339,7 @@
   .dashboard-window::after {
     top: 12px;
     right: 18px;
+
     font-size: 7px;
   }
 
@@ -315,7 +354,9 @@
 
   .eyebrow {
     margin-bottom: 16px;
+
     padding: 7px 10px;
+
     font-size: 12px;
   }
 
@@ -331,26 +372,12 @@
 
 
 /* =========================================================
-   HERO REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .dashboard-window,
-  .dashboard-window:hover,
-  .expense-row:hover {
-    transform: none;
-  }
-
-}
-
-
-/* =========================================================
-   PHASE 2 — APP GALLERY PREMIUM POLISH
+   APP GALLERY — PREMIUM POLISH
 ========================================================= */
 
 #app-gallery {
   position: relative;
+
   overflow: hidden;
 
   background:
@@ -402,7 +429,7 @@
 
 
 /* =========================================================
-   SCREENSHOT CARDS
+   GALLERY CARDS
 ========================================================= */
 
 #app-gallery .app-gallery-card {
@@ -444,11 +471,6 @@
   overflow: hidden;
 }
 
-
-/* =========================================================
-   GREEN TOP ACCENT
-========================================================= */
-
 #app-gallery .app-gallery-card::before {
   content: "";
 
@@ -468,12 +490,11 @@
   opacity: 0.75;
 }
 
-
-/* =========================================================
-   SCREENSHOT
-========================================================= */
-
 #app-gallery .app-gallery-card img {
+  display: block;
+
+  width: 100%;
+
   border-radius: 22px;
 
   box-shadow:
@@ -483,11 +504,6 @@
   transition:
     transform 0.4s ease;
 }
-
-
-/* =========================================================
-   HOVER
-========================================================= */
 
 #app-gallery .app-gallery-card:hover {
   transform:
@@ -512,7 +528,7 @@
 
 
 /* =========================================================
-   CENTER SCREENSHOT
+   CENTER CARD
 ========================================================= */
 
 #app-gallery .app-gallery-card:nth-child(3) {
@@ -544,11 +560,6 @@
     scale(1.025);
 }
 
-
-/* =========================================================
-   LABEL
-========================================================= */
-
 #app-gallery .app-gallery-label {
   padding:
     14px 6px 6px;
@@ -558,11 +569,6 @@
   letter-spacing:
     -0.01em;
 }
-
-
-/* =========================================================
-   GALLERY HINT
-========================================================= */
 
 #app-gallery .app-gallery-hint {
   margin-top: 18px;
@@ -574,7 +580,7 @@
 
 
 /* =========================================================
-   MOBILE GALLERY
+   GALLERY — MOBILE
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -629,10 +635,6 @@
 }
 
 
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
 @media (max-width: 520px) {
 
   #app-gallery .app-gallery-heading h2 {
@@ -652,7 +654,7 @@
 
 
 /* =========================================================
-   DARK MODE GALLERY
+   GALLERY — DARK MODE
 ========================================================= */
 
 html[data-theme="dark"] #app-gallery {
@@ -677,36 +679,29 @@ html[data-theme="dark"] #app-gallery .app-gallery-card {
 
 
 /* =========================================================
-   GALLERY REDUCED MOTION
+   PREMIUM MOBILE MENU
+   IMPORTANT:
+   Strong overrides are intentional.
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
 
-  #app-gallery .app-gallery-card,
-  #app-gallery .app-gallery-card:hover,
-  #app-gallery .app-gallery-card:nth-child(3),
-  #app-gallery .app-gallery-card:nth-child(3):hover,
-  #app-gallery .app-gallery-card img {
-    transform: none !important;
-  }
+/* ---------------------------------------------------------
+   MENU CONTAINER
+--------------------------------------------------------- */
 
-}
+body .mobile-menu {
+  width: 88vw !important;
+  max-width: 430px !important;
 
-
-/* =========================================================
-   PHASE 2 — PREMIUM MOBILE MENU
-========================================================= */
-
-.mobile-menu {
-  width: min(82vw, 430px);
+  height: 100dvh !important;
 
   padding:
-    30px
-    28px
-    34px;
+    30px 28px 30px !important;
+
+  box-sizing: border-box !important;
 
   background:
-    var(--bg-card);
+    var(--bg-card) !important;
 
   border-left:
     1px solid
@@ -714,517 +709,869 @@ html[data-theme="dark"] #app-gallery .app-gallery-card {
       in srgb,
       var(--primary) 8%,
       var(--border)
-    );
+    ) !important;
 
   border-radius:
-    28px 0 0 28px;
+    28px 0 0 28px !important;
 
   box-shadow:
     -20px 0 70px
-    rgba(17, 24, 39, 0.16);
+    rgba(17, 24, 39, 0.16) !important;
 
-  overflow-y: auto;
+  overflow-y: auto !important;
+
+  -webkit-overflow-scrolling: touch !important;
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    MENU HEADER
-========================================================= */
+--------------------------------------------------------- */
 
-.mobile-menu-header {
-  margin-bottom: 34px;
+body .mobile-menu .mobile-menu-header {
+  width: 100% !important;
+
+  min-height: 54px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  justify-content: space-between !important;
+
+  margin: 0 0 28px 0 !important;
+
+  padding: 0 !important;
 }
 
-.mobile-menu-title {
+body .mobile-menu .mobile-menu-title {
+  display: block !important;
+
+  margin: 0 !important;
+
   color:
-    var(--text-dark);
+    var(--text-dark) !important;
 
-  font-size: 30px;
+  font-size: 30px !important;
 
-  font-weight: 800;
+  font-weight: 800 !important;
+
+  line-height: 1.1 !important;
 
   letter-spacing:
-    -0.045em;
+    -0.045em !important;
 }
 
-.menu-close {
-  width: 48px;
-  height: 48px;
+
+/* ---------------------------------------------------------
+   CLOSE BUTTON
+--------------------------------------------------------- */
+
+body .mobile-menu .menu-close {
+  width: 48px !important;
+  height: 48px !important;
+
+  min-width: 48px !important;
+  min-height: 48px !important;
+
+  flex: 0 0 48px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   border:
     1px solid
-    var(--border);
+    var(--border) !important;
 
-  border-radius: 14px;
+  border-radius: 14px !important;
 
   background:
-    var(--bg-card);
+    var(--bg-card) !important;
 
   color:
-    var(--text-dark);
+    var(--text-dark) !important;
 
-  font-size: 34px;
+  font-family: inherit !important;
 
-  font-weight: 300;
+  font-size: 34px !important;
 
-  line-height: 1;
+  font-weight: 300 !important;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
+  line-height: 1 !important;
 
-.menu-close:hover {
-  background:
-    var(--bg-soft);
-
-  border-color:
-    var(--primary);
-
-  transform:
-    rotate(4deg);
+  cursor: pointer !important;
 }
 
 
-/* =========================================================
-   MAIN MENU NAVIGATION
-========================================================= */
+/* ---------------------------------------------------------
+   MAIN NAV
+--------------------------------------------------------- */
 
-.mobile-main-nav {
-  display: flex;
+body .mobile-menu .mobile-main-nav {
+  width: 100% !important;
 
-  flex-direction: column;
+  display: flex !important;
 
-  gap: 4px;
+  flex-direction: column !important;
+
+  align-items: stretch !important;
+
+  justify-content: flex-start !important;
+
+  gap: 3px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
 }
 
-.mobile-main-nav > a {
-  display: grid;
+
+/* ---------------------------------------------------------
+   MAIN NAV LINKS
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-main-nav > a {
+  width: 100% !important;
+
+  min-width: 0 !important;
+  min-height: 64px !important;
+
+  box-sizing: border-box !important;
+
+  display: grid !important;
 
   grid-template-columns:
-    38px
+    42px
     minmax(0, 1fr)
-    24px;
+    26px !important;
 
-  align-items: center;
+  align-items: center !important;
 
-  gap: 14px;
+  justify-content: initial !important;
 
-  min-height: 68px;
+  gap: 12px !important;
+
+  margin: 0 !important;
 
   padding:
-    10px 4px;
+    8px 2px !important;
 
-  border-radius: 14px;
+  border: 0 !important;
 
-  color:
-    var(--text-muted);
+  border-radius: 14px !important;
 
-  font-size: 18px;
-
-  font-weight: 500;
-
-  text-decoration: none;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.mobile-main-nav > a:hover {
   background:
-    var(--primary-light);
+    transparent !important;
 
   color:
-    var(--primary);
+    var(--text-dark) !important;
 
-  transform:
-    translateX(3px);
+  font-size: 18px !important;
+
+  font-weight: 500 !important;
+
+  line-height: 1.2 !important;
+
+  text-align: left !important;
+
+  text-decoration: none !important;
+
+  white-space: normal !important;
+
+  box-sizing: border-box !important;
 }
 
 
-/* =========================================================
-   NAVIGATION ICONS
-========================================================= */
+/* ---------------------------------------------------------
+   MAIN NAV ICON WRAPPER
+--------------------------------------------------------- */
 
+body .mobile-menu .mobile-main-nav > a
 .mobile-nav-icon {
-  width: 34px;
-  height: 34px;
+  width: 36px !important;
+  height: 36px !important;
 
-  display: flex;
+  min-width: 36px !important;
+  min-height: 36px !important;
 
-  align-items: center;
-  justify-content: center;
+  max-width: 36px !important;
+  max-height: 36px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   color:
-    currentColor;
+    var(--text-dark) !important;
+
+  overflow: hidden !important;
 }
 
-.mobile-nav-icon svg {
-  width: 27px;
-  height: 27px;
 
-  fill: none;
+/* ---------------------------------------------------------
+   MAIN NAV SVG — PREVENT GIANT ICON BUG
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-main-nav > a
+.mobile-nav-icon svg {
+  display: block !important;
+
+  width: 27px !important;
+  height: 27px !important;
+
+  min-width: 27px !important;
+  min-height: 27px !important;
+
+  max-width: 27px !important;
+  max-height: 27px !important;
+
+  flex: 0 0 27px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  fill: none !important;
 
   stroke:
-    currentColor;
+    currentColor !important;
 
-  stroke-width: 1.8;
+  stroke-width: 1.8 !important;
 
-  stroke-linecap: round;
+  stroke-linecap: round !important;
 
-  stroke-linejoin: round;
+  stroke-linejoin: round !important;
+
+  overflow: visible !important;
 }
 
 
-/* =========================================================
-   NAVIGATION ARROWS
-========================================================= */
+/* ---------------------------------------------------------
+   NAV LABEL
+--------------------------------------------------------- */
 
-.mobile-nav-arrow {
+body .mobile-menu .mobile-nav-label {
+  min-width: 0 !important;
+
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
   color:
-    color-mix(
-      in srgb,
-      var(--text-muted) 65%,
-      transparent
-    );
+    var(--text-dark) !important;
 
-  font-size: 32px;
+  text-align: left !important;
 
-  font-weight: 300;
+  white-space: normal !important;
 
-  line-height: 1;
+  overflow: hidden !important;
 
-  text-align: right;
-
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
+  text-overflow: ellipsis !important;
 }
 
-.mobile-main-nav > a:hover
-.mobile-nav-arrow {
+
+/* ---------------------------------------------------------
+   NAV ARROW
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-nav-arrow {
+  width: 26px !important;
+  height: 34px !important;
+
+  min-width: 26px !important;
+  min-height: 34px !important;
+
+  max-width: 26px !important;
+  max-height: 34px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: flex-end !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
   color:
-    var(--primary);
+    var(--text-muted) !important;
+
+  font-size: 28px !important;
+
+  font-weight: 300 !important;
+
+  line-height: 1 !important;
+
+  text-align: right !important;
+}
+
+
+/* ---------------------------------------------------------
+   NAV HOVER
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-main-nav > a:hover {
+  background:
+    var(--primary-light) !important;
+
+  color:
+    var(--primary) !important;
 
   transform:
-    translateX(3px);
+    translateX(3px) !important;
+}
+
+body .mobile-menu .mobile-main-nav > a:hover
+.mobile-nav-label {
+  color:
+    var(--primary) !important;
+}
+
+body .mobile-menu .mobile-main-nav > a:hover
+.mobile-nav-icon {
+  color:
+    var(--primary) !important;
+}
+
+body .mobile-menu .mobile-main-nav > a:hover
+.mobile-nav-arrow {
+  color:
+    var(--primary) !important;
 }
 
 
-/* =========================================================
-   ANDROID DOWNLOAD
-========================================================= */
+/* ---------------------------------------------------------
+   ANDROID DOWNLOAD BUTTON
+--------------------------------------------------------- */
 
-.mobile-main-nav .mobile-download {
-  display: grid;
+body .mobile-menu .mobile-main-nav
+.mobile-download {
+  width: 100% !important;
+
+  min-height: 70px !important;
+
+  display: grid !important;
 
   grid-template-columns:
-    38px
+    42px
     minmax(0, 1fr)
-    24px;
+    26px !important;
 
-  align-items: center;
+  align-items: center !important;
 
-  gap: 14px;
+  justify-content: initial !important;
 
-  min-height: 70px;
+  gap: 12px !important;
 
-  margin-top: 17px;
+  margin:
+    18px 0 0 0 !important;
 
   padding:
-    14px 18px;
+    14px 18px !important;
 
-  border-radius: 17px;
+  box-sizing: border-box !important;
+
+  border: 0 !important;
+
+  border-radius: 17px !important;
 
   background:
-    var(--primary);
+    var(--primary) !important;
 
   color:
-    #FFFFFF;
+    #FFFFFF !important;
 
-  font-size: 17px;
+  font-size: 17px !important;
 
-  font-weight: 800;
+  font-weight: 800 !important;
 
-  text-decoration: none;
+  line-height: 1.2 !important;
+
+  text-align: left !important;
+
+  text-decoration: none !important;
 
   box-shadow:
     0 12px 28px
-    rgba(15, 122, 70, 0.18);
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
+    rgba(15, 122, 70, 0.18) !important;
 }
 
-.mobile-main-nav .mobile-download:hover {
-  background:
-    var(--primary-dark);
+
+/* ---------------------------------------------------------
+   ANDROID ICON
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-download
+.mobile-download-icon {
+  width: 36px !important;
+  height: 36px !important;
+
+  min-width: 36px !important;
+  min-height: 36px !important;
+
+  max-width: 36px !important;
+  max-height: 36px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   color:
-    #FFFFFF;
+    #FFFFFF !important;
 
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 16px 34px
-    rgba(15, 122, 70, 0.24);
+  overflow: hidden !important;
 }
 
-.mobile-download-icon {
-  width: 32px;
-  height: 32px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-}
-
+body .mobile-menu .mobile-download
 .mobile-download-icon svg {
-  width: 27px;
-  height: 27px;
+  display: block !important;
 
-  fill: none;
+  width: 29px !important;
+  height: 29px !important;
+
+  min-width: 29px !important;
+  min-height: 29px !important;
+
+  max-width: 29px !important;
+  max-height: 29px !important;
+
+  flex: 0 0 29px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  fill: none !important;
 
   stroke:
-    currentColor;
+    currentColor !important;
 
-  stroke-width: 1.7;
+  stroke-width: 1.7 !important;
 
-  stroke-linecap: round;
+  stroke-linecap: round !important;
 
-  stroke-linejoin: round;
+  stroke-linejoin: round !important;
 }
 
+
+/* ---------------------------------------------------------
+   ANDROID BUTTON TEXT
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-download
+> span:nth-child(2) {
+  min-width: 0 !important;
+
+  display: block !important;
+
+  color:
+    #FFFFFF !important;
+
+  text-align: left !important;
+}
+
+
+/* ---------------------------------------------------------
+   ANDROID BUTTON ARROW
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-download
 .mobile-download-arrow {
-  font-size: 28px;
+  width: 26px !important;
+  height: 34px !important;
 
-  font-weight: 400;
+  min-width: 26px !important;
+  min-height: 34px !important;
 
-  line-height: 1;
+  max-width: 26px !important;
+  max-height: 34px !important;
 
-  text-align: right;
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: flex-end !important;
+
+  color:
+    #FFFFFF !important;
+
+  font-size: 28px !important;
+
+  font-weight: 400 !important;
+
+  line-height: 1 !important;
+
+  text-align: right !important;
 }
 
 
-/* =========================================================
-   SECONDARY MENU
-========================================================= */
+/* ---------------------------------------------------------
+   SECONDARY FOOTER
+--------------------------------------------------------- */
 
-.mobile-menu-footer {
-  display: flex;
+body .mobile-menu .mobile-menu-footer {
+  width: 100% !important;
 
-  flex-direction: column;
+  display: flex !important;
 
-  gap: 3px;
+  flex-direction: column !important;
 
-  margin-top: 30px;
+  align-items: stretch !important;
 
-  padding-top: 24px;
+  gap: 2px !important;
+
+  margin:
+    30px 0 0 0 !important;
+
+  padding:
+    24px 0 0 0 !important;
 
   border-top:
     1px solid
-    var(--border);
+    var(--border) !important;
 }
 
 
-/* =========================================================
-   FOOTER LINKS + THEME
-========================================================= */
+/* ---------------------------------------------------------
+   FOOTER ITEMS
+--------------------------------------------------------- */
 
-.mobile-menu-footer > a,
-.mobile-theme-toggle {
-  width: 100%;
+body .mobile-menu .mobile-menu-footer
+> a,
+body .mobile-menu .mobile-menu-footer
+> .mobile-theme-toggle {
+  width: 100% !important;
 
-  min-height: 57px;
+  min-width: 0 !important;
+  min-height: 57px !important;
 
-  display: grid;
+  display: grid !important;
 
   grid-template-columns:
-    38px
+    42px
     minmax(0, 1fr)
-    auto;
+    54px !important;
 
-  align-items: center;
+  align-items: center !important;
 
-  gap: 14px;
+  justify-content: initial !important;
+
+  gap: 12px !important;
+
+  margin: 0 !important;
 
   padding:
-    8px 4px;
+    8px 2px !important;
 
-  border: 0;
+  box-sizing: border-box !important;
 
-  border-radius: 13px;
+  border: 0 !important;
+
+  border-radius: 13px !important;
 
   background:
-    transparent;
+    transparent !important;
 
   color:
-    var(--text-muted);
+    var(--text-dark) !important;
 
-  font-family:
-    inherit;
+  font-family: inherit !important;
 
-  font-size: 16px;
+  font-size: 16px !important;
 
-  font-weight: 500;
+  font-weight: 500 !important;
 
-  text-align: left;
+  line-height: 1.2 !important;
 
-  text-decoration: none;
+  text-align: left !important;
 
-  cursor: pointer;
+  text-decoration: none !important;
 
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  cursor: pointer !important;
 }
 
-.mobile-menu-footer > a:hover,
-.mobile-theme-toggle:hover {
-  background:
-    var(--primary-light);
+
+/* ---------------------------------------------------------
+   FOOTER ICON WRAPPER
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-footer-icon {
+  width: 36px !important;
+  height: 36px !important;
+
+  min-width: 36px !important;
+  min-height: 36px !important;
+
+  max-width: 36px !important;
+  max-height: 36px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   color:
-    var(--primary);
+    var(--text-dark) !important;
+
+  overflow: hidden !important;
 }
 
 
-/* =========================================================
-   FOOTER ICONS
-========================================================= */
+/* ---------------------------------------------------------
+   FOOTER SVG — HARD SIZE LIMIT
+--------------------------------------------------------- */
 
-.mobile-footer-icon {
-  width: 32px;
-  height: 32px;
+body .mobile-menu .mobile-footer-icon svg {
+  display: block !important;
 
-  display: flex;
+  width: 25px !important;
+  height: 25px !important;
 
-  align-items: center;
-  justify-content: center;
-}
+  min-width: 25px !important;
+  min-height: 25px !important;
 
-.mobile-footer-icon svg {
-  width: 25px;
-  height: 25px;
+  max-width: 25px !important;
+  max-height: 25px !important;
 
-  fill: none;
+  flex: 0 0 25px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  fill: none !important;
 
   stroke:
-    currentColor;
+    currentColor !important;
 
-  stroke-width: 1.8;
+  stroke-width: 1.8 !important;
 
-  stroke-linecap: round;
+  stroke-linecap: round !important;
 
-  stroke-linejoin: round;
+  stroke-linejoin: round !important;
 }
 
 
-/* =========================================================
-   EXTERNAL LINK
-========================================================= */
+/* ---------------------------------------------------------
+   GITHUB ICON SPECIAL CASE
+--------------------------------------------------------- */
 
+body .mobile-menu .mobile-footer-icon svg
+path[fill="currentColor"] {
+  fill:
+    currentColor !important;
+
+  stroke:
+    none !important;
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER LABEL
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-footer-label {
+  min-width: 0 !important;
+
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color:
+    var(--text-dark) !important;
+
+  text-align: left !important;
+}
+
+
+/* ---------------------------------------------------------
+   EXTERNAL LINK
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-external {
+  width: 54px !important;
+  height: 34px !important;
+
+  min-width: 54px !important;
+  min-height: 34px !important;
+
+  max-width: 54px !important;
+  max-height: 34px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: flex-end !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color:
+    var(--text-muted) !important;
+
+  font-size: 22px !important;
+
+  line-height: 1 !important;
+
+  text-align: right !important;
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER HOVER
+--------------------------------------------------------- */
+
+body .mobile-menu .mobile-menu-footer
+> a:hover,
+body .mobile-menu .mobile-menu-footer
+> .mobile-theme-toggle:hover {
+  background:
+    var(--primary-light) !important;
+
+  color:
+    var(--primary) !important;
+}
+
+body .mobile-menu .mobile-menu-footer
+> a:hover
+.mobile-footer-icon {
+  color:
+    var(--primary) !important;
+}
+
+body .mobile-menu .mobile-menu-footer
+> a:hover
+.mobile-footer-label {
+  color:
+    var(--primary) !important;
+}
+
+body .mobile-menu .mobile-menu-footer
+> a:hover
 .mobile-external {
   color:
-    color-mix(
-      in srgb,
-      var(--text-muted) 65%,
-      transparent
-    );
-
-  font-size: 23px;
-
-  line-height: 1;
+    var(--primary) !important;
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    DARK MODE SWITCH
-========================================================= */
+--------------------------------------------------------- */
 
-.mobile-theme-switch {
-  width: 54px;
-  height: 30px;
+body .mobile-menu .mobile-theme-switch {
+  width: 54px !important;
+  height: 30px !important;
 
-  position: relative;
+  min-width: 54px !important;
+  min-height: 30px !important;
 
-  display: block;
+  max-width: 54px !important;
+  max-height: 30px !important;
 
-  border-radius: 999px;
+  position: relative !important;
+
+  display: block !important;
+
+  justify-self: end !important;
+
+  border-radius: 999px !important;
 
   background:
-    #D9DDE2;
+    #D9DDE2 !important;
 
-  transition:
-    background 0.25s ease;
+  overflow: hidden !important;
 }
 
-.mobile-theme-switch span {
-  position: absolute;
+body .mobile-menu .mobile-theme-switch
+> span {
+  position: absolute !important;
 
-  top: 4px;
-  left: 4px;
+  top: 4px !important;
+  left: 4px !important;
 
-  width: 22px;
-  height: 22px;
+  width: 22px !important;
+  height: 22px !important;
 
-  border-radius: 50%;
+  min-width: 22px !important;
+  min-height: 22px !important;
+
+  max-width: 22px !important;
+  max-height: 22px !important;
+
+  display: block !important;
+
+  border-radius: 50% !important;
 
   background:
-    #FFFFFF;
+    #FFFFFF !important;
 
   box-shadow:
     0 2px 5px
-    rgba(0, 0, 0, 0.14);
+    rgba(0, 0, 0, 0.14) !important;
+
+  transform: translateX(0) !important;
 
   transition:
-    transform 0.25s ease;
+    transform 0.25s ease !important;
 }
 
 
-/* Dark theme */
+/* ---------------------------------------------------------
+   DARK MODE SWITCH — DARK THEME
+--------------------------------------------------------- */
 
 html[data-theme="dark"]
-.mobile-theme-switch {
+body .mobile-menu .mobile-theme-switch {
   background:
-    var(--primary);
+    var(--primary) !important;
 }
 
 html[data-theme="dark"]
-.mobile-theme-switch span {
+body .mobile-menu .mobile-theme-switch
+> span {
   transform:
-    translateX(24px);
+    translateX(24px) !important;
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    MENU TAGLINE
-========================================================= */
+--------------------------------------------------------- */
 
-.mobile-menu-tagline {
-  margin-top: 27px;
+body .mobile-menu .mobile-menu-tagline {
+  width: 100% !important;
 
-  padding-top: 27px;
+  margin:
+    27px 0 0 0 !important;
+
+  padding:
+    27px 0 0 0 !important;
 
   border-top:
     1px solid
-    var(--border);
+    var(--border) !important;
 
   color:
-    var(--text-muted);
+    var(--text-muted) !important;
 
-  font-size: 13px;
+  font-size: 13px !important;
 
-  line-height: 1.65;
+  line-height: 1.65 !important;
 
-  text-align: center;
+  text-align: center !important;
 }
 
 
@@ -1234,35 +1581,87 @@ html[data-theme="dark"]
 
 @media (max-width: 520px) {
 
-  .mobile-menu {
-    width: 86vw;
+  body .mobile-menu {
+    width: 88vw !important;
+    max-width: none !important;
 
     padding:
-      26px
-      22px
-      30px;
+      26px 22px 28px !important;
 
     border-radius:
-      24px 0 0 24px;
+      24px 0 0 24px !important;
   }
 
-  .mobile-menu-title {
-    font-size: 28px;
+  body .mobile-menu .mobile-menu-title {
+    font-size: 28px !important;
   }
 
-  .mobile-main-nav > a {
-    min-height: 64px;
+  body .mobile-menu .mobile-main-nav > a {
+    min-height: 62px !important;
 
-    font-size: 17px;
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      24px !important;
+
+    gap: 10px !important;
+
+    font-size: 17px !important;
   }
 
-  .mobile-main-nav .mobile-download {
-    min-height: 66px;
+  body .mobile-menu .mobile-nav-icon {
+    width: 34px !important;
+    height: 34px !important;
 
-    font-size: 16px;
+    min-width: 34px !important;
+    min-height: 34px !important;
+
+    max-width: 34px !important;
+    max-height: 34px !important;
+  }
+
+  body .mobile-menu .mobile-nav-icon svg {
+    width: 26px !important;
+    height: 26px !important;
+
+    min-width: 26px !important;
+    min-height: 26px !important;
+
+    max-width: 26px !important;
+    max-height: 26px !important;
+
+    flex-basis: 26px !important;
+  }
+
+  body .mobile-menu .mobile-main-nav
+  .mobile-download {
+    min-height: 66px !important;
+
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      24px !important;
+
+    gap: 10px !important;
 
     padding:
-      13px 15px;
+      13px 15px !important;
+
+    font-size: 16px !important;
+  }
+
+  body .mobile-menu .mobile-menu-footer
+  > a,
+  body .mobile-menu .mobile-menu-footer
+  > .mobile-theme-toggle {
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      54px !important;
+
+    gap: 10px !important;
+
+    font-size: 16px !important;
   }
 
 }
@@ -1274,57 +1673,108 @@ html[data-theme="dark"]
 
 @media (max-width: 380px) {
 
-  .mobile-menu {
-    width: 88vw;
+  body .mobile-menu {
+    width: 90vw !important;
 
     padding:
-      24px
-      18px
-      26px;
+      24px 18px 26px !important;
   }
 
-  .mobile-main-nav > a {
-    min-height: 59px;
+  body .mobile-menu .mobile-main-nav > a {
+    min-height: 58px !important;
 
-    gap: 10px;
-
-    font-size: 16px;
-  }
-
-  .mobile-main-nav .mobile-download {
     grid-template-columns:
-      32px
+      34px
       minmax(0, 1fr)
-      20px;
+      22px !important;
 
-    gap: 9px;
+    gap: 8px !important;
 
-    font-size: 15px;
+    font-size: 16px !important;
   }
 
-  .mobile-nav-icon {
-    width: 30px;
+  body .mobile-menu .mobile-nav-icon {
+    width: 30px !important;
+    height: 30px !important;
+
+    min-width: 30px !important;
+    min-height: 30px !important;
+
+    max-width: 30px !important;
+    max-height: 30px !important;
   }
 
-  .mobile-nav-icon svg {
-    width: 24px;
-    height: 24px;
+  body .mobile-menu .mobile-nav-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+
+    min-width: 24px !important;
+    min-height: 24px !important;
+
+    max-width: 24px !important;
+    max-height: 24px !important;
+
+    flex-basis: 24px !important;
+  }
+
+  body .mobile-menu .mobile-main-nav
+  .mobile-download {
+    grid-template-columns:
+      34px
+      minmax(0, 1fr)
+      22px !important;
+
+    gap: 8px !important;
+
+    font-size: 15px !important;
   }
 
 }
 
 
 /* =========================================================
-   MOBILE MENU — REDUCED MOTION
+   DARK MODE — MENU
+========================================================= */
+
+html[data-theme="dark"]
+body .mobile-menu {
+  background:
+    var(--bg-card) !important;
+
+  box-shadow:
+    -20px 0 70px
+    rgba(0, 0, 0, 0.40) !important;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-  .mobile-main-nav > a,
-  .mobile-main-nav .mobile-download,
-  .menu-close,
-  .mobile-theme-switch span {
-    transition: none;
+  .dashboard-window,
+  .dashboard-window:hover,
+  .expense-row:hover,
+
+  #app-gallery .app-gallery-card,
+  #app-gallery .app-gallery-card:hover,
+  #app-gallery .app-gallery-card:nth-child(3),
+  #app-gallery .app-gallery-card:nth-child(3):hover,
+  #app-gallery .app-gallery-card img,
+
+  body .mobile-menu .mobile-main-nav > a,
+  body .mobile-menu .mobile-main-nav
+  .mobile-download,
+  body .mobile-menu .menu-close,
+  body .mobile-menu .mobile-theme-switch
+  > span {
+
+    transition: none !important;
+  }
+
+  body .mobile-menu .mobile-main-nav > a:hover {
+    transform: none !important;
   }
 
 }
