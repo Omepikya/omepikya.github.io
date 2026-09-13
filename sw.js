@@ -1,9 +1,10 @@
-const CACHE_NAME = "omepikya-v4";
+const CACHE_NAME = "omepikya-v5";
 
 const APP_ASSETS = [
   "/",
   "/index.html",
   "/styles.css",
+  "/phase2.css",
   "/script.js",
   "/manifest.json"
 ];
@@ -30,6 +31,10 @@ self.addEventListener(
         })
 
     );
+
+    /*
+     * Activate the new service worker immediately.
+     */
 
     self.skipWaiting();
 
@@ -67,6 +72,7 @@ self.addEventListener(
           );
 
         })
+
         .then(() =>
           self.clients.claim()
         )
@@ -94,15 +100,39 @@ self.addEventListener(
     if (
       event.request.method !== "GET"
     ) {
+
       return;
+
     }
 
 
 
     /*
-     * Navigation requests:
-     * Network first.
+     * Only handle requests belonging
+     * to the Omepikya website.
      */
+
+    const requestUrl =
+      new URL(
+        event.request.url
+      );
+
+
+    if (
+      requestUrl.origin !==
+      self.location.origin
+    ) {
+
+      return;
+
+    }
+
+
+
+    /* =======================================================
+       HTML / NAVIGATION
+       Network first
+    ======================================================= */
 
     if (
       event.request.mode === "navigate"
@@ -111,8 +141,8 @@ self.addEventListener(
       event.respondWith(
 
         fetch(event.request)
-          .then(response => {
 
+          .then(response => {
 
             if (
               response &&
@@ -141,7 +171,6 @@ self.addEventListener(
 
           })
 
-
           .catch(() => {
 
             return caches.match(
@@ -154,40 +183,114 @@ self.addEventListener(
 
 
       return;
+
     }
 
 
 
-    /*
-     * Static assets:
-     * Cache first,
-     * network fallback.
-     */
+    /* =======================================================
+       CSS / JS / MANIFEST
+       Network first
+    ======================================================= */
+
+    const isVersionedAsset =
+      requestUrl.pathname.endsWith(
+        ".css"
+      ) ||
+
+      requestUrl.pathname.endsWith(
+        ".js"
+      ) ||
+
+      requestUrl.pathname.endsWith(
+        ".json"
+      );
+
+
+
+    if (isVersionedAsset) {
+
+      event.respondWith(
+
+        fetch(event.request)
+
+          .then(response => {
+
+            if (
+              response &&
+              response.ok
+            ) {
+
+              const responseClone =
+                response.clone();
+
+
+              caches
+                .open(CACHE_NAME)
+                .then(cache => {
+
+                  cache.put(
+                    event.request,
+                    responseClone
+                  );
+
+                });
+
+            }
+
+
+            return response;
+
+          })
+
+          .catch(() => {
+
+            return caches.match(
+              event.request
+            );
+
+          })
+
+      );
+
+
+      return;
+
+    }
+
+
+
+    /* =======================================================
+       OTHER ASSETS
+       Cache first with network fallback
+    ======================================================= */
 
     event.respondWith(
 
       caches
         .match(event.request)
+
         .then(
           cachedResponse => {
 
+            if (
+              cachedResponse
+            ) {
 
-            if (cachedResponse) {
               return cachedResponse;
+
             }
 
 
-            return fetch(event.request)
-              .then(response => {
+            return fetch(
+              event.request
+            )
 
+              .then(response => {
 
                 if (
                   response &&
-                  response.ok &&
-                  new URL(
-                    event.request.url
-                  ).origin ===
-                  self.location.origin
+                  response.ok
                 ) {
 
                   const responseClone =
