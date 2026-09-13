@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const themeButtons =
     document.querySelectorAll(
-      ".theme-toggle"
+      ".theme-toggle, .mobile-theme-toggle"
     );
 
 
