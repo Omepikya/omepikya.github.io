@@ -1,4 +1,4 @@
-const CACHE_NAME = "omepikya-v6";
+const CACHE_NAME = "omepikya-v7";
 
 const APP_ASSETS = [
   "/",
@@ -10,20 +10,13 @@ const APP_ASSETS = [
   "/assets/omepikya-icon.svg"
 ];
 
-/* =========================================================
-   INSTALL
-========================================================= */
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(APP_ASSETS))
   );
-
   self.skipWaiting();
 });
 
-/* =========================================================
-   ACTIVATE
-========================================================= */
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
@@ -38,17 +31,12 @@ self.addEventListener("activate", event => {
   );
 });
 
-/* =========================================================
-   FETCH
-========================================================= */
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   const requestUrl = new URL(event.request.url);
-
   if (requestUrl.origin !== self.location.origin) return;
 
-  /* HTML navigation: network first, cached fallback. */
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request)
@@ -66,8 +54,6 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  /* CSS / JS / manifest: network first so deployments are not
-     trapped behind stale cached application code. */
   const isAppAsset =
     requestUrl.pathname.endsWith(".css") ||
     requestUrl.pathname.endsWith(".js") ||
@@ -90,8 +76,6 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  /* Images, fonts and other static assets: cache first with network
-     fallback, then cache successful network responses. */
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) return cachedResponse;
