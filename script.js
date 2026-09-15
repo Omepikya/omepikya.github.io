@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
   const body = document.body;
 
-  /* =========================================================
-     MOBILE MENU
-  ========================================================= */
   const menuToggle = document.querySelector(".menu-toggle");
   const menuClose = document.querySelector(".menu-close");
   const mobileMenu = document.querySelector(".mobile-menu");
@@ -15,12 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuToggle && mobileMenu) {
     if (!mobileMenu.id) mobileMenu.id = "mobile-navigation";
     menuToggle.setAttribute("aria-controls", mobileMenu.id);
+    mobileMenu.setAttribute("aria-hidden", "true");
   }
 
   function openMenu() {
     if (!mobileMenu) return;
     menuReturnFocus = document.activeElement;
     mobileMenu.classList.add("active");
+    mobileMenu.setAttribute("aria-hidden", "false");
     mobileOverlay?.classList.add("active");
     body.classList.add("menu-open");
     menuToggle?.setAttribute("aria-expanded", "true");
@@ -30,12 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeMenu(restoreFocus = true) {
     if (!mobileMenu) return;
     mobileMenu.classList.remove("active");
+    mobileMenu.setAttribute("aria-hidden", "true");
     mobileOverlay?.classList.remove("active");
     body.classList.remove("menu-open");
     menuToggle?.setAttribute("aria-expanded", "false");
-    if (restoreFocus && menuReturnFocus instanceof HTMLElement) {
-      menuReturnFocus.focus();
-    }
+    if (restoreFocus && menuReturnFocus instanceof HTMLElement) menuReturnFocus.focus();
     menuReturnFocus = null;
   }
 
@@ -51,14 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 900 && mobileMenu?.classList.contains("active")) {
-      closeMenu(false);
-    }
+    if (window.innerWidth > 900 && mobileMenu?.classList.contains("active")) closeMenu(false);
   });
 
-  /* =========================================================
-     DARK MODE
-  ========================================================= */
   const themeButtons = document.querySelectorAll(".theme-toggle, .mobile-theme-toggle");
   const savedTheme = localStorage.getItem("omepikya-theme");
   const systemDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
@@ -68,9 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     root.toggleAttribute("data-theme", dark);
     if (dark) root.setAttribute("data-theme", "dark");
     if (persist) localStorage.setItem("omepikya-theme", dark ? "dark" : "light");
-    themeButtons.forEach(button => {
-      button.setAttribute("aria-pressed", dark ? "true" : "false");
-    });
+    themeButtons.forEach(button => button.setAttribute("aria-pressed", dark ? "true" : "false"));
   }
 
   if (savedTheme) applyTheme(savedTheme, false);
@@ -84,10 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* =========================================================
-     APP GALLERY
-     Built dynamically to preserve the existing page structure.
-  ========================================================= */
   const privacySection = document.querySelector("#privacy");
   const gallerySources = [
     ["Home / Dashboard", "assets/app-gallery/app-home.jpg", "Omepikya Expense Home dashboard"],
@@ -131,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.setAttribute("aria-modal", "true");
     lightbox.setAttribute("aria-label", "Omepikya app screenshot gallery");
     lightbox.setAttribute("aria-hidden", "true");
+    lightbox.hidden = true;
     lightbox.innerHTML = `
       <button class="app-gallery-close" type="button" aria-label="Close gallery">×</button>
       <div class="app-gallery-info"><span class="app-gallery-title"></span><span class="app-gallery-counter"></span></div>
@@ -191,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
       images[1].alt = "";
       prepareSlides();
       updateInfo();
+      lightbox.hidden = false;
       lightbox.classList.add("active");
       lightbox.setAttribute("aria-hidden", "false");
       body.classList.add("menu-open");
@@ -200,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeGallery(restoreFocus = true) {
       lightbox.classList.remove("active");
       lightbox.setAttribute("aria-hidden", "true");
+      lightbox.hidden = true;
       body.classList.remove("menu-open");
       isAnimating = false;
       if (restoreFocus && galleryReturnFocus instanceof HTMLElement) galleryReturnFocus.focus();
@@ -282,18 +272,13 @@ document.addEventListener("DOMContentLoaded", () => {
       pointerActive = false;
       const dx = event.clientX - pointerStartX;
       const dy = event.clientY - pointerStartY;
-      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) {
-        navigateTo(currentIndex + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
-      }
+      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) navigateTo(currentIndex + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
     });
     viewer.addEventListener("pointercancel", () => { pointerActive = false; });
 
     gallerySources.forEach(item => { const img = new Image(); img.src = item[1]; });
   }
 
-  /* =========================================================
-     SMOOTH ANCHOR SCROLL
-  ========================================================= */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", event => {
       const targetId = link.getAttribute("href");
@@ -308,9 +293,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* =========================================================
-     BACK TO TOP
-  ========================================================= */
   const backToTop = document.querySelector(".back-to-top");
   function updateBackToTop() {
     if (!backToTop) return;
@@ -322,14 +304,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   });
 
-  /* =========================================================
-     SERVICE WORKER
-  ========================================================= */
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/sw.js").catch(error => {
-        console.error("Service worker registration failed:", error);
-      });
+      navigator.serviceWorker.register("/sw.js").catch(error => console.error("Service worker registration failed:", error));
     });
   }
 });
