@@ -1,5 +1,200 @@
-/*
- * Consolidated into styles.css.
- * Kept as an empty compatibility file so older cached HTML/service-worker
- * references do not break while the site transitions to the single stylesheet.
- */
+/* =========================================================
+   OMEPIKYA EXPENSE — FINAL RESPONSIVE OVERRIDES
+   The complete design lives in styles.css. This file only provides
+   last-mile compatibility rules for older HTML/cache combinations.
+========================================================= */
+
+/* Mobile navigation must always replace the desktop navigation. */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: block !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 44px !important;
+    padding-bottom: 52px !important;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+  }
+
+  .hero-content {
+    text-align: center !important;
+    max-width: none !important;
+  }
+
+  .hero-description {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-actions,
+  .hero-meta {
+    justify-content: center !important;
+  }
+
+  .hero-visual {
+    padding: 0 !important;
+  }
+
+  .dashboard-window {
+    max-width: 650px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    transform: none !important;
+  }
+}
+
+/* Phone-sized screens: compact, intentional first-screen composition. */
+@media (max-width: 700px) {
+  .site-header {
+    height: 68px !important;
+  }
+
+  .container,
+  .header-inner {
+    width: calc(100% - 32px) !important;
+  }
+
+  .hero {
+    padding: 34px 0 44px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 11.5vw, 56px) !important;
+    line-height: .98 !important;
+  }
+
+  .hero-description {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    max-width: 520px !important;
+  }
+
+  .hero-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    margin-inline: auto !important;
+  }
+
+  .hero-actions .btn {
+    width: 100% !important;
+  }
+
+  .dashboard-window {
+    padding: 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .dashboard-top strong {
+    font-size: 28px !important;
+  }
+
+  /* Keep the complete menu inside a predictable scroll area. */
+  .mobile-menu {
+    width: min(90vw, 430px) !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: 24px 20px calc(28px + env(safe-area-inset-bottom)) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .mobile-menu-header {
+    margin-bottom: 20px !important;
+  }
+
+  .mobile-main-nav {
+    gap: 1px !important;
+  }
+
+  .mobile-main-nav > a {
+    min-height: 58px !important;
+  }
+
+  .mobile-download {
+    margin-top: 14px !important;
+    min-height: 64px !important;
+  }
+
+  .mobile-menu-footer {
+    margin-top: 24px !important;
+    padding-top: 20px !important;
+  }
+
+  .mobile-menu-footer > a,
+  .mobile-theme-toggle {
+    min-height: 54px !important;
+  }
+
+  .mobile-menu-tagline {
+    margin-bottom: 4px !important;
+  }
+
+  /* Legal pages use the same mobile header as the homepage. */
+  .legal-page {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+
+  .legal-header h1 {
+    font-size: clamp(40px, 11vw, 58px) !important;
+  }
+}
+
+/* Very narrow phones. */
+@media (max-width: 420px) {
+  .container,
+  .header-inner {
+    width: calc(100% - 24px) !important;
+  }
+
+  .brand-name {
+    font-size: 16px !important;
+  }
+
+  .brand-mark {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .hero {
+    padding-top: 30px !important;
+    padding-bottom: 38px !important;
+  }
+
+  .hero h1 {
+    font-size: 38px !important;
+  }
+
+  .mobile-menu {
+    width: 92vw !important;
+    padding-left: 17px !important;
+    padding-right: 17px !important;
+  }
+
+  .mobile-main-nav > a {
+    font-size: 16px !important;
+  }
+
+  .mobile-download {
+    font-size: 15px !important;
+  }
+}
+
+/* The lightbox must never leak controls into normal page flow. */
+.app-gallery-lightbox[hidden],
+.app-gallery-lightbox[aria-hidden="true"] {
+  display: none !important;
+}
