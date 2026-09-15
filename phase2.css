@@ -1,18 +1,13 @@
 /* =========================================================
    OMEPIKYA EXPENSE — FINAL RESPONSIVE OVERRIDES
-   The complete design lives in styles.css. This file only provides
-   last-mile compatibility rules for older HTML/cache combinations.
+   The complete design lives in styles.css. This file provides
+   last-mile mobile composition rules for the existing HTML.
 ========================================================= */
 
 /* Mobile navigation must always replace the desktop navigation. */
 @media (max-width: 900px) {
-  .desktop-nav {
-    display: none !important;
-  }
-
-  .menu-toggle {
-    display: block !important;
-  }
+  .desktop-nav { display: none !important; }
+  .menu-toggle { display: block !important; }
 
   .hero {
     min-height: auto !important;
@@ -37,13 +32,9 @@
   }
 
   .hero-actions,
-  .hero-meta {
-    justify-content: center !important;
-  }
+  .hero-meta { justify-content: center !important; }
 
-  .hero-visual {
-    padding: 0 !important;
-  }
+  .hero-visual { padding: 0 !important; }
 
   .dashboard-window {
     max-width: 650px !important;
@@ -53,20 +44,14 @@
   }
 }
 
-/* Phone-sized screens: compact, intentional first-screen composition. */
+/* Phone-sized screens: deliberate single-column composition. */
 @media (max-width: 700px) {
-  .site-header {
-    height: 68px !important;
-  }
+  .site-header { height: 68px !important; }
 
   .container,
-  .header-inner {
-    width: calc(100% - 32px) !important;
-  }
+  .header-inner { width: calc(100% - 32px) !important; }
 
-  .hero {
-    padding: 34px 0 44px !important;
-  }
+  .hero { padding: 34px 0 44px !important; }
 
   .hero h1 {
     font-size: clamp(40px, 11.5vw, 56px) !important;
@@ -87,18 +72,82 @@
     margin-inline: auto !important;
   }
 
-  .hero-actions .btn {
-    width: 100% !important;
-  }
+  .hero-actions .btn { width: 100% !important; }
 
   .dashboard-window {
     padding: 18px !important;
     border-radius: 22px !important;
   }
 
-  .dashboard-top strong {
-    font-size: 28px !important;
+  .dashboard-top strong { font-size: 28px !important; }
+
+  /* Feature cards should remain readable rather than becoming two narrow columns. */
+  .feature-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
   }
+
+  .feature-card {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .feature-card:last-child { grid-column: auto !important; }
+
+  /* Cloud section: remove the cramped two-column treatment on phones. */
+  .cloud-card {
+    min-height: 0 !important;
+    display: block !important;
+    padding: 36px 24px 34px !important;
+    overflow: hidden !important;
+  }
+
+  .cloud-content {
+    max-width: none !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .cloud-content h2 {
+    font-size: clamp(34px, 10vw, 48px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .cloud-content p { max-width: none !important; }
+
+  .cloud-mark {
+    width: 110px !important;
+    height: 110px !important;
+    min-width: 110px !important;
+    margin: 28px auto 0 !important;
+    border-radius: 30px !important;
+    font-size: 52px !important;
+  }
+
+  /* Footer must become a single readable column. */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-contact { width: 100% !important; min-width: 0 !important; }
+
+  .footer-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px 20px !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* Avoid a large dead zone before support on short/mobile layouts. */
+  .support-section { padding-top: 60px !important; }
 
   /* Keep the complete menu inside a predictable scroll area. */
   .mobile-menu {
@@ -111,36 +160,14 @@
     overflow-y: auto !important;
   }
 
-  .mobile-menu-header {
-    margin-bottom: 20px !important;
-  }
-
-  .mobile-main-nav {
-    gap: 1px !important;
-  }
-
-  .mobile-main-nav > a {
-    min-height: 58px !important;
-  }
-
-  .mobile-download {
-    margin-top: 14px !important;
-    min-height: 64px !important;
-  }
-
-  .mobile-menu-footer {
-    margin-top: 24px !important;
-    padding-top: 20px !important;
-  }
-
+  .mobile-menu-header { margin-bottom: 20px !important; }
+  .mobile-main-nav { gap: 1px !important; }
+  .mobile-main-nav > a { min-height: 58px !important; }
+  .mobile-download { margin-top: 14px !important; min-height: 64px !important; }
+  .mobile-menu-footer { margin-top: 24px !important; padding-top: 20px !important; }
   .mobile-menu-footer > a,
-  .mobile-theme-toggle {
-    min-height: 54px !important;
-  }
-
-  .mobile-menu-tagline {
-    margin-bottom: 4px !important;
-  }
+  .mobile-theme-toggle { min-height: 54px !important; }
+  .mobile-menu-tagline { margin-bottom: 4px !important; }
 
   /* Legal pages use the same mobile header as the homepage. */
   .legal-page {
@@ -148,35 +175,26 @@
     padding-bottom: 72px !important;
   }
 
-  .legal-header h1 {
-    font-size: clamp(40px, 11vw, 58px) !important;
-  }
+  .legal-header h1 { font-size: clamp(40px, 11vw, 58px) !important; }
 }
 
 /* Very narrow phones. */
 @media (max-width: 420px) {
   .container,
-  .header-inner {
-    width: calc(100% - 24px) !important;
-  }
+  .header-inner { width: calc(100% - 24px) !important; }
 
-  .brand-name {
-    font-size: 16px !important;
-  }
-
-  .brand-mark {
-    width: 34px !important;
-    height: 34px !important;
-  }
+  .brand-name { font-size: 16px !important; }
+  .brand-mark { width: 34px !important; height: 34px !important; }
 
   .hero {
     padding-top: 30px !important;
     padding-bottom: 38px !important;
   }
 
-  .hero h1 {
-    font-size: 38px !important;
-  }
+  .hero h1 { font-size: 38px !important; }
+
+  .cloud-card { padding-left: 20px !important; padding-right: 20px !important; }
+  .cloud-mark { width: 96px !important; height: 96px !important; min-width: 96px !important; font-size: 46px !important; }
 
   .mobile-menu {
     width: 92vw !important;
@@ -184,13 +202,8 @@
     padding-right: 17px !important;
   }
 
-  .mobile-main-nav > a {
-    font-size: 16px !important;
-  }
-
-  .mobile-download {
-    font-size: 15px !important;
-  }
+  .mobile-main-nav > a { font-size: 16px !important; }
+  .mobile-download { font-size: 15px !important; }
 }
 
 /* The lightbox must never leak controls into normal page flow. */
