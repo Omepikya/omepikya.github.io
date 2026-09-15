@@ -1,4 +1,4 @@
-const CACHE_NAME = "omepikya-v9";
+const CACHE_NAME = "omepikya-v10";
 
 const APP_ASSETS = [
   "/",
@@ -9,14 +9,6 @@ const APP_ASSETS = [
   "/manifest.json",
   "/assets/omepikya-icon.svg"
 ];
-
-const GALLERY_LIGHTBOX_FIX = `
-
-/* Omepikya gallery safety fix: controls stay hidden until activated. */
-.app-gallery-lightbox[aria-hidden="true"] {
-  display: none !important;
-}
-`;
 
 self.addEventListener("install", event => {
   event.waitUntil(
@@ -70,26 +62,14 @@ self.addEventListener("fetch", event => {
   if (isAppAsset) {
     event.respondWith(
       fetch(event.request)
-        .then(async response => {
-          if (!response || !response.ok) return response;
-
-          let responseToServe = response;
-
-          if (requestUrl.pathname === "/phase2.css") {
-            const css = await response.text();
-            responseToServe = new Response(css + GALLERY_LIGHTBOX_FIX, {
-              status: response.status,
-              statusText: response.statusText,
-              headers: response.headers
+        .then(response => {
+          if (response && response.ok) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseClone);
             });
           }
-
-          const responseClone = responseToServe.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseClone);
-          });
-
-          return responseToServe;
+          return response;
         })
         .catch(() => caches.match(event.request))
     );
