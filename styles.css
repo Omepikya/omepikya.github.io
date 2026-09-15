@@ -36,6 +36,187 @@ button:focus-visible {
 }
 
 /* =========================================================
+   APP GALLERY LIGHTBOX
+   Hidden until a gallery card is activated.
+   Prevents navigation controls from appearing on the page.
+========================================================= */
+.app-gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: rgba(4, 8, 6, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.app-gallery-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.app-gallery-viewer {
+  position: relative;
+  width: min(92vw, 520px);
+  height: min(84vh, 820px);
+  height: min(84dvh, 820px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: pan-y;
+  border-radius: 24px;
+}
+
+.app-gallery-slide-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.app-gallery-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.app-gallery-slide img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.app-gallery-close,
+.app-gallery-prev,
+.app-gallery-next {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(15, 20, 18, 0.82);
+  color: #fff;
+  font: inherit;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.app-gallery-close {
+  top: max(20px, env(safe-area-inset-top));
+  right: max(20px, env(safe-area-inset-right));
+}
+
+.app-gallery-prev {
+  left: max(20px, env(safe-area-inset-left));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.app-gallery-next {
+  right: max(20px, env(safe-area-inset-right));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.app-gallery-info {
+  position: absolute;
+  z-index: 5;
+  top: max(22px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 150px);
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(15, 20, 18, 0.72);
+  color: #fff;
+  font-size: 13px;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+}
+
+.app-gallery-counter {
+  opacity: 0.7;
+}
+
+.app-gallery-close:hover,
+.app-gallery-prev:hover,
+.app-gallery-next:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 700px) {
+  .app-gallery-lightbox {
+    padding: 14px;
+  }
+
+  .app-gallery-viewer {
+    width: min(88vw, 420px);
+    height: min(78vh, 720px);
+    height: min(78dvh, 720px);
+  }
+
+  .app-gallery-close,
+  .app-gallery-prev,
+  .app-gallery-next {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 13px;
+  }
+
+  .app-gallery-close {
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+  }
+
+  .app-gallery-prev {
+    left: max(10px, env(safe-area-inset-left));
+  }
+
+  .app-gallery-next {
+    right: max(10px, env(safe-area-inset-right));
+  }
+
+  .app-gallery-info {
+    top: max(16px, env(safe-area-inset-top));
+    max-width: calc(100% - 120px);
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
    TABLET / SMALL LAPTOP
 ========================================================= */
 @media (max-width: 1000px) and (min-width: 901px) {
