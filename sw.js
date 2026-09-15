@@ -1,4 +1,4 @@
-const CACHE_NAME = "omepikya-v7";
+const CACHE_NAME = "omepikya-v8";
 
 const APP_ASSETS = [
   "/",
