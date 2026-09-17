@@ -1,0 +1,33 @@
+name: Publish App Release
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/publish-app-release.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Omepikya Expense v1.1.1 APK
+        run: |
+          curl -L --fail \
+            -o app-release.apk \
+            https://github.com/Omepikya/OmepikyaExpense/releases/download/v1.1.1/app-release.apk
+
+      - name: Publish v1.1.1 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1.1.1 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "v1.1.1 already exists; nothing to publish."
+          else
+            gh release create v1.1.1 app-release.apk \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Omepikya Expense v1.1.1" \
+              --notes "Omepikya Expense v1.1.1\n\n- Updated receipt OCR amount detection\n- Improved handling of rupee glyph OCR errors\n- Latest production Android build"
+          fi
