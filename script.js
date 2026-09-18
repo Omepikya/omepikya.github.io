@@ -87,31 +87,34 @@ document.addEventListener("DOMContentLoaded", () => {
   if (privacySection) {
     let gallery = document.querySelector("#app-gallery");
     if (!gallery) {
-    gallery = document.createElement("section");
-    gallery.id = "app-gallery";
-    gallery.className = "section section-soft";
-    gallery.innerHTML = `
-      <div class="container">
-        <div class="section-heading app-gallery-heading">
-          <span class="section-eyebrow">App Gallery</span>
-          <h2>See Omepikya in action.</h2>
-          <p>Explore real screens from the Omepikya Expense app — from everyday transactions to deeper financial insights.</p>
-        </div>
-        <div class="app-gallery-track" aria-label="Omepikya app screenshots"></div>
-        <p class="app-gallery-hint">Tap a screen to view the full gallery.</p>
-      </div>`;
+      gallery = document.createElement("section");
+      gallery.id = "app-gallery";
+      gallery.className = "section section-soft";
+      gallery.innerHTML = `
+        <div class="container">
+          <div class="section-heading app-gallery-heading">
+            <span class="section-eyebrow">App Gallery</span>
+            <h2>See Omepikya in action.</h2>
+            <p>Explore real screens from the Omepikya Expense app — from everyday transactions to deeper financial insights.</p>
+          </div>
+          <div class="app-gallery-track" aria-label="Omepikya app screenshots"></div>
+          <p class="app-gallery-hint">Tap a screen to view the full gallery.</p>
+        </div>`;
+      privacySection.parentNode.insertBefore(gallery, privacySection);
+    }
 
     const track = gallery.querySelector(".app-gallery-track");
     if (!track) return;
-    if (!track.children.length) gallerySources.forEach(([title, src, alt]) => {
-      const card = document.createElement("button");
-      card.type = "button";
-      card.className = "app-gallery-card";
-      card.setAttribute("aria-label", `View ${title} screenshot`);
-      card.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" draggable="false"><div class="app-gallery-label">${title}</div>`;
-      track.appendChild(card);
-    });
-    if (!gallery.isConnected) privacySection.parentNode.insertBefore(gallery, privacySection);
+    if (!track.children.length) {
+      gallerySources.forEach(([title, src, alt]) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "app-gallery-card";
+        card.setAttribute("aria-label", `View ${title} screenshot`);
+        card.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" draggable="false"><div class="app-gallery-label">${title}</div>`;
+        track.appendChild(card);
+      });
+    }
 
     const lightbox = document.createElement("div");
     lightbox.className = "app-gallery-lightbox";
