@@ -60,3 +60,109 @@ html[data-theme="dark"]{--primary:#39B875;--primary-light:#143C29;--primary-dark
 .legal-note { padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); }
 .legal-back { margin-top: 55px; }
 .app-gallery-lightbox[hidden], .app-gallery-lightbox[aria-hidden="true"] { display: none; }
+
+
+/* =========================================================
+   MOBILE LAYOUT POLISH
+   Single-column cards + balanced cloud + stacked footer
+========================================================= */
+@media (max-width: 700px) {
+  .feature-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .feature-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 26px 24px;
+  }
+
+  .feature-card:last-child {
+    grid-column: auto;
+  }
+
+  .feature-number {
+    margin-bottom: 42px;
+  }
+
+  .cloud-card {
+    display: block;
+    min-height: 0;
+    padding: 36px 24px 34px;
+    overflow: hidden;
+  }
+
+  .cloud-content {
+    max-width: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cloud-content h2 {
+    font-size: clamp(34px, 10vw, 48px);
+    line-height: 1.05;
+  }
+
+  .cloud-content p {
+    max-width: none;
+  }
+
+  .cloud-mark {
+    width: 110px;
+    height: 110px;
+    min-width: 110px;
+    margin: 28px auto 0;
+    border-radius: 30px;
+    font-size: 52px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .footer-grid > div,
+  .footer-brand,
+  .footer-links,
+  .footer-contact {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .support-section {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cloud-card {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .cloud-mark {
+    width: 96px;
+    height: 96px;
+    min-width: 96px;
+    font-size: 46px;
+  }
+
+  .feature-card {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
