@@ -1,10 +1,9 @@
-const CACHE_NAME = "omepikya-v11";
+const CACHE_NAME = "omepikya-v12";
 
 const APP_ASSETS = [
   "/",
   "/index.html",
   "/styles.css",
-  "/phase2.css",
   "/script.js",
   "/manifest.json",
   "/assets/omepikya-icon.svg"
@@ -44,7 +43,7 @@ self.addEventListener("fetch", event => {
           if (response && response.ok) {
             const responseClone = response.clone();
             caches.open(CACHE_NAME).then(cache => {
-              cache.put("/index.html", responseClone);
+              cache.put(event.request, responseClone);
             });
           }
           return response;
