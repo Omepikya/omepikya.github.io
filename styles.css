@@ -22,3 +22,41 @@ html[data-theme="dark"]{--primary:#39B875;--primary-light:#143C29;--primary-dark
 @media(max-width:520px){.container,.header-inner{width:min(calc(100% - 32px),var(--content-width))}.brand{gap:9px}.brand-name{font-size:17px}.brand-mark{width:34px;height:34px;border-radius:10px}.hero h1{font-size:clamp(38px,12.5vw,52px)}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}.hero-meta{font-size:11px;gap:5px 9px}.dashboard-window{padding:17px}.dashboard-stats{grid-template-columns:1fr;gap:10px}.expense-row{grid-template-columns:34px minmax(0,1fr) auto;gap:8px}.expense-icon{width:32px;height:32px}.cloud-card{padding:32px 22px}.cta-card h2{font-size:clamp(34px,10vw,48px)}#app-gallery .app-gallery-heading h2{font-size:clamp(34px,10vw,42px)}#app-gallery .app-gallery-card,#app-gallery .app-gallery-card:nth-child(3){flex-basis:80vw}.mobile-menu{width:90vw;padding-left:18px;padding-right:18px}.mobile-main-nav>a{min-height:58px;grid-template-columns:34px minmax(0,1fr) 22px;gap:8px;font-size:16px}.mobile-nav-icon{width:30px;height:30px}.mobile-nav-icon svg{width:24px;height:24px}.mobile-download{grid-template-columns:34px minmax(0,1fr) 22px!important;gap:8px;font-size:15px}}
 @media(max-width:380px){.container,.header-inner{width:calc(100% - 24px)}.site-header{height:64px}.menu-toggle{width:42px;height:42px}.hero{padding:38px 0 46px}.hero h1{font-size:38px}.hero-description{font-size:15px}.dashboard-window{padding:14px;border-radius:19px}.dashboard-top strong{font-size:23px}.dashboard-change{font-size:9px;padding:5px 7px}.expense-info strong,.expense-row>strong{font-size:11px}.mobile-menu{width:92vw;padding-left:16px;padding-right:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Consolidated site fixes: phase2.css merged; legal pages share these rules. */
+@media (max-width: 520px) {
+  .container, .header-inner { width: calc(100% - 24px); }
+  .brand-name { font-size: 16px; }
+  .brand-mark { width: 34px; height: 34px; }
+  .hero { padding-top: 30px; padding-bottom: 38px; }
+  .hero h1 { font-size: 38px; }
+  .cloud-card { padding-left: 20px; padding-right: 20px; }
+  .cloud-mark { width: 96px; height: 96px; min-width: 96px; font-size: 46px; }
+  .mobile-menu { width: 92vw; padding-left: 17px; padding-right: 17px; }
+  .mobile-main-nav > a { font-size: 16px; }
+  .mobile-download { font-size: 15px; }
+}
+@media (max-width: 700px) {
+  .mobile-menu { height: 100dvh; min-height: 100dvh; max-height: 100dvh; padding-bottom: calc(28px + env(safe-area-inset-bottom)); overflow-x: hidden; overflow-y: auto; }
+  .mobile-menu-header { margin-bottom: 20px; }
+  .mobile-main-nav { gap: 1px; }
+  .mobile-main-nav > a { min-height: 58px; }
+  .mobile-download { margin-top: 14px; min-height: 64px; }
+  .mobile-menu-footer { margin-top: 24px; padding-top: 20px; }
+  .mobile-menu-footer > a, .mobile-theme-toggle { min-height: 54px; }
+  .mobile-menu-tagline { margin-bottom: 4px; }
+  .legal-page { padding-top: 72px; padding-bottom: 72px; }
+  .legal-header h1 { font-size: clamp(40px, 11vw, 58px); }
+}
+.legal-page { padding: 110px 0; }
+.legal-header { max-width: 800px; margin-bottom: 55px; }
+.legal-header h1 { margin: 12px 0 18px; font-size: clamp(42px, 6vw, 68px); line-height: 1.02; letter-spacing: -.055em; }
+.legal-header p, .legal-section p, .legal-section li { color: var(--text-muted); }
+.legal-section { max-width: 820px; margin-bottom: 42px; }
+.legal-section h2 { margin-bottom: 12px; font-size: 28px; letter-spacing: -.03em; }
+.legal-section h3 { margin: 22px 0 8px; font-size: 19px; }
+.legal-section ul { padding-left: 22px; }
+.legal-section li { margin: 8px 0; }
+.legal-note { padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); }
+.legal-back { margin-top: 55px; }
+.app-gallery-lightbox[hidden], .app-gallery-lightbox[aria-hidden="true"] { display: none; }
