@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function applyTheme(theme, persist = true) {
     const dark = theme === "dark";
-    root.toggleAttribute("data-theme", dark);
     if (dark) root.setAttribute("data-theme", "dark");
+    else root.removeAttribute("data-theme");
     if (persist) localStorage.setItem("omepikya-theme", dark ? "dark" : "light");
     themeButtons.forEach(button => button.setAttribute("aria-pressed", dark ? "true" : "false"));
   }
@@ -84,8 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ["My Profile", "assets/app-gallery/app-profile.jpg", "Omepikya Expense My Profile screen"]
   ];
 
-  if (privacySection && !document.querySelector("#app-gallery")) {
-    const gallery = document.createElement("section");
+  if (privacySection) {
+    let gallery = document.querySelector("#app-gallery");
+    if (!gallery) {
+    gallery = document.createElement("section");
     gallery.id = "app-gallery";
     gallery.className = "section section-soft";
     gallery.innerHTML = `
@@ -100,17 +102,16 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>`;
 
     const track = gallery.querySelector(".app-gallery-track");
-    gallerySources.forEach(([title, src, alt]) => {
+    if (!track) return;
+    if (!track.children.length) gallerySources.forEach(([title, src, alt]) => {
       const card = document.createElement("button");
       card.type = "button";
       card.className = "app-gallery-card";
-      card.dataset.galleryTitle = title;
-      card.dataset.gallerySrc = src;
       card.setAttribute("aria-label", `View ${title} screenshot`);
       card.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" draggable="false"><div class="app-gallery-label">${title}</div>`;
       track.appendChild(card);
     });
-    privacySection.parentNode.insertBefore(gallery, privacySection);
+    if (!gallery.isConnected) privacySection.parentNode.insertBefore(gallery, privacySection);
 
     const lightbox = document.createElement("div");
     lightbox.className = "app-gallery-lightbox";
@@ -276,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     viewer.addEventListener("pointercancel", () => { pointerActive = false; });
 
-    gallerySources.forEach(item => { const img = new Image(); img.src = item[1]; });
+    
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
