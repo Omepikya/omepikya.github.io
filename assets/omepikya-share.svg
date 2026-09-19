@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Omepikya Expense — Your money. Under control.</title>
+<desc id="desc">Omepikya Expense personal finance app for tracking expenses, managing budgets, and understanding spending.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07130D"/><stop offset="1" stop-color="#0F7A46"/></linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<circle cx="1030" cy="110" r="240" fill="#39B875" opacity=".12"/>
+<circle cx="1120" cy="560" r="260" fill="#fff" opacity=".05"/>
+<rect x="78" y="76" width="82" height="82" rx="22" fill="#fff"/>
+<path d="M101 112h36M101 132h25M101 152h32" stroke="#0F7A46" stroke-width="9" stroke-linecap="round"/>
+<circle cx="146" cy="132" r="9" fill="#39B875"/>
+<text x="190" y="132" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="800">Omepikya</text>
+<text x="80" y="300" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="72" font-weight="800">Your money.</text>
+<text x="80" y="382" fill="#BFEFD2" font-family="Inter,Arial,sans-serif" font-size="72" font-weight="800">Under control.</text>
+<text x="82" y="450" fill="#E8F6EE" font-family="Inter,Arial,sans-serif" font-size="25">Track expenses · Understand spending · Manage your finances</text>
+<text x="82" y="545" fill="#BFEFD2" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="600">omepikya.in</text>
+</svg>
