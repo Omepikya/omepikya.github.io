@@ -1,4 +1,4 @@
-const CACHE_NAME = "omepikya-v17";
+const CACHE_NAME = "omepikya-v18";
 
 const APP_ASSETS = [
   "/",
@@ -7,6 +7,8 @@ const APP_ASSETS = [
   "/script.js",
   "/manifest.json",
   "/assets/omepikya-icon.svg",
+  "/assets/omepikya-icon-192.png",
+  "/assets/omepikya-icon-512.png",
   "/assets/app-gallery/app-home-450.webp",
   "/assets/app-gallery/app-analytics-450.webp",
   "/assets/app-gallery/app-profile-450.webp",
