@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
-
-  <url>
-    <loc>https://omepikya.in/</loc>
-  </url>
-
-  <url>
-    <loc>https://omepikya.in/privacy.html</loc>
-  </url>
-
-  <url>
-    <loc>https://omepikya.in/terms.html</loc>
-  </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://omepikya.in/</loc></url>
+  <url><loc>https://omepikya.in/expense-tracker.html</loc></url>
+  <url><loc>https://omepikya.in/budget-planner.html</loc></url>
+  <url><loc>https://omepikya.in/personal-finance.html</loc></url>
+  <url><loc>https://omepikya.in/privacy.html</loc></url>
+  <url><loc>https://omepikya.in/terms.html</loc></url>
 </urlset>
