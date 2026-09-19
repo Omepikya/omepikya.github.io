@@ -1,0 +1,53 @@
+name: Optimize image assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/omepikya-share.svg"
+      - "assets/app-gallery/*.jpg"
+      - ".github/workflows/optimize-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webp librsvg2-bin
+
+      - name: Generate social preview PNG
+        run: |
+          rsvg-convert -w 1200 -h 630 assets/omepikya-share.svg -o assets/omepikya-share.png
+
+      - name: Generate responsive WebP gallery assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for src in assets/app-gallery/*.jpg; do
+            base="${src%.jpg}"
+            cwebp -quiet -q 82 -resize 225 0 "$src" -o "${base}-225.webp"
+            cwebp -quiet -q 82 -resize 450 0 "$src" -o "${base}-450.webp"
+            cwebp -quiet -q 82 -resize 900 0 "$src" -o "${base}-900.webp"
+          done
+
+      - name: Commit generated assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/omepikya-share.png assets/app-gallery/*.webp
+          if git diff --cached --quiet; then
+            echo "No generated asset changes."
+            exit 0
+          fi
+          git commit -m "Generate optimized image assets"
+          git push
