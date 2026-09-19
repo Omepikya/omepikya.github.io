@@ -35,6 +35,7 @@ html[data-theme="dark"]{--primary:#39B875;--primary-light:#143C29;--primary-dark
   .mobile-menu { width: 92vw; padding-left: 17px; padding-right: 17px; }
   .mobile-main-nav > a { font-size: 16px; }
   .mobile-download { font-size: 15px; }
+  .feature-card { padding-left: 20px; padding-right: 20px; }
 }
 @media (max-width: 700px) {
   .mobile-menu { height: 100dvh; min-height: 100dvh; max-height: 100dvh; padding-bottom: calc(28px + env(safe-area-inset-bottom)); overflow-x: hidden; overflow-y: auto; }
@@ -148,21 +149,3 @@ html[data-theme="dark"]{--primary:#39B875;--primary-light:#143C29;--primary-dark
   }
 }
 
-@media (max-width: 420px) {
-  .cloud-card {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .cloud-mark {
-    width: 96px;
-    height: 96px;
-    min-width: 96px;
-    font-size: 46px;
-  }
-
-  .feature-card {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
