@@ -7,6 +7,8 @@ on:
     branches: [main]
     paths:
       - "assets/omepikya-share.svg"
+      - "assets/omepikya-icon.svg"
+      - "manifest.json"
       - "assets/app-gallery/*.jpg"
       - ".github/workflows/optimize-images.yml"
 
@@ -30,6 +32,8 @@ jobs:
       - name: Generate social preview PNG
         run: |
           rsvg-convert -w 1200 -h 630 assets/omepikya-share.svg -o assets/omepikya-share.png
+          rsvg-convert -w 192 -h 192 assets/omepikya-icon.svg -o assets/omepikya-icon-192.png
+          rsvg-convert -w 512 -h 512 assets/omepikya-icon.svg -o assets/omepikya-icon-512.png
 
       - name: Generate responsive WebP gallery assets
         shell: bash
@@ -46,7 +50,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/omepikya-share.png assets/app-gallery/*.webp
+          git add assets/omepikya-share.png assets/omepikya-icon-192.png assets/omepikya-icon-512.png assets/app-gallery/*.webp
           if git diff --cached --quiet; then
             echo "No generated asset changes."
             exit 0
