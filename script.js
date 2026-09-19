@@ -111,7 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.type = "button";
         card.className = "app-gallery-card";
         card.setAttribute("aria-label", `View ${title} screenshot`);
-        card.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" draggable="false"><div class="app-gallery-label">${title}</div>`;
+        const base = src.replace(/\.jpg$/i, "");
+        card.innerHTML = `<picture><source type="image/webp" srcset="${base}-225.webp 225w, ${base}-450.webp 450w, ${base}-900.webp 900w" sizes="(max-width: 700px) 42vw, 225px"><img src="${src}" alt="${alt}" loading="lazy" decoding="async" draggable="false"></picture><div class="app-gallery-label">${title}</div>`;
         track.appendChild(card);
       });
     }
