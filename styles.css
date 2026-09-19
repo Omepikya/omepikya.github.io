@@ -322,3 +322,27 @@ html[data-theme="dark"] .feature-tone-teal{--feature-bg:#153735}
   .hero-device-secondary{right:-4%;width:50vw}
   .hero-callout-top,.hero-callout-bottom{display:none}
 }
+
+
+/* =========================================================
+   MOBILE FOOTER / LEGAL POLISH
+========================================================= */
+@media(max-width:700px){
+  .terms-section{padding:64px 0 70px}
+  .terms-inner{gap:26px}
+  .terms-links{justify-content:flex-start;gap:9px}
+  .terms-links a{padding:10px 14px;border-radius:12px;font-size:13px}
+  .site-footer{padding:56px 0 24px}
+  .footer-grid{gap:24px!important}
+  .footer-grid>div:first-child p{max-width:360px;margin-top:10px}
+  .footer-links{gap:9px 18px}
+  .footer-links a,.footer-contact{font-size:13px}
+  .footer-contact{gap:4px}
+  .footer-contact .text-link{margin-top:4px}
+  .footer-bottom{margin-top:42px;padding-top:20px;gap:9px;font-size:11px}
+}
+@media(max-width:380px){
+  .terms-links{gap:8px}
+  .terms-links a{padding:9px 12px}
+  .footer-links{gap:8px 15px}
+}
