@@ -1,4 +1,4 @@
-const CACHE_NAME = "omepikya-v16";
+const CACHE_NAME = "omepikya-v17";
 
 const APP_ASSETS = [
   "/",
@@ -11,7 +11,10 @@ const APP_ASSETS = [
   "/assets/app-gallery/app-analytics-450.webp",
   "/assets/app-gallery/app-profile-450.webp",
   "/privacy.html",
-  "/terms.html"
+  "/terms.html",
+  "/expense-tracker.html",
+  "/budget-planner.html",
+  "/personal-finance.html"
 ];
 
 self.addEventListener("install", event => {
