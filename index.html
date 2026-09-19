@@ -140,7 +140,7 @@
 
   <link
     rel="stylesheet"
-    href="styles.css?v=20260919-3"
+    href="styles.css?v=20260919-4"
   >
 </head>
 
@@ -880,7 +880,7 @@
         <span class="feature-card-kicker">01 · Everyday</span>
         <h3>Track Expenses</h3>
         <p>Record income and expenses quickly and keep your financial activity organised.</p>
-        <a href="#app-gallery">Explore screens <span>→</span></a>
+        <a href="expense-tracker.html">Explore expense tracking <span>→</span></a>
       </article>
 
       <article class="feature-primary-card feature-tone-blue">
@@ -888,7 +888,7 @@
         <span class="feature-card-kicker">02 · Understand</span>
         <h3>Spending Analytics</h3>
         <p>See patterns, trends, and financial activity through clear visual analytics.</p>
-        <a href="#app-gallery">View analytics <span>→</span></a>
+        <a href="personal-finance.html">View spending analytics <span>→</span></a>
       </article>
 
       <article class="feature-primary-card feature-tone-purple">
@@ -896,7 +896,7 @@
         <span class="feature-card-kicker">03 · Plan</span>
         <h3>Budgets &amp; Goals</h3>
         <p>Set spending limits and savings targets, then keep progress connected to your goals.</p>
-        <a href="#cloud">See how it works <span>→</span></a>
+        <a href="budget-planner.html">Explore budget planning <span>→</span></a>
       </article>
 
       <article class="feature-primary-card feature-tone-orange">
@@ -1862,23 +1862,55 @@
 ========================================================= -->
 
 <script type="application/ld+json">
-
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Omepikya Expense",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Android",
-  "image": "https://omepikya.in/assets/omepikya-share.png",
-  "screenshot": "https://omepikya.in/assets/app-gallery/app-home.jpg",
-  "description": "Personal finance and expense tracking application for managing expenses, understanding spending, and making better financial decisions.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "INR"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://omepikya.in/#website",
+      "url": "https://omepikya.in/",
+      "name": "Omepikya",
+      "description": "Omepikya creates focused tools for everyday personal finance."
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://omepikya.in/#organization",
+      "name": "Omepikya",
+      "url": "https://omepikya.in/",
+      "logo": "https://omepikya.in/assets/omepikya-icon.svg",
+      "sameAs": [
+        "https://github.com/Omepikya/omepikya.github.io",
+        "https://www.instagram.com/omepikya/"
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://omepikya.in/#app",
+      "name": "Omepikya Expense",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Android",
+      "url": "https://omepikya.in/",
+      "downloadUrl": "https://github.com/Omepikya/OmepikyaExpense/releases/download/v1.1.1/app-release.apk",
+      "image": "https://omepikya.in/assets/omepikya-share.png",
+      "screenshot": "https://omepikya.in/assets/app-gallery/app-home.jpg",
+      "description": "Personal finance and expense tracking application for managing expenses, understanding spending, and making better financial decisions.",
+      "featureList": [
+        "Expense tracking",
+        "Spending analytics",
+        "Budgets and savings goals",
+        "Receipt scanning and OCR",
+        "Cash-flow tracking",
+        "Expense splitting"
+      ],
+      "author": { "@id": "https://omepikya.in/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    }
+  ]
 }
-
 </script>
 
 
