@@ -1,5 +1,7 @@
 name: Optimize image assets
 
+# Generates the committed PNG/WebP assets used by the production site.
+
 on:
   push:
     branches: [main]
