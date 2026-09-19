@@ -1,4 +1,4 @@
-const CACHE_NAME = "omepikya-v12";
+const CACHE_NAME = "omepikya-v13";
 
 const APP_ASSETS = [
   "/",
@@ -6,7 +6,9 @@ const APP_ASSETS = [
   "/styles.css",
   "/script.js",
   "/manifest.json",
-  "/assets/omepikya-icon.svg"
+  "/assets/omepikya-icon.svg",
+  "/privacy.html",
+  "/terms.html"
 ];
 
 self.addEventListener("install", event => {
@@ -48,7 +50,7 @@ self.addEventListener("fetch", event => {
           }
           return response;
         })
-        .catch(() => caches.match("/index.html"))
+        .catch(() => caches.match(event.request).then(cached => cached || (requestUrl.pathname === "/" || requestUrl.pathname === "/index.html" ? caches.match("/index.html") : Response.error())))
     );
     return;
   }
