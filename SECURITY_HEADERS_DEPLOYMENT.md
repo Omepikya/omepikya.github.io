@@ -14,7 +14,7 @@ To activate these headers, deploy this static repository as a Cloudflare Pages p
 
 ## CSP notes
 
-The policy allows same-origin scripts, images, connections, service workers and media, plus Google Fonts stylesheet/font hosts. It blocks objects, embedded frames, and untrusted script origins. One existing inline style attribute is allowed by `style-src 'unsafe-inline'`; inline JavaScript is not allowed. Structured-data `application/ld+json` blocks are data, not executable JavaScript.
+The policy allows same-origin scripts, images, connections, service workers and media, plus Google Fonts stylesheet/font hosts. It blocks objects, embedded frames, and untrusted script origins. Inline JavaScript and inline styles are both disallowed by the CSP; the sole former inline style was moved into the external stylesheet. Structured-data `application/ld+json` blocks are data, not executable JavaScript.
 
 Before activation, test the entire site—not only the homepage—including legal pages, all feature pages, the mobile menu, theme switch, PWA/service-worker behavior, and any later-added third-party assets. If the browser console reports a legitimate blocked resource, review it and narrow the policy deliberately rather than adding broad wildcards.
 
