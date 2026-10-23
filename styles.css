@@ -419,3 +419,6 @@ html[data-theme="dark"] .feature-tone-teal{--feature-bg:#153735}
 .discovery-card p{margin:6px 0 0;color:var(--text-muted);font-size:13px;line-height:1.6}
 .discovery-card>b{align-self:center;color:var(--primary);font-size:20px}
 @media (max-width:900px){.discovery-grid{grid-template-columns:1fr}}
+
+/* Security: replace the former inline style on the About page. */
+.hero-actions--centered { justify-content: center; }
