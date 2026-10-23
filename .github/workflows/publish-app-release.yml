@@ -2,9 +2,6 @@ name: Publish App Release
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/publish-app-release.yml'
 
 permissions:
   contents: write

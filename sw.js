@@ -1,4 +1,5 @@
-const CACHE_NAME = "omepikya-v19";
+const CACHE_NAME = "omepikya-v20";
+const CACHE_PREFIX = "omepikya-";
 
 const APP_ASSETS = [
   "/",
@@ -37,7 +38,7 @@ self.addEventListener("activate", event => {
       .then(cacheNames =>
         Promise.all(
           cacheNames
-            .filter(name => name !== CACHE_NAME)
+            .filter(name => name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME)
             .map(name => caches.delete(name))
         )
       )
